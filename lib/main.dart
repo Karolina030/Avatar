@@ -6,11 +6,11 @@ import 'package:Avatar/Store_Screen.dart';
 
 
 void main() {
-  runApp(MyApp()
+  runApp(Avatar()
   );
 }
 
-class MyApp extends StatelessWidget {
+class Avatar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
@@ -30,8 +30,7 @@ class MyApp extends StatelessWidget {
 
 
 class MyHomePage extends StatefulWidget {
-  // final String title;
-  // const MyHomePage({Key key, this.title}) : super(key: key);
+
   _MyHomePageState createState() => _MyHomePageState();
 }
 
@@ -79,8 +78,3 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
-
-//TODO
-//Add screens
-//FontStyle
-//SIZE
