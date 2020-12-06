@@ -1,9 +1,12 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:Avatar/Create_Screen.dart';
 import 'package:Avatar/Missions_Screen.dart';
 import 'package:Avatar/Ed_Pf__Screen.dart';
 import 'package:Avatar/Store_Screen.dart';
 
+import 'package:Avatar/Creation.dart';
 
 void main() {
   runApp(Avatar()
@@ -16,6 +19,7 @@ class Avatar extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Avatar',
       theme: ThemeData(
         primarySwatch: Colors.orange,
@@ -40,6 +44,9 @@ class _MyHomePageState extends State<MyHomePage> {
   Missions_Screen screen_missions = Missions_Screen();
   Ed_Pf__Screen screen_ed_ph = Ed_Pf__Screen();
   Store_Screen screen_store = Store_Screen();
+
+  Creation creation = Creation();
+
   @override
   Widget build(BuildContext context) {
 
@@ -57,7 +64,7 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             new FlatButton(onPressed: () async { //RaisedButton
-              Navigator.push(context, MaterialPageRoute(builder: (context) => screen_create));
+              Navigator.push(context, MaterialPageRoute(builder: (context) => creation));
             }, child: Text('CREATE', style: TextStyle(fontFamily: 'Comic Sans', fontSize: 40),), color: Color(0xFFFA990E), textColor: Colors.white,),
             // new Spacer(flex: 1),
             new Text('\n'),
