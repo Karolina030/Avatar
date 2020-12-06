@@ -12,7 +12,7 @@ class Creation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: "CREATE",
+        title: "Create",
         home: HomeView(),
         debugShowCheckedModeBanner: false,
     );
@@ -28,12 +28,10 @@ class _HomeViewState extends State<HomeView> {
   FlutterSimpleStickerView _stickerView = FlutterSimpleStickerView(
     Container(
       decoration: BoxDecoration(
-          color: Colors.red,
+          color: Colors.white,
           image: DecorationImage(
               fit: BoxFit.cover,
               image: new ExactAssetImage('assets/postac.png'))),
-      //   image: NetworkImage(
-      //        "https://media.istockphoto.com/vectors/angry-cartoon-human-figure-jumping-drawing-vector-id1140540614"))),
     ),
     [
       Image.asset("assets/icons8-eyes-cartoon-50.png"),
@@ -63,12 +61,9 @@ class _HomeViewState extends State<HomeView> {
       Image.asset("assets/icons8-santas-hat-100.png"),
       Image.asset("assets/icons8-sleepy-eyes-100.png"),
 
-
-
-      //  Image.asset("assets/icons8-haircut-50"),
     ],
     // panelHeight: 150,
-    panelBackgroundColor: Colors.blue,
+    panelBackgroundColor: Colors.orange,
     // panelStickerBackgroundColor: Colors.pink,
     // panelStickercrossAxisCount: 4,
     // panelStickerAspectRatio: 1.0,
@@ -77,9 +72,11 @@ class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
 
+
+
     return Scaffold(
         appBar: AppBar(
-          title: Text("CREATE"),
+          title: Text("Create"),
           actions: <Widget>[
             IconButton(
               icon: Icon(Icons.save_alt),
@@ -87,7 +84,7 @@ class _HomeViewState extends State<HomeView> {
                 Uint8List image = await _stickerView.exportImage();
 
                 //   Map<PermissionGroup, PermissionStatus> permissions =
-                //      await PermissionHandler().requestPermissions([PermissionGroup.storage]);
+                //     await PermissionHandler().requestPermissions([PermissionGroup.storage]);
                 await ImageGallerySaver.saveImage(image);
               },
             )
