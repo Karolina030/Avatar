@@ -14,8 +14,8 @@ class FlutterSimpleStickerImage extends StatefulWidget {
         this.width,
         this.height,
         this.viewport,
-        this.minScale = 10.0,
-        this.maxScale = 1000.0,
+        this.minScale = 1.0,
+        this.maxScale = 100.0,
         this.onTapRemove,
       }) : super(key: key);
 
@@ -49,8 +49,8 @@ class FlutterSimpleStickerImage extends StatefulWidget {
 class _FlutterSimpleStickerImageState extends State<FlutterSimpleStickerImage> {
   _FlutterSimpleStickerImageState();
 
-  double _scale = 100;
-  double _previousScale = 100.0;
+  double _scale = 1.0;
+  double _previousScale = 1.0;
 
   Offset _previousOffset = Offset(0, 0);
   Offset _startingFocalPoint = Offset(0, 0);
@@ -65,10 +65,8 @@ class _FlutterSimpleStickerImageState extends State<FlutterSimpleStickerImage> {
   void dispose() {
     super.dispose();
     _offset = Offset(0, 0);
-    _scale = 100.0;
+    _scale = 1.0;
   }
-
-
 
 
   @override
@@ -89,19 +87,12 @@ class _FlutterSimpleStickerImageState extends State<FlutterSimpleStickerImage> {
                     _startingFocalPoint = details.focalPoint;
                     _previousOffset = _offset;
                     _previousRotation = _rotation;
-
-
                     _previousScale = _scale;
 
                     // print(
                     //     "begin - focal : ${details.focalPoint}, local : ${details.localFocalPoint}");
                   },
                   onScaleUpdate: (ScaleUpdateDetails details) {
-                    // _scale = min(
-                    //     max(_previousScale * details.scale, widget.minScale),
-                    //     widget.maxScale);
-                    _scale = _previousScale * details.scale;
-                    _rotation = details.rotation;
 
                     final Offset normalizedOffset =
                         (_startingFocalPoint - _previousOffset) /
@@ -117,21 +108,17 @@ class _FlutterSimpleStickerImageState extends State<FlutterSimpleStickerImage> {
                         min(__offset.dy, widget.viewport.height));
 
                     setState(() {
+                      _scale = _previousScale * details.scale;
+                      _rotation = details.rotation;
                       _offset = __offset;
-                      // print("move - $_offset, scale : $_scale");
+                      //  print("move - $_offset, scale : $_scale");
                     });
                   },
-                  onTap: () {
+                  onScaleEnd: (ScaleEndDetails details){
+
                     setState(() {
-                      return Sliders();
+                      _previousScale = _scale;
                     });
-                    // TODO
-                    // uncomment line to run application
-                    // scale does not work
-                    // var details;
-                    _scale = min(
-                        max(_previousScale * details.scale, widget.minScale),
-                        widget.maxScale);
                   },
                   onTapCancel: () {
                     setState(() {
@@ -178,51 +165,5 @@ class _FlutterSimpleStickerImageState extends State<FlutterSimpleStickerImage> {
     setState(() {
       _isSelected = false;
     });
-  }
-}
-
-var slider = 0.0;
-
-class Sliders extends StatefulWidget {
-  Sliders({Key key}) : super(key: key);
-  @override
-  _SlidersState createState() => _SlidersState();
-}
-
-class _SlidersState extends State<Sliders> {
-  double _currentSliderValue = 20;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-        height: 120,
-        child: Column(
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: new Text("Slider Size"),
-            ),
-            Divider(
-              height: 1,
-            ),
-            new Slider(
-                value: slider,
-                min: 0.0,
-                max: 100.0,
-                label: _currentSliderValue.round().toString(),
-                onChangeEnd: (double value) {
-                  setState(() {
-                    _currentSliderValue = value;
-                    //  fontsize[widget.size] = v.toInt();
-                  });
-                },
-                onChanged: (double value) {
-                  setState(() {
-                    _currentSliderValue = value;
-                    slider = value;
-                  });
-                }),
-          ],
-        ));
   }
 }
