@@ -5,7 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:Avatar/flutter_simple_sticker_view.dart';
 
 import 'package:image_gallery_saver/image_gallery_saver.dart';
-import 'package:permission_handler/permission_handler.dart';
+
+// import 'dart:html';
+// import 'package:image_picker/image_picker.dart';
 
 class Creation extends StatelessWidget {
 
@@ -25,13 +27,18 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
+  // ignore: deprecated_member_use
+  // final File photo = (ImagePicker.pickImage(source: ImageSource.gallery)) as File;
+
   FlutterSimpleStickerView _stickerView = FlutterSimpleStickerView(
     Container(
       decoration: BoxDecoration(
           color: Colors.white,
           image: DecorationImage(
               fit: BoxFit.cover,
-              image: new ExactAssetImage('assets/postac.png'))),
+              image: new ExactAssetImage('assets/postac.png')
+          )
+      ),
     ),
     [
       Image.asset("assets/icons8-eyes-cartoon-50.png"),
@@ -83,8 +90,6 @@ class _HomeViewState extends State<HomeView> {
               onPressed: () async {
                 Uint8List image = await _stickerView.exportImage();
 
-                //   Map<PermissionGroup, PermissionStatus> permissions =
-                //     await PermissionHandler().requestPermissions([PermissionGroup.storage]);
                 await ImageGallerySaver.saveImage(image);
               },
             )
