@@ -8,15 +8,19 @@ import 'package:image_gallery_saver/image_gallery_saver.dart';
 
 // import 'dart:html';
 // import 'package:image_picker/image_picker.dart';
+var globalContext;
 
 class Creation extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
+    globalContext = context;
     return MaterialApp(
       title: "Create",
       home: HomeView(),
       debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          primaryColor: Colors.orange
+        )
     );
   }
 }
@@ -83,17 +87,31 @@ class _HomeViewState extends State<HomeView> {
 
     return Scaffold(
         appBar: AppBar(
+            leading: Builder(
+              builder: (BuildContext context) {
+                return IconButton(
+                    icon: Icon(Icons.arrow_back),
+                    onPressed: (){
+                      Navigator.pop(globalContext);
+                      //  Navigator.of(context).maybePop();
+                    }
+                );
+              },
+            ),
           title: Text("Create"),
-          actions: <Widget>[
-            IconButton(
+            centerTitle: true,
+
+            actions: <Widget>[
+
+            new IconButton(
               icon: Icon(Icons.save_alt),
               onPressed: () async {
                 Uint8List image = await _stickerView.exportImage();
 
                 await ImageGallerySaver.saveImage(image);
               },
-            )
-          ],
+            ),
+        ]
         ),
         body: _stickerView);
   }
