@@ -6,8 +6,9 @@ import 'package:Avatar/flutter_simple_sticker_view.dart';
 
 import 'package:image_gallery_saver/image_gallery_saver.dart';
 
-// import 'dart:html';
-// import 'package:image_picker/image_picker.dart';
+import 'dart:io';
+
+import 'package:image_picker/image_picker.dart';
 var globalContext;
 
 class Creation extends StatelessWidget {
@@ -31,8 +32,56 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
-  // ignore: deprecated_member_use
-  // final File photo = (ImagePicker.pickImage(source: ImageSource.gallery)) as File;
+
+  File _image;
+
+  Future _imgFromGallery() async {
+    File img = await ImagePicker.pickImage(source: ImageSource.gallery);
+    setState(() {
+      _image = img;
+    });
+  }
+  Future _imgFromCamera() async {
+    File img = await ImagePicker.pickImage(source: ImageSource.camera);
+    setState(() {
+      _image = img;
+    });
+  }
+
+  void _showPicker(context) {
+    showModalBottomSheet(
+        context: context,
+        builder: (BuildContext bc) {
+          return SafeArea(
+            child: Container(
+              child: new Wrap(
+                children: <Widget>[
+                  new ListTile(
+                      leading: new Icon(Icons.photo_library),
+                      title: new Text('Photo Library'),
+                      onTap: () {
+                        //_imgFromGallery();
+                        _imgFromGallery();
+                        Navigator.of(context).pop();
+                      }),
+                  new ListTile(
+                    leading: new Icon(Icons.photo_camera),
+                    title: new Text('Camera'),
+                    onTap: () {
+                      _imgFromCamera();
+                      //_getImage();
+                      Navigator.of(context).pop();
+                    },
+                  ),
+                ],
+              ),
+            ),
+          );
+        }
+    );
+  }
+
+
 
   FlutterSimpleStickerView _stickerView = FlutterSimpleStickerView(
     Container(
@@ -40,6 +89,8 @@ class _HomeViewState extends State<HomeView> {
           color: Colors.white,
           image: DecorationImage(
               fit: BoxFit.cover,
+            //  child _image: new FileImage(_image),
+            //   image:  Image.file(_image),
               image: new ExactAssetImage('assets/postac.png')
           )
       ),

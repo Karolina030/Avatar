@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:Avatar/Creation.dart';
+import 'package:Avatar/Mission.dart';
 
 
 class Missions_Screen extends StatelessWidget {
@@ -17,19 +18,19 @@ class Missions_Screen extends StatelessWidget {
               //   Navigator.pop(context);
               // }, child: Icon(Icons.arrow_back)),
               new RaisedButton(onPressed: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context) => Creation()));
+                Navigator.push(context, MaterialPageRoute(builder: (context) => Mission()));
               }, child: Text('General', style: TextStyle(fontFamily: 'Comic Sans', fontSize: 20),), color: Color(0xFFFA990E), textColor: Colors.white,),
               new Text('\n'),
               new RaisedButton(onPressed: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context) => Creation()));
+                Navigator.push(context, MaterialPageRoute(builder: (context) => Mission()));
               }, child: Text('Daily', style: TextStyle(fontFamily: 'Comic Sans', fontSize: 20),), color: Color(0xFFFA990E), textColor: Colors.white,),
               new Text('\n'),
               new RaisedButton(onPressed: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context) => Creation()));
+                Navigator.push(context, MaterialPageRoute(builder: (context) => Mission()));
               }, child: Text('Time', style: TextStyle(fontFamily: 'Comic Sans', fontSize: 20),), color: Color(0xFFFA990E), textColor: Colors.white,),
               new Text('\n'),
               new RaisedButton(onPressed: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context) => Creation()));
+                Navigator.push(context, MaterialPageRoute(builder: (context) => Mission()));
               }, child: Text('Try Again', style: TextStyle(fontFamily: 'Comic Sans', fontSize: 20),), color: Color(0xFFFA990E), textColor: Colors.white,),
             ]
         ),

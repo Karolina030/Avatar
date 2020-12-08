@@ -11,16 +11,16 @@ import 'dart:io';
 import 'package:image_picker/image_picker.dart';
 var globalContext;
 
-class Ed_Pf__Screen extends StatelessWidget {
+class Mission extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     globalContext = context;
     return MaterialApp(
-        title: "Edit photo",
-        home: HomeView(),
-        debugShowCheckedModeBanner: false,
+      title: "Mission",
+      home: HomeView(),
+      debugShowCheckedModeBanner: false,
         theme: ThemeData(
-            primaryColor: Colors.orange
+          primaryColor: Colors.orange
         )
     );
   }
@@ -33,67 +33,15 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> {
 
-  File _image;
-
-  Future _imgFromGallery() async {
-    File img = await ImagePicker.pickImage(source: ImageSource.gallery);
-    setState(() {
-      _image = img;
-    });
-  }
-  Future _imgFromCamera() async {
-    File img = await ImagePicker.pickImage(source: ImageSource.camera);
-    setState(() {
-      _image = img;
-    });
-  }
-
-  void _showPicker(context) {
-    showModalBottomSheet(
-        context: context,
-        builder: (BuildContext bc) {
-          return SafeArea(
-            child: Container(
-              child: new Wrap(
-                children: <Widget>[
-                  new ListTile(
-                      leading: new Icon(Icons.photo_library),
-                      title: new Text('Photo Library'),
-                      onTap: () {
-                        //_imgFromGallery();
-                        _imgFromGallery();
-                        Navigator.of(context).pop();
-                      }),
-                  new ListTile(
-                    leading: new Icon(Icons.photo_camera),
-                    title: new Text('Camera'),
-                    onTap: () {
-                      _imgFromCamera();
-                      //_getImage();
-                      Navigator.of(context).pop();
-                    },
-                  ),
-                ],
-              ),
-            ),
-          );
-        }
-    );
-  }
-
-
-
   FlutterSimpleStickerView _stickerView = FlutterSimpleStickerView(
     Container(
       decoration: BoxDecoration(
           color: Colors.white,
           image: DecorationImage(
               fit: BoxFit.cover,
-              //TODO:fix displaying photo
-              //  child _image: new FileImage(_image),
-              //   image:  Image.file(_image),
-            image: NetworkImage(
-                "https://lh3.googleusercontent.com/proxy/57y6SpkCYWg7Dfy39ifQydyLiv4-TqZPpwHhKDSdqhQFK_3AStDI-UGAENg_BjrLndSyAZl6CUgKwQE4rj5chp2j_h-oHKznS9XHAwpfaVBjG0PzG5QYu7jkp8yzaQCvLCavQ3ymWJ1Hdvyl0cUasOXzoE32NZ4rZx3V9BJmzsPZG5M3If-ShYgc"),
+            //  child _image: new FileImage(_image),
+            //   image:  Image.file(_image),
+              image: new ExactAssetImage('assets/postac.png')
           )
       ),
     ),
@@ -151,26 +99,9 @@ class _HomeViewState extends State<HomeView> {
                 );
               },
             ),
-            title: Text("Edit photo"),
+          title: Text("Mission"),
             centerTitle: true,
 
-            actions: <Widget>[
-
-              new IconButton(
-                icon: Icon(Icons.save_alt),
-                onPressed: () async {
-                  Uint8List image = await _stickerView.exportImage();
-
-                  await ImageGallerySaver.saveImage(image);
-                },
-              ),
-              new IconButton(
-                icon: Icon(Icons.camera),
-                onPressed: () async {
-                  _showPicker(context);
-                },
-              ),
-            ]
         ),
         body: _stickerView);
   }
