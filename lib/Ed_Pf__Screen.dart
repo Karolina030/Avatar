@@ -10,7 +10,7 @@ import 'dart:io';
 
 import 'package:image_picker/image_picker.dart';
 var globalContext;
-String _path = 'assets/postac.png';
+String _path;
 
 class Ed_Pf__Screen extends StatelessWidget {
   @override
@@ -85,13 +85,8 @@ class _HomeViewState extends State<HomeView> {
     );
   }
 
-  //TODO: Add construction like this, fix crashing after adding photo second time
-  //   if(_path == null){
-  //   image: new ExactAssetImage('assets/postac.png')
-  //   }
-  //       else{
-  //   image: FileImage(File(_path))
-  //   }
+  //TODO: Fix crashing after adding photo second time
+
 
   FlutterSimpleStickerView _stickerView = FlutterSimpleStickerView(
     Container(
@@ -101,7 +96,8 @@ class _HomeViewState extends State<HomeView> {
               fit: BoxFit.cover,
               //  child _image: new FileImage(_image),
               //   image:  Image.file(_image),
-              image: FileImage(File(_path))
+              // image: FileImage(File(_path))
+              image: _path == null ? ExactAssetImage('assets/postac.png') : FileImage(File(_path))
             // image: NetworkImage(
             //     "https://lh3.googleusercontent.com/proxy/57y6SpkCYWg7Dfy39ifQydyLiv4-TqZPpwHhKDSdqhQFK_3AStDI-UGAENg_BjrLndSyAZl6CUgKwQE4rj5chp2j_h-oHKznS9XHAwpfaVBjG0PzG5QYu7jkp8yzaQCvLCavQ3ymWJ1Hdvyl0cUasOXzoE32NZ4rZx3V9BJmzsPZG5M3If-ShYgc"),
           )

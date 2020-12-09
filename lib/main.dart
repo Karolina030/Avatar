@@ -11,7 +11,7 @@ import 'package:Avatar/Creation.dart';
 
 
 void main() {
-  runApp(Avatar()
+  runApp(Avatar() //start application
   );
 }
 
