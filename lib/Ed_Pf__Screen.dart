@@ -36,7 +36,6 @@ class _HomeViewState extends State<HomeView> {
 
   // File _image;
 
-
   Future _imgFromGallery() async {
     File img = await ImagePicker.pickImage(source: ImageSource.gallery);
     setState(() {
@@ -50,6 +49,7 @@ class _HomeViewState extends State<HomeView> {
       // _image = img;
       _path = img.path;
     });
+
   }
 
   void _showPicker(context) {
@@ -106,15 +106,13 @@ class _HomeViewState extends State<HomeView> {
     [
       Image.asset("assets/icons8-eyes-cartoon-50.png"),
       Image.asset("assets/icons8-hat-50-2.png"),
-      Image.asset("assets/icons8-hat-50.png"),
+      Image.asset("assets/icons8-hat-100.png"),
       Image.asset("assets/icons8-english-mustache-50.png"),
       Image.asset("assets/icons8-english-mustache-50-2.png"),
       Image.asset("assets/icons8-smiling-mouth-50-3.png"),
       Image.asset("assets/icons8-smiling-mouth-50.png"),
       Image.asset("assets/icons8-eyes-cartoon-50-2.png"),
       Image.asset("assets/icons8-chevron-mustache-50.png"),
-      Image.asset("assets/icons8-smiling-mouth-50-2.png"),
-      Image.asset("assets/icons8-woman's-hair-50-2.png"),
       Image.asset("assets/icons8-woman's-hair-100.png"),
       Image.asset("assets/icons8-woman's-hair-100-2.png"),
       Image.asset("assets/icons8-woman's-hair-100-3.png"),
@@ -126,7 +124,6 @@ class _HomeViewState extends State<HomeView> {
       Image.asset("assets/icons8-eye-50-2.png"),
       Image.asset("assets/icons8-eye-50.png"),
       Image.asset("assets/icons8-german-hat-100.png"),
-      Image.asset("assets/icons8-hat-100.png"),
       Image.asset("assets/icons8-monster-mouth-100.png"),
       Image.asset("assets/icons8-santas-hat-100.png"),
       Image.asset("assets/icons8-sleepy-eyes-100.png"),

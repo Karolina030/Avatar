@@ -9,7 +9,9 @@ import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'dart:io';
 
 import 'package:image_picker/image_picker.dart';
+
 var globalContext;
+
 
 class Creation extends StatelessWidget {
   @override
@@ -33,55 +35,6 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> {
 
-  File _image;
-
-  Future _imgFromGallery() async {
-    File img = await ImagePicker.pickImage(source: ImageSource.gallery);
-    setState(() {
-      _image = img;
-    });
-  }
-  Future _imgFromCamera() async {
-    File img = await ImagePicker.pickImage(source: ImageSource.camera);
-    setState(() {
-      _image = img;
-    });
-  }
-
-  void _showPicker(context) {
-    showModalBottomSheet(
-        context: context,
-        builder: (BuildContext bc) {
-          return SafeArea(
-            child: Container(
-              child: new Wrap(
-                children: <Widget>[
-                  new ListTile(
-                      leading: new Icon(Icons.photo_library),
-                      title: new Text('Photo Library'),
-                      onTap: () {
-                        //_imgFromGallery();
-                        _imgFromGallery();
-                        Navigator.of(context).pop();
-                      }),
-                  new ListTile(
-                    leading: new Icon(Icons.photo_camera),
-                    title: new Text('Camera'),
-                    onTap: () {
-                      _imgFromCamera();
-                      //_getImage();
-                      Navigator.of(context).pop();
-                    },
-                  ),
-                ],
-              ),
-            ),
-          );
-        }
-    );
-  }
-
-
 
   FlutterSimpleStickerView _stickerView = FlutterSimpleStickerView(
     Container(
@@ -95,18 +48,18 @@ class _HomeViewState extends State<HomeView> {
           )
       ),
     ),
-    [
+
+
+      [
       Image.asset("assets/icons8-eyes-cartoon-50.png"),
       Image.asset("assets/icons8-hat-50-2.png"),
-      Image.asset("assets/icons8-hat-50.png"),
+      Image.asset("assets/icons8-hat-100.png"),
       Image.asset("assets/icons8-english-mustache-50.png"),
       Image.asset("assets/icons8-english-mustache-50-2.png"),
       Image.asset("assets/icons8-smiling-mouth-50-3.png"),
       Image.asset("assets/icons8-smiling-mouth-50.png"),
       Image.asset("assets/icons8-eyes-cartoon-50-2.png"),
       Image.asset("assets/icons8-chevron-mustache-50.png"),
-      Image.asset("assets/icons8-smiling-mouth-50-2.png"),
-      Image.asset("assets/icons8-woman's-hair-50-2.png"),
       Image.asset("assets/icons8-woman's-hair-100.png"),
       Image.asset("assets/icons8-woman's-hair-100-2.png"),
       Image.asset("assets/icons8-woman's-hair-100-3.png"),
@@ -118,7 +71,6 @@ class _HomeViewState extends State<HomeView> {
       Image.asset("assets/icons8-eye-50-2.png"),
       Image.asset("assets/icons8-eye-50.png"),
       Image.asset("assets/icons8-german-hat-100.png"),
-      Image.asset("assets/icons8-hat-100.png"),
       Image.asset("assets/icons8-monster-mouth-100.png"),
       Image.asset("assets/icons8-santas-hat-100.png"),
       Image.asset("assets/icons8-sleepy-eyes-100.png"),

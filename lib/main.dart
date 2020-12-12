@@ -5,6 +5,8 @@ import 'package:Avatar/Create_Screen.dart';
 import 'package:Avatar/Missions_Screen.dart';
 import 'package:Avatar/Ed_Pf__Screen.dart';
 import 'package:Avatar/Store_Screen.dart';
+import 'package:Avatar/store.dart';
+
 
 import 'package:Avatar/Creation.dart';
 
@@ -46,6 +48,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Missions_Screen screen_missions = Missions_Screen();
   Ed_Pf__Screen screen_ed_ph = Ed_Pf__Screen();
   Store_Screen screen_store = Store_Screen();
+  Store store = Store();
 
   Creation creation = Creation();
 
@@ -70,6 +73,7 @@ class _MyHomePageState extends State<MyHomePage> {
             }, child: Text('CREATE', style: TextStyle(fontFamily: 'Comic Sans', fontSize: 40),), color: Color(0xFFFA990E), textColor: Colors.white,),
             // new Spacer(flex: 1),
             new Text('\n'),
+
             new FlatButton(onPressed: () async { //RaisedButton
               Navigator.push(context, MaterialPageRoute(builder: (context) => screen_missions));
             }, child: Text('MISSIONS', style: TextStyle(fontFamily: 'Comic Sans', fontSize: 40),), color:  Color(0xFFFA990E), textColor: Colors.white,),
@@ -79,7 +83,7 @@ class _MyHomePageState extends State<MyHomePage> {
             }, child: Text('EDIT PHOTO', style: TextStyle(fontFamily: 'Comic Sans', fontSize: 40),), color:  Color(0xFFFA990E), textColor: Colors.white,),
             new Text('\n'),
             new FlatButton(onPressed: () async { //RaisedButton
-              Navigator.push(context, MaterialPageRoute(builder: (context) => screen_store));
+              Navigator.push(context, MaterialPageRoute(builder: (context) => store));
             }, child: Text('STORE', style: TextStyle(fontFamily: 'Comic Sans', fontSize: 40),), color: Color(0xFFFA990E), textColor: Colors.white,)
           ],
         ),

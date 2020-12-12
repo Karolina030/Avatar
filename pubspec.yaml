@@ -32,6 +32,7 @@ dependencies:
   permission_handler: #^5.0.1+hotfix.1
   image_picker: ^0.6.6+5
   path_provider:
+  provider: ^3.0.0
 
 dev_dependencies:
   flutter_test:
