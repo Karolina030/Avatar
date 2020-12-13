@@ -34,17 +34,26 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> {
 
-  // File _image;
-
   Future _imgFromGallery() async {
-    File img = await ImagePicker.pickImage(source: ImageSource.gallery);
+    File img = await ImagePicker.pickImage(source: ImageSource.gallery); // getting image from gallery
+
+  Navigator.pushReplacement( // helps change image dynamical
+      context,
+      MaterialPageRoute(
+          builder: (BuildContext context) => super.widget));
+
     setState(() {
-      // _image = img;
-      _path = img.path;
+      _path = img.path; // getting image path
     });
   }
   Future _imgFromCamera() async {
-    File img = await ImagePicker.pickImage(source: ImageSource.camera);
+    File img = await ImagePicker.pickImage(source: ImageSource.camera); // getting image from camera
+
+  Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+          builder: (BuildContext context) => super.widget));
+
     setState(() {
       // _image = img;
       _path = img.path;
@@ -52,7 +61,7 @@ class _HomeViewState extends State<HomeView> {
 
   }
 
-  void _showPicker(context) {
+  void _showPicker(context) { // create loading image menu
     showModalBottomSheet(
         context: context,
         builder: (BuildContext bc) {
@@ -61,19 +70,17 @@ class _HomeViewState extends State<HomeView> {
               child: new Wrap(
                 children: <Widget>[
                   new ListTile(
-                      leading: new Icon(Icons.photo_library),
+                      leading: new Icon(Icons.photo_library), // from gallery
                       title: new Text('Photo Library'),
                       onTap: () {
-                        //_imgFromGallery();
                         _imgFromGallery();
                         Navigator.of(context).pop();
                       }),
                   new ListTile(
-                    leading: new Icon(Icons.photo_camera),
+                    leading: new Icon(Icons.photo_camera), // from camera
                     title: new Text('Camera'),
                     onTap: () {
                       _imgFromCamera();
-                      //_getImage();
                       Navigator.of(context).pop();
                     },
                   ),
@@ -85,8 +92,6 @@ class _HomeViewState extends State<HomeView> {
     );
   }
 
-  //TODO: Fix crashing after adding photo second time
-
 
   FlutterSimpleStickerView _stickerView = FlutterSimpleStickerView(
     Container(
@@ -97,13 +102,11 @@ class _HomeViewState extends State<HomeView> {
               //  child _image: new FileImage(_image),
               //   image:  Image.file(_image),
               // image: FileImage(File(_path))
-              image: _path == null ? ExactAssetImage('assets/postac.png') : FileImage(File(_path))
-            // image: NetworkImage(
-            //     "https://lh3.googleusercontent.com/proxy/57y6SpkCYWg7Dfy39ifQydyLiv4-TqZPpwHhKDSdqhQFK_3AStDI-UGAENg_BjrLndSyAZl6CUgKwQE4rj5chp2j_h-oHKznS9XHAwpfaVBjG0PzG5QYu7jkp8yzaQCvLCavQ3ymWJ1Hdvyl0cUasOXzoE32NZ4rZx3V9BJmzsPZG5M3If-ShYgc"),
-          )
+              image: _path == null ? ExactAssetImage('assets/postac.png') : FileImage(File(_path)) // choose image as decoration
+)
       ),
     ),
-    [
+    [ // loading assets
       Image.asset("assets/icons8-eyes-cartoon-50.png"),
       Image.asset("assets/icons8-hat-50-2.png"),
       Image.asset("assets/icons8-hat-100.png"),
@@ -144,7 +147,7 @@ class _HomeViewState extends State<HomeView> {
     return Scaffold(
         appBar: AppBar(
             leading: Builder(
-              builder: (BuildContext context) {
+              builder: (BuildContext context) { //creating buttons
                 return IconButton(
                     icon: Icon(Icons.arrow_back),
                     onPressed: (){

@@ -65,24 +65,27 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Center(
 
         child: Column(
-
+// buttons to different app menus
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            new FlatButton(onPressed: () async { //RaisedButton
-              Navigator.push(context, MaterialPageRoute(builder: (context) => creation));
-            }, child: Text('CREATE', style: TextStyle(fontFamily: 'Comic Sans', fontSize: 40),), color: Color(0xFFFA990E), textColor: Colors.white,),
+            new FlatButton(onPressed: () async {
+              print('Went to create'); // printing in console
+              Navigator.push(context, MaterialPageRoute(builder: (context) => creation)); // going to anather screen
+            }, child: Text('CREATE', style: TextStyle(fontFamily: 'Comic Sans', fontSize: 40),), color: Color(0xFFFA990E), textColor: Colors.white,), // button's name
             // new Spacer(flex: 1),
             new Text('\n'),
-
-            new FlatButton(onPressed: () async { //RaisedButton
+            new FlatButton(onPressed: () async {
+              print('Went to missions');
               Navigator.push(context, MaterialPageRoute(builder: (context) => screen_missions));
             }, child: Text('MISSIONS', style: TextStyle(fontFamily: 'Comic Sans', fontSize: 40),), color:  Color(0xFFFA990E), textColor: Colors.white,),
             new Text('\n'),
-            new FlatButton(onPressed: () async { //RaisedButton
+            new FlatButton(onPressed: () async {
+              print('Went to edit photo');
               Navigator.push(context, MaterialPageRoute(builder: (context) => screen_ed_ph));
             }, child: Text('EDIT PHOTO', style: TextStyle(fontFamily: 'Comic Sans', fontSize: 40),), color:  Color(0xFFFA990E), textColor: Colors.white,),
             new Text('\n'),
-            new FlatButton(onPressed: () async { //RaisedButton
+            new FlatButton(onPressed: () async {
+              print('Went to store');
               Navigator.push(context, MaterialPageRoute(builder: (context) => store));
             }, child: Text('STORE', style: TextStyle(fontFamily: 'Comic Sans', fontSize: 40),), color: Color(0xFFFA990E), textColor: Colors.white,)
           ],
