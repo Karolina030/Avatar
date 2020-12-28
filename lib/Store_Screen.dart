@@ -5,7 +5,9 @@ class Store_Screen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: Text('Store')
+          title: Text('Store'),
+        centerTitle: true,
+
       ),
       body: Center(
           child: RaisedButton(onPressed: (){

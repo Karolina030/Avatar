@@ -5,6 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:Avatar/flutter_simple_sticker_view.dart';
 
 import 'package:image_gallery_saver/image_gallery_saver.dart';
+import 'package:Avatar/items.dart';
+import 'package:Avatar/item.dart';
+import 'package:Avatar/client.dart';
+import 'package:Avatar/main.dart';
 
 import 'dart:io';
 
@@ -12,6 +16,9 @@ import 'package:image_picker/image_picker.dart';
 
 var globalContext;
 
+//Items productsData = new Items();
+//List<Item> products = productsData.items;
+//Client klient = new Client();
 
 class Creation extends StatelessWidget {
   @override
@@ -51,30 +58,7 @@ class _HomeViewState extends State<HomeView> {
 
 
       [
-      Image.asset("assets/icons8-eyes-cartoon-50.png"),
-      Image.asset("assets/icons8-hat-50-2.png"),
-      Image.asset("assets/icons8-hat-100.png"),
-      Image.asset("assets/icons8-english-mustache-50.png"),
-      Image.asset("assets/icons8-english-mustache-50-2.png"),
-      Image.asset("assets/icons8-smiling-mouth-50-3.png"),
-      Image.asset("assets/icons8-smiling-mouth-50.png"),
-      Image.asset("assets/icons8-eyes-cartoon-50-2.png"),
-      Image.asset("assets/icons8-chevron-mustache-50.png"),
-      Image.asset("assets/icons8-woman's-hair-100.png"),
-      Image.asset("assets/icons8-woman's-hair-100-2.png"),
-      Image.asset("assets/icons8-woman's-hair-100-3.png"),
-      Image.asset("assets/icons8-woman's-hair-100-4.png"),
-      Image.asset("assets/icons8-woman's-hair-100-5.png"),
-      Image.asset("assets/icons8-sleepy-eyes-100-2.png"),
-      Image.asset("assets/icons8-american-hat-100.png"),
-      Image.asset("assets/icons8-bow-tie-100.png"),
-      Image.asset("assets/icons8-eye-50-2.png"),
-      Image.asset("assets/icons8-eye-50.png"),
-      Image.asset("assets/icons8-german-hat-100.png"),
-      Image.asset("assets/icons8-monster-mouth-100.png"),
-      Image.asset("assets/icons8-santas-hat-100.png"),
-      Image.asset("assets/icons8-sleepy-eyes-100.png"),
-
+        for (Item item in klient.products ) Image.asset(item.path),
     ],
     // panelHeight: 150,
     panelBackgroundColor: Colors.orange,

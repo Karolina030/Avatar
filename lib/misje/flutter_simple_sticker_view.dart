@@ -5,7 +5,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
-import './flutter_simple_sticker_image.dart';
+import 'flutter_simple_sticker_image.dart';
 
 class FlutterSimpleStickerView extends StatefulWidget {
   FlutterSimpleStickerView(
@@ -15,7 +15,7 @@ class FlutterSimpleStickerView extends StatefulWidget {
         this.stickerSize = 100.0,
         this.stickerMaxScale = 100.0,
         this.stickerMinScale = 0.05,
-        this.panelHeight = 400.0, // 280.0
+        this.panelHeight = 400.0,
         this.panelBackgroundColor = Colors.black,
         this.panelStickerBackgroundColor = Colors.white10,
         this.panelStickercrossAxisCount = 4,
@@ -80,6 +80,32 @@ class _FlutterSimpleStickerViewState extends State<FlutterSimpleStickerView> {
     });
   }
 
+  Timer _timer;
+  int _start = 10;
+
+  void startTimer() {
+    const oneSec = const Duration(seconds: 1);
+    _timer = new Timer.periodic(
+      oneSec,
+          (Timer timer) {
+        if (_start == 0) {
+          setState(() {
+            timer.cancel();
+          });
+        } else {
+          setState(() {
+            _start--;
+          });
+        }
+      },
+    );
+  }
+
+  @override
+  void dispose() {
+    _timer.cancel();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -137,6 +163,39 @@ class _FlutterSimpleStickerViewState extends State<FlutterSimpleStickerView> {
             },
           ),
         ),
+        new Column(
+            children: <Widget>[
+              new Card(
+                //margin: EdgeInsets.all(15),
+                 // padding: EdgeInsets.all(8),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    textDirection: TextDirection.rtl,
+                    children: <Widget>[
+                      RaisedButton(onPressed: () {dispose();}, child: Text("END MISSION")),
+
+                      //Text("   $_start   "),
+
+                      Text(
+                        "  $_start  ",
+                        style: TextStyle(fontSize: 30, color: Colors.pink),
+                      ),
+                      RaisedButton(
+                        onPressed: () {
+                          startTimer();
+                        },
+                        child: Text("START MISSION"),
+                      ),
+                      //RaisedButton(onPressed: () {}, child: Text("START MISSION")),
+                    ],
+
+                  ),
+
+              ),
+
+            ]
+
+        )
       ],
     );
   }
