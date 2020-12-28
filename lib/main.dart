@@ -7,12 +7,14 @@ import 'package:Avatar/Ed_Pf__Screen.dart';
 import 'package:Avatar/Store_Screen.dart';
 import 'package:Avatar/store.dart';
 
-
 import 'package:Avatar/Creation.dart';
+import 'package:Avatar/client.dart';
 
-
+Client klient;
 
 void main() {
+  //Client klient;
+  klient = new Client();
   runApp(Avatar() //start application
   );
 }

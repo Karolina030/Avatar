@@ -4,6 +4,11 @@ import 'package:provider/provider.dart';
 import '../providers/cart.dart' show Cart;
 import '../widgets/cart_item.dart';
 import '../providers/orders.dart';
+import 'package:Avatar/main.dart';
+
+
+
+
 
 class CartScreen extends StatelessWidget {
 
@@ -44,7 +49,31 @@ class CartScreen extends StatelessWidget {
                         cart.items.values.toList(),
                         cart.totalAmount,
                       );
-                      cart.clear();
+                      if (klient.points>=cart.totalAmount.toInt()) {
+                        klient.points =
+                            klient.points - cart.totalAmount.toInt();
+                        cart.clear();
+                      }
+                      else {
+
+                        showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                title: Text(" "),
+                                content: Text("Nie masz wystarczającej ilości punktów"),
+                                actions: [
+                                  new FlatButton(
+                                    child: Text("OK"),
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                  ),
+                                ],
+                              );
+                            });
+
+                      }
                     },
                     textColor: Theme.of(context).primaryColor,
                   )

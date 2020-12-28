@@ -1,16 +1,26 @@
 import 'package:flutter/foundation.dart';
+//import 'package:Avatar/Mission.dart';
+//import 'package:Avatar/Creation.dart';
+
+import 'package:Avatar/main.dart';
+import 'package:Avatar/item.dart';
+
+
 
 class CartItem {
   final String id;
   final String title;
   final int quantity;
   final double price;
+  final String path;
 
   CartItem({
     @required this.id,
     @required this.title,
     @required this.quantity,
     @required this.price,
+    @required this.path,
+
   });
 }
 
@@ -37,6 +47,7 @@ class Cart with ChangeNotifier {
     String productId,
     double price,
     String title,
+    String path,
   ) {
     if (_items.containsKey(productId)) {
       // change quantity...
@@ -46,6 +57,7 @@ class Cart with ChangeNotifier {
               id: existingCartItem.id,
               title: existingCartItem.title,
               price: existingCartItem.price,
+              path: existingCartItem.path,
               quantity:  1,
             ),
       );
@@ -57,6 +69,7 @@ class Cart with ChangeNotifier {
               title: title,
               price: price,
               quantity: 1,
+              path: path,
             ),
       );
     }
@@ -69,6 +82,16 @@ class Cart with ChangeNotifier {
   }
 
   void clear() {
+   // var total;
+   // _items.forEach((key, cartItem) {
+   //   total += cartItem.price * cartItem.quantity;
+   // });
+   // klient.points = klient.points-total;
+
+    _items.forEach((key, cartItem) {
+      Item item = new Item(cartItem.title, cartItem.price, cartItem.path);
+      klient.products.add(item);
+    });
     _items = {};
     notifyListeners();
   }
