@@ -7,7 +7,7 @@ import './item.dart';
 
 
 class Client with ChangeNotifier{
-  int points = 100;
+  // int points = 100;
   List<Item> products;
 
 

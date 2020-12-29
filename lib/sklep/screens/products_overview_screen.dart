@@ -11,6 +11,7 @@ import 'package:Avatar/main.dart';
 import 'dart:math';
 
 class ProductsOverviewScreen extends StatefulWidget {
+
   @override
   _ProductsOverviewScreenState createState() => _ProductsOverviewScreenState();
 }
@@ -20,6 +21,17 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
 
 
   Random random = new Random();
+
+  var _points;
+
+  void initState() {
+    super.initState();
+    DB_Reader().readPoints().then((int value) {
+      setState(() {
+        _points = value;
+      });
+    });
+  }
 
   void _open_SB_alert() async { //alert before opening
     var count_SB = await DB_Reader().readCounter();
@@ -116,9 +128,6 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
   }
 
 
-//TODO: display points
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -167,7 +176,7 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Text(
-                      'Number of points: ${klient.points}',
+                      'Number of points: $_points',
 //TODO fix displaying after change
                       style: TextStyle(fontSize: 20),
                     ),

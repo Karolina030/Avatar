@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../DB_Reader.dart';
 import '../providers/cart.dart' show Cart;
 import '../widgets/cart_item.dart';
 import '../providers/orders.dart';
@@ -11,6 +12,38 @@ import 'package:Avatar/main.dart';
 
 
 class CartScreen extends StatelessWidget {
+
+  void _buying(context, cart) async {
+      Provider.of<Orders>(context, listen: false).addOrder(
+        cart.items.values.toList(),
+        cart.totalAmount,
+      );
+      var points = await DB_Reader().readPoints();
+      if (points>=cart.totalAmount.toInt()) {
+        await DB_Reader().writePoints(-cart.totalAmount.toInt());
+        cart.clear();
+      }
+      else {
+
+        showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: Text(" "),
+                content: Text("Nie masz wystarczającej ilości punktów"),
+                actions: [
+                  new FlatButton(
+                    child: Text("OK"),
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                  ),
+                ],
+              );
+            });
+
+      }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,38 +77,8 @@ class CartScreen extends StatelessWidget {
                   ),
                   FlatButton(
                     child: Text('BUY NOW'),
-                    onPressed: () {
-                      Provider.of<Orders>(context, listen: false).addOrder(
-                        cart.items.values.toList(),
-                        cart.totalAmount,
-                      );
-                      if (klient.points>=cart.totalAmount.toInt()) {
-                        klient.points =
-                            klient.points - cart.totalAmount.toInt();
-                        cart.clear();
-                      }
-                      else {
-
-                        showDialog(
-                            context: context,
-                            builder: (BuildContext context) {
-                              return AlertDialog(
-                                title: Text(" "),
-                                content: Text("Nie masz wystarczającej ilości punktów"),
-                                actions: [
-                                  new FlatButton(
-                                    child: Text("OK"),
-                                    onPressed: () {
-                                      Navigator.of(context).pop();
-                                    },
-                                  ),
-                                ],
-                              );
-                            });
-
-                      }
-                    },
-                    textColor: Theme.of(context).primaryColor,
+                    onPressed: () {_buying(context, cart);}
+                    // textColor: Theme.of(context).primaryColor,
                   )
                 ],
               ),
