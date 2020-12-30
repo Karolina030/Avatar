@@ -1,3 +1,4 @@
+import 'package:Avatar/sklep/providers/product.dart';
 import 'package:provider/provider.dart';
 import 'dart:typed_data';
 
@@ -6,6 +7,10 @@ import 'package:flutter/material.dart';
 //import 'package:Avatar/flutter_simple_sticker_view.dart';
 import  './misje/flutter_simple_sticker_view.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
+
+import './sklep/providers/products.dart';
+import 'package:Avatar/main.dart';
+import 'package:Avatar/item.dart';
 
 
 
@@ -69,37 +74,9 @@ class _HomeViewState extends State<HomeView> {
     ),
 
     [
+      for (Item item in klient.products ) Image.asset(item.path),
 
-      Image.asset("assets/icons8-hat-50-2.png"),
-      Image.asset("assets/icons8-hat-100.png"),
-      Image.asset("assets/icons8-english-mustache-50.png"),
-      Image.asset("assets/icons8-english-mustache-50-2.png"),
-      Image.asset("assets/icons8-chevron-mustache-50.png"),
-      Image.asset("assets/icons8-smiling-mouth-50-3.png"),
-      Image.asset("assets/icons8-smiling-mouth-50.png"),
-      Image.asset("assets/icons8-monster-mouth-100.png"),
-      Image.asset("assets/icons8-eyes-cartoon-50.png"),
-      Image.asset("assets/icons8-eyes-cartoon-50-2.png"),
-      Image.asset("assets/icons8-sleepy-eyes-100-2.png"),
-      Image.asset("assets/icons8-sleepy-eyes-100.png"),
-      Image.asset("assets/icons8-eye-50-2.png"),
-      Image.asset("assets/icons8-eye-50.png"),
-      Image.asset("assets/icons8-woman's-hair-100.png"),
-      Image.asset("assets/icons8-woman's-hair-100-2.png"),
-      Image.asset("assets/icons8-woman's-hair-100-3.png"),
-      Image.asset("assets/icons8-woman's-hair-100-4.png"),
-      Image.asset("assets/icons8-woman's-hair-100-5.png"),
-      Image.asset("assets/icons8-bow-tie-100.png"),
-      Image.asset("assets/icons8-bow-tie-100-2.png"),
-      Image.asset("assets/icons8-bow-tie-100.png"),
-      Image.asset("assets/icons8-german-hat-100.png"),
-      Image.asset("assets/icons8-american-hat-100.png"),
-      Image.asset("assets/icons8-santas-hat-100.png"),
-      Image.asset("assets/icons8-witch-100.png"),
-      Image.asset("assets/icons8-beanie-64.png"),
-      Image.asset("assets/icons8-joker-100-2.png"),
-      Image.asset("assets/icons8-sun-glasses-100.png"),
-      Image.asset("assets/icons8-spa-flower-100.png"),
+      for (Product item in Products().items ) Image.asset(item.path),
 
 
     ],

@@ -4,8 +4,8 @@ import 'package:provider/provider.dart';
 import '../providers/product.dart';
 import '../providers/cart.dart';
 
-class ProductItem extends StatelessWidget {
 
+class ProductItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
@@ -22,14 +22,14 @@ class ProductItem extends StatelessWidget {
           ),
         ),
         footer: GridTileBar(
-          backgroundColor: Colors.black87,
+          backgroundColor: Colors.orange,
           title: Text(
             product.price.toString(), //wyświetla cenę naklejki
             textAlign: TextAlign.center,
           ),
           trailing: IconButton(
             icon: Icon(
-              Icons.shopping_cart,
+              Icons.shopping_cart, color: Colors.pink,
             ),
             onPressed: () {
               cart.addItem(product.id, product.price, product.title, product.path);

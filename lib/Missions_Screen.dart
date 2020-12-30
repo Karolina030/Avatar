@@ -10,6 +10,8 @@ class Missions_Screen extends StatelessWidget {
       appBar: AppBar(
           title: Text('Missions')
       ),
+      backgroundColor: Color(0xFF1E90FF),
+
       body: Center(
         child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -19,19 +21,19 @@ class Missions_Screen extends StatelessWidget {
               // }, child: Icon(Icons.arrow_back)),
               new RaisedButton(onPressed: (){
                 Navigator.push(context, MaterialPageRoute(builder: (context) => Mission()));
-              }, child: Text('General', style: TextStyle(fontFamily: 'Comic Sans', fontSize: 20),), color: Color(0xFFFA990E), textColor: Colors.white,),
+              }, child: Text('General', style: TextStyle(fontFamily: 'Comic Sans', fontSize: 40),), color: Color(0xFFFA990E), textColor: Colors.white,),
               new Text('\n'),
               new RaisedButton(onPressed: (){
                 Navigator.push(context, MaterialPageRoute(builder: (context) => Mission()));
-              }, child: Text('Daily', style: TextStyle(fontFamily: 'Comic Sans', fontSize: 20),), color: Color(0xFFFA990E), textColor: Colors.white,),
+              }, child: Text('Daily', style: TextStyle(fontFamily: 'Comic Sans', fontSize: 40),), color: Color(0xFFFA990E), textColor: Colors.white,),
               new Text('\n'),
               new RaisedButton(onPressed: (){
                 Navigator.push(context, MaterialPageRoute(builder: (context) => Mission()));
-              }, child: Text('Time', style: TextStyle(fontFamily: 'Comic Sans', fontSize: 20),), color: Color(0xFFFA990E), textColor: Colors.white,),
+              }, child: Text('Time', style: TextStyle(fontFamily: 'Comic Sans', fontSize: 40),), color: Color(0xFFFA990E), textColor: Colors.white,),
               new Text('\n'),
               new RaisedButton(onPressed: (){
                 Navigator.push(context, MaterialPageRoute(builder: (context) => Mission()));
-              }, child: Text('Try Again', style: TextStyle(fontFamily: 'Comic Sans', fontSize: 20),), color: Color(0xFFFA990E), textColor: Colors.white,),
+              }, child: Text('Try Again', style: TextStyle(fontFamily: 'Comic Sans', fontSize: 40),), color: Color(0xFFFA990E), textColor: Colors.white,),
             ]
         ),
       ),

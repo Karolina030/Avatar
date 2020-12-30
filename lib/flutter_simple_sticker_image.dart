@@ -15,7 +15,7 @@ class FlutterSimpleStickerImage extends StatefulWidget {
         this.height,
         this.viewport,
         this.minScale = 1.0,
-        this.maxScale = 100.0,
+        this.maxScale = 2.0,
         this.onTapRemove,
       }) : super(key: key);
 
@@ -120,6 +120,11 @@ class _FlutterSimpleStickerImageState extends State<FlutterSimpleStickerImage> {
                       _previousScale = _scale;
                     });
                   },
+                  onTap: () {
+                    setState(() {
+                      _isSelected = !_isSelected;
+                    });
+                  },
                   onTapCancel: () {
                     setState(() {
                       _isSelected = false;
@@ -127,7 +132,7 @@ class _FlutterSimpleStickerImageState extends State<FlutterSimpleStickerImage> {
                   },
                   onDoubleTap: () {
                     setState(() {
-                      _isSelected = !_isSelected;
+                      _scale = 1.0;
                     });
                   },
                   child: Container(child: widget.image),
@@ -136,8 +141,8 @@ class _FlutterSimpleStickerImageState extends State<FlutterSimpleStickerImage> {
             ),
             _isSelected
                 ? Positioned(
-              top: 12,
-              right: 12,
+              top: 15,
+              right: 15,
               width: 24,
               height: 24,
               child: Container(

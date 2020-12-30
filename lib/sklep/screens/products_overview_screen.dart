@@ -156,7 +156,7 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
             onPressed: _check_SB,
           ),
           new IconButton(
-            icon: Icon(Icons.shopping_cart,),
+            icon: Icon(Icons.shopping_cart),
             onPressed: () async {
               Navigator.push(context, MaterialPageRoute(builder: (context) => CartScreen()));
             },

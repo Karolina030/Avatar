@@ -48,6 +48,55 @@ class Products with ChangeNotifier {
       price: 30,
       path: "assets/icons8-joker-100-2.png",
     ),
+    Product(
+      id: 'p8',
+      title: 'bow',
+      price: 20,
+      path: "assets/bow.png",
+    ),
+    Product(
+      id: 'p9',
+      title: 'viking hat',
+      price: 40,
+      path: "assets/viking-hat.png",
+    ),
+    Product(
+      id: 'p10',
+      title: 'graduation hat',
+      price: 30,
+      path: "assets/graduation-hat.png",
+    ),
+    Product(
+      id: 'p11',
+      title: 'glasses',
+      price: 50,
+      path: "assets/glasses-1.png",
+    ),
+    Product(
+      id: 'p12',
+      title: 'glasses',
+      price: 20,
+      path: "assets/glasses-2.png",
+    ),
+    Product(
+      id: 'p13',
+      title: 'cartoon eyes',
+      price: 20,
+      path: "assets/cartoon-eyes-1.png",
+    ),
+    Product(
+      id: 'p14',
+      title: 'cartoon eyes',
+      price: 30,
+      path: "assets/cartoon-eyes-6.png",
+    ),
+    Product(
+      id: 'p15',
+      title: 'afro',
+      price: 40,
+      path: "assets/afro.png",
+    ),
+
   ];
 
   List<Product> get items {
