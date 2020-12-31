@@ -14,7 +14,7 @@ class FlutterSimpleStickerImage extends StatefulWidget {
         this.width,
         this.height,
         this.viewport,
-        this.minScale = 1.0,
+        this.minScale = 1.0,  //sticker scale
         this.maxScale = 2.0,
         this.onTapRemove,
       }) : super(key: key);
@@ -37,11 +37,6 @@ class FlutterSimpleStickerImage extends StatefulWidget {
   }
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.debug}) {
-    return "FlutterSimpleStickerImage-$key-${_flutterSimpleStickerImageState._offset}";
-  }
-
-  @override
   _FlutterSimpleStickerImageState createState() =>
       _flutterSimpleStickerImageState;
 }
@@ -56,9 +51,6 @@ class _FlutterSimpleStickerImageState extends State<FlutterSimpleStickerImage> {
   Offset _startingFocalPoint = Offset(0, 0);
   Offset _offset = Offset(0, 0);
 
-  double _rotation = 0.0;
-  double _previousRotation = 0.0;
-
   bool _isSelected = false;
 
   @override
@@ -68,6 +60,7 @@ class _FlutterSimpleStickerImageState extends State<FlutterSimpleStickerImage> {
     _scale = 1.0;
   }
 
+  //changing sticker size
 
   @override
   Widget build(BuildContext context) {
@@ -80,17 +73,13 @@ class _FlutterSimpleStickerImageState extends State<FlutterSimpleStickerImage> {
             Center(
               child: Transform(
                 transform: Matrix4.diagonal3(Vector3(_scale, _scale, _scale)),
-                // ..setRotationZ(_rotation),
                 alignment: FractionalOffset.center,
                 child: GestureDetector(
                   onScaleStart: (ScaleStartDetails details) {
                     _startingFocalPoint = details.focalPoint;
                     _previousOffset = _offset;
-                    _previousRotation = _rotation;
                     _previousScale = _scale;
 
-                    // print(
-                    //     "begin - focal : ${details.focalPoint}, local : ${details.localFocalPoint}");
                   },
                   onScaleUpdate: (ScaleUpdateDetails details) {
 
@@ -109,17 +98,15 @@ class _FlutterSimpleStickerImageState extends State<FlutterSimpleStickerImage> {
 
                     setState(() {
                       _scale = _previousScale * details.scale;
-                      _rotation = details.rotation;
                       _offset = __offset;
-                      //  print("move - $_offset, scale : $_scale");
                     });
                   },
                   onScaleEnd: (ScaleEndDetails details){
-
                     setState(() {
                       _previousScale = _scale;
                     });
                   },
+                  //selecting sticker
                   onTap: () {
                     setState(() {
                       _isSelected = !_isSelected;
@@ -146,7 +133,7 @@ class _FlutterSimpleStickerImageState extends State<FlutterSimpleStickerImage> {
               width: 24,
               height: 24,
               child: Container(
-                child: IconButton(
+                child: IconButton(    //button to remove sticker
                   padding: EdgeInsets.zero,
                   icon: Icon(Icons.remove_circle),
                   color: Color.fromRGBO(255, 0, 0, 1.0),

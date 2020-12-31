@@ -13,7 +13,7 @@ class FlutterSimpleStickerView extends StatefulWidget {
       this.stickerList, {
         Key key,
         this.stickerSize = 100.0,
-        this.stickerMaxScale = 100.0,
+        this.stickerMaxScale = 2.0,
         this.stickerMinScale = 0.05,
         this.panelHeight = 400.0,
         this.panelBackgroundColor = Colors.black,
@@ -24,8 +24,9 @@ class FlutterSimpleStickerView extends StatefulWidget {
       }) : super(key: key);
 
   final Widget source;
-  final List<Image> stickerList;
+  final List<Image> stickerList;  //list of choosen stickers
 
+  //sticker properties
   final double stickerSize;
   final double stickerMaxScale;
   final double stickerMinScale;

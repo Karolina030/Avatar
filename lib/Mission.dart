@@ -56,7 +56,7 @@ class _HomeViewState extends State<HomeView> {
 
             SizedBox(
               height: 20,
-              child: Text('Misja: Donald Trump'),
+              child: Text('Misja: Donald Trump', style: TextStyle(fontFamily: 'Arial', fontSize: 20)),
             ),
 
           ],

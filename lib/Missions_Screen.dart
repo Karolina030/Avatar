@@ -21,19 +21,35 @@ class Missions_Screen extends StatelessWidget {
               // }, child: Icon(Icons.arrow_back)),
               new RaisedButton(onPressed: (){
                 Navigator.push(context, MaterialPageRoute(builder: (context) => Mission()));
-              }, child: Text('General', style: TextStyle(fontFamily: 'Comic Sans', fontSize: 40),), color: Color(0xFFFA990E), textColor: Colors.white,),
+              },
+                highlightColor: Colors.redAccent,
+                padding: EdgeInsets.all(10),
+                shape: OutlineInputBorder(),
+                child: Text('General', style: TextStyle(fontFamily: 'Copperplate Gothic Light', fontStyle: FontStyle.italic, fontWeight: FontWeight.bold,  fontSize: 40),), color: Color(0xFFFA990E), textColor: Colors.white,),
               new Text('\n'),
               new RaisedButton(onPressed: (){
                 Navigator.push(context, MaterialPageRoute(builder: (context) => Mission()));
-              }, child: Text('Daily', style: TextStyle(fontFamily: 'Comic Sans', fontSize: 40),), color: Color(0xFFFA990E), textColor: Colors.white,),
+              },
+                highlightColor: Colors.redAccent,
+                padding: EdgeInsets.all(10),
+                shape: OutlineInputBorder(),
+                child: Text('Daily', style: TextStyle(fontFamily: 'Copperplate Gothic Light', fontStyle: FontStyle.italic, fontWeight: FontWeight.bold,  fontSize: 40),), color: Color(0xFFFA990E), textColor: Colors.white,),
               new Text('\n'),
               new RaisedButton(onPressed: (){
                 Navigator.push(context, MaterialPageRoute(builder: (context) => Mission()));
-              }, child: Text('Time', style: TextStyle(fontFamily: 'Comic Sans', fontSize: 40),), color: Color(0xFFFA990E), textColor: Colors.white,),
+              },
+                highlightColor: Colors.redAccent,
+                padding: EdgeInsets.all(10),
+                shape: OutlineInputBorder(),
+                child: Text('Time', style: TextStyle(fontFamily: 'Copperplate Gothic Light', fontStyle: FontStyle.italic, fontWeight: FontWeight.bold,  fontSize: 40),), color: Color(0xFFFA990E), textColor: Colors.white,),
               new Text('\n'),
               new RaisedButton(onPressed: (){
                 Navigator.push(context, MaterialPageRoute(builder: (context) => Mission()));
-              }, child: Text('Try Again', style: TextStyle(fontFamily: 'Comic Sans', fontSize: 40),), color: Color(0xFFFA990E), textColor: Colors.white,),
+              },
+                highlightColor: Colors.redAccent,
+                padding: EdgeInsets.all(10),
+                shape: OutlineInputBorder(),
+                child: Text('Try Again', style: TextStyle(fontFamily: 'Copperplate Gothic Light', fontStyle: FontStyle.italic, fontWeight: FontWeight.bold,  fontSize: 40),), color: Color(0xFFFA990E), textColor: Colors.white,),
             ]
         ),
       ),

@@ -42,7 +42,6 @@ class FlutterSimpleStickerView extends StatefulWidget {
 
   Future<Uint8List> exportImage() async {
     await _flutterSimpleStickerViewState._prepareExport();
-
     Future<Uint8List> exportImage =
     _flutterSimpleStickerViewState.exportImage();
     print("export image success!");
@@ -141,16 +140,18 @@ class _FlutterSimpleStickerViewState extends State<FlutterSimpleStickerView> {
     );
   }
 
+  //export photo of awatar in .png format
+
   Future<Uint8List> exportImage() async {
     RenderRepaintBoundary boundary = key.currentContext.findRenderObject();
     var image =
     await boundary.toImage(pixelRatio: this.widget.devicePixelRatio);
     var byteData = await image.toByteData(format: ImageByteFormat.png);
     var pngBytes = byteData.buffer.asUint8List();
-
     return pngBytes;
   }
 
+  //removing selsected sticker
   void onTapRemoveSticker(FlutterSimpleStickerImage sticker) {
     setState(() {
       this.attachedList.removeWhere((s) => s.key == sticker.key);
