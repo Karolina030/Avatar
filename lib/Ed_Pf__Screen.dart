@@ -111,6 +111,8 @@ class _HomeViewState extends State<HomeView> {
     ),
     [ // loading assets
       for (Item item in klient.products ) Image.asset(item.path),
+      for (String naklejka in klient.kupione ) Image.asset(naklejka),
+
     ],
     // panelHeight: 150,
     panelBackgroundColor: Colors.orange,

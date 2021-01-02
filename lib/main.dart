@@ -13,9 +13,12 @@ Client klient;
 
 void main() {
   //Client klient;
+  WidgetsFlutterBinding.ensureInitialized();
   klient = new Client();
+ // klient.readSticker();
   runApp(Avatar() //start application
   );
+
 }
 
 class Avatar extends StatelessWidget {
@@ -69,6 +72,8 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             new FlatButton(onPressed: () async {
               print('Went to create'); // printing in console
+              klient.readSticker();
+
               Navigator.push(context, MaterialPageRoute(builder: (context) => creation)); // going to anather screen
             },
               highlightColor: Colors.redAccent,
@@ -90,6 +95,7 @@ class _MyHomePageState extends State<MyHomePage> {
             new Text('\n'),
             new FlatButton(onPressed: () async {
               print('Went to edit photo');
+              klient.readSticker();
               Navigator.push(context, MaterialPageRoute(builder: (context) => screen_ed_ph));
             },
               highlightColor: Colors.redAccent,

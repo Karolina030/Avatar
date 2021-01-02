@@ -1,3 +1,4 @@
+import 'package:Avatar/client.dart';
 import 'package:flutter/foundation.dart';
 //import 'package:Avatar/Mission.dart';
 //import 'package:Avatar/Creation.dart';
@@ -94,10 +95,12 @@ class Cart with ChangeNotifier {
    // klient.points = klient.points-total;
 
     _items.forEach((key, cartItem) {
-      Item item = new Item(cartItem.title, cartItem.price, cartItem.path);
-      klient.products.add(item);
+     // Item item = new Item(cartItem.title, cartItem.price, cartItem.path);
+      //klient.products.add(item);
+      klient.writeSticker(cartItem.path);
     });
     _items = {};
     notifyListeners();
+    klient.readSticker();
   }
 }
