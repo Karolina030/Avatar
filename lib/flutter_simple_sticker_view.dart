@@ -11,6 +11,7 @@ class FlutterSimpleStickerView extends StatefulWidget {
   FlutterSimpleStickerView(
       this.source,
       this.stickerList, {
+
         Key key,
         this.stickerSize = 100.0,
         this.stickerMaxScale = 2.0,
@@ -25,7 +26,6 @@ class FlutterSimpleStickerView extends StatefulWidget {
 
   final Widget source;
   final List<Image> stickerList;
-
   final double stickerSize;
   final double stickerMaxScale;
   final double stickerMinScale;
@@ -123,6 +123,7 @@ class _FlutterSimpleStickerViewState extends State<FlutterSimpleStickerView> {
                             child: FlatButton(
                                 onPressed: () {
                                   attachSticker(widget.stickerList[i]);
+
                                 },
                                 child: widget.stickerList[i]),
                           ));

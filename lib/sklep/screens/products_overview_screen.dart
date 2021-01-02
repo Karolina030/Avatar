@@ -7,8 +7,9 @@ import 'package:Avatar/store.dart';
 import 'package:Avatar/DB_Reader.dart';
 import 'package:Avatar/main.dart';
 
-
 import 'dart:math';
+
+//zakładka sklep
 
 class ProductsOverviewScreen extends StatefulWidget {
 

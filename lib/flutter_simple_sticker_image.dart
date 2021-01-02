@@ -14,12 +14,13 @@ class FlutterSimpleStickerImage extends StatefulWidget {
         this.width,
         this.height,
         this.viewport,
-        this.minScale = 1.0,  //sticker scale
+        this.minScale = 1.0,
         this.maxScale = 2.0,
         this.onTapRemove,
       }) : super(key: key);
 
   final Image image;
+
   final double width;
   final double height;
   final Size viewport;

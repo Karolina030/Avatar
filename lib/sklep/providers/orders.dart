@@ -2,8 +2,9 @@ import 'package:flutter/foundation.dart';
 
 import './cart.dart';
 
+// przechowuje zamówienia
 class OrderItem {
-  final List<CartItem> products;
+  final List<CartItem> products;  //lista produktów
 
   OrderItem({
 

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import './product.dart';
 
+
+// lista naklejek dostępnych w sklepie
 class Products with ChangeNotifier {
   List<Product> _items = [
     Product(

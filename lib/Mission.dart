@@ -56,7 +56,7 @@ class _HomeViewState extends State<HomeView> {
 
             SizedBox(
               height: 20,
-              child: Text('Misja: Donald Trump', style: TextStyle(fontFamily: 'Arial', fontSize: 20)),
+              child: Text('Mission: Donald Trump', style: TextStyle(fontFamily: 'Arial', fontSize: 20)),
             ),
 
           ],
@@ -75,9 +75,7 @@ class _HomeViewState extends State<HomeView> {
 
     [
       for (Item item in klient.products ) Image.asset(item.path),
-
       for (Product item in Products().items ) Image.asset(item.path),
-
 
     ],
     // panelHeight: 150,

@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 
+//klasa reprezentująca pojedynczą naklejkę
 class Product with ChangeNotifier {
   final String id;
   final String title;

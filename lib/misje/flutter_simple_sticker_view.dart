@@ -24,8 +24,8 @@ class FlutterSimpleStickerView extends StatefulWidget {
       }) : super(key: key);
 
   final Widget source;
-  final List<Image> stickerList;  //list of choosen stickers
-
+  final List<Image> stickerList;  // lista wybranych naklejek
+  final List<String> dodane = List<String>();  //lista nazw wybranych w czasie misji naklejek
   //sticker properties
   final double stickerSize;
   final double stickerMaxScale;
@@ -151,6 +151,15 @@ class _FlutterSimpleStickerViewState extends State<FlutterSimpleStickerView> {
                             child: FlatButton(
                                 onPressed: () {
                                   attachSticker(widget.stickerList[i]);
+
+                                  var re = RegExp(r'(?<=assets/)(.*)(?=.png)');
+                                  String data = widget.stickerList[i].image.toString();
+                                  var match = re.firstMatch(data);
+                                  if (match != null) {
+                                    print(match.group(0));
+                                    widget.dodane.add((match.group(0)).toString());
+                                  }
+                                  print(widget.dodane);
                                 },
                                 child: widget.stickerList[i]),
                           ));

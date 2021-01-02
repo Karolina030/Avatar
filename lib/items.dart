@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import './item.dart';
 
+// lista naklejek dostępnych w zakładkach: CREATE i EDIT PHOTO
 class Items with ChangeNotifier {
   List<Item> _items = [
     Item('hat', 0, "assets/icons8-hat-100.png"),

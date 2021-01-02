@@ -7,9 +7,7 @@ import '../widgets/cart_item.dart';
 import '../providers/orders.dart';
 import 'package:Avatar/main.dart';
 
-
-
-
+//zakładka "koszyk"
 
 class CartScreen extends StatelessWidget {
 

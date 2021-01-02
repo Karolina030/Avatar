@@ -5,14 +5,14 @@ import 'package:flutter/foundation.dart';
 import 'package:Avatar/main.dart';
 import 'package:Avatar/item.dart';
 
-
+//element dodany do koszyka
 
 class CartItem {
-  final String id;
-  final String title;
-  final int quantity;
-  final double price;
-  final String path;
+  final String id;  // id naklejki
+  final String title;   //nazwa naklejki
+  final int quantity;   // ilosc  = 1
+  final double price;   // cena naklejki
+  final String path;    // ścieżka do naklejki w assets
 
   CartItem({
     @required this.id,
@@ -25,6 +25,7 @@ class CartItem {
 }
 
 class Cart with ChangeNotifier {
+
   Map<String, CartItem> _items = {};
 
   Map<String, CartItem> get items {
@@ -35,6 +36,7 @@ class Cart with ChangeNotifier {
     return _items.length;
   }
 
+  //obliczenie ceny zamówienia
   double get totalAmount {
     var total = 0.0;
     _items.forEach((key, cartItem) {
@@ -43,6 +45,7 @@ class Cart with ChangeNotifier {
     return total;
   }
 
+  //dodanie  naklejki
   void addItem(
     String productId,
     double price,
@@ -50,7 +53,6 @@ class Cart with ChangeNotifier {
     String path,
   ) {
     if (_items.containsKey(productId)) {
-      // change quantity...
       _items.update(
         productId,
         (existingCartItem) => CartItem(
@@ -76,11 +78,14 @@ class Cart with ChangeNotifier {
     notifyListeners();
   }
 
+  // usuniecie naklejki
   void removeItem(String productId) {
     _items.remove(productId);
     notifyListeners();
   }
 
+
+  // wyczyszczenie koszyka po kupieniu naklejek
   void clear() {
    // var total;
    // _items.forEach((key, cartItem) {
