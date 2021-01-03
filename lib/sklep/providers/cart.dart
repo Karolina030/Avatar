@@ -6,6 +6,8 @@ import 'package:flutter/foundation.dart';
 import 'package:Avatar/main.dart';
 import 'package:Avatar/item.dart';
 
+import '../../DB_Reader.dart';
+
 //element dodany do koszyka
 
 class CartItem {
@@ -97,7 +99,7 @@ class Cart with ChangeNotifier {
     _items.forEach((key, cartItem) {
      // Item item = new Item(cartItem.title, cartItem.price, cartItem.path);
       //klient.products.add(item);
-      klient.writeSticker(cartItem.path);
+      DB_Reader().writeSticker(cartItem.path);
     });
     _items = {};
     notifyListeners();

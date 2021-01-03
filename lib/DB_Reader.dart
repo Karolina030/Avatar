@@ -78,4 +78,22 @@ class DB_Reader {
     }
   }
 
+//STICKERS
+  Future<File> get localFile_ST async {
+    final path = await _localPath;
+    return File('$path/stickers.txt');
+  }
+
+  Future<File> writeSticker(String sticker)  async {
+    final file = await localFile_ST;
+    try {
+      file.writeAsStringSync(sticker + '\n',
+          mode: FileMode.append, flush: false);
+    } catch (e) {
+      print("Error: $e");
+    }
+    return file;
+  }
+
+
 }

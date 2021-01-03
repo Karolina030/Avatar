@@ -63,7 +63,7 @@ class _MyHomePageState extends State<MyHomePage> {
         // title: Text(widget.title),
       ),
       // backgroundColor: Colors.yellowAccent,
-      backgroundColor: Color(0xFF1E90FF),
+      backgroundColor: Color(0xFF1E90FF), //0xFFA4DBE4
       body: Center(
 
         child: Column(

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../DB_Reader.dart';
+import '../../store.dart';
 import '../providers/cart.dart' show Cart;
 import '../widgets/cart_item.dart';
 import '../providers/orders.dart';
@@ -47,9 +48,22 @@ class CartScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final cart = Provider.of<Cart>(context);
     return Scaffold(
-      appBar: AppBar(
+      appBar: AppBar( //
         title: Text('Order'),
-      ),
+      ), //
+      // appBar: AppBar( //
+      //   leading: Builder(
+      //     builder: (BuildContext context) {
+      //       return IconButton(
+      //           icon: Icon(Icons.arrow_back),
+      //           onPressed: (){
+      //             Navigator.push(context, MaterialPageRoute(builder: (context) => Store())); // displaying after change
+      //           }
+      //       );
+      //     },
+      //   ),
+      //   title: Text('Order'),
+      // ), //
       body: Column(
         children: <Widget>[
           Card(

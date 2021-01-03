@@ -25,7 +25,7 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
 
   var _points;
 
-  void initState() {
+  void initState() { // getting number of points
     super.initState();
     DB_Reader().readPoints().then((int value) {
       setState(() {
@@ -43,7 +43,6 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
             title: Text("Are you sure? You have $count_SB boxes!"),
             children: <Widget>[
               SimpleDialogOption(
-                // onPressed: () => _displayDialog_points(), // opening
                 onPressed: () => Navigator.of(context, rootNavigator: true).pop(_displayDialog_points()), // opening
                 child: const Text('OPEN!!!'),
               ),
@@ -58,7 +57,7 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
   }
 
   void _displayDialog_points() async {
-    int randomPoints = random.nextInt(51) + 50; // Dialog window with random points
+    int randomPoints = random.nextInt(41) + 80; // Dialog window with random points
     await DB_Reader().writePoints(randomPoints);
     await DB_Reader().writeCounter(-1);
     return showDialog(
@@ -67,7 +66,7 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
           return AlertDialog(
             content: new FlatButton(
               child: new Text("You get $randomPoints points"),
-              onPressed: () => Navigator.of(context, rootNavigator: true).pop(), // closing dialog
+              onPressed: () => Navigator.of(context, rootNavigator: true).pop(), // closing dialog Navigator.push(context, MaterialPageRoute(builder: (context) => Store()))
             ),
           );
         });
@@ -95,12 +94,28 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
         });
   }
 
+  void _no_money() async { // Dialog window with information that there's no money
+    return showDialog(
+        context: this.context,
+        builder: (context) {
+          return AlertDialog(
+            content: new FlatButton(
+              child: new Text("Not enough points"),
+              onPressed: () => Navigator.of(context, rootNavigator: true).pop(),
+            ),
+          );
+        });
+  }
+
   void _buying_SB() async {   //buying SurpriseBox
     var points = await DB_Reader().readPoints();
     if (points > 100) {
       await DB_Reader().writePoints(-100); // - 100 points
       await DB_Reader().writeCounter(1); //   +1 SurpriseBox
       _open_SB_alert();
+    }
+    else {
+      _no_money();
     }
   }
 
@@ -110,16 +125,14 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
     var count_SB = await DB_Reader().readCounter();
     if (count_SB > 0) {
       _open_SB_alert();
-      print("read $count_SB");
     }
     else {
       _displayDialog_no_points();
-      // print('No SB');
     }
   }
 
 
-  //ATTENTION//
+  //TODO: ATTENTION
   //This fragment just helps to test app because now there is no option to get points
   //This fragment must be delete
   void _easy_money() async {
