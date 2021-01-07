@@ -118,19 +118,46 @@ class DB_Reader {
 
     List<String> lines = List<String>();
     int sum =0;
-    String data = await rootBundle.loadString('assets/mission$i.txt');
-    LineSplitter.split(data).forEach((line) => lines.add(line));
-    int dlugosc = lines.length;
-    for(int i=1;i<lines.length; i++){
-      if (dodane.contains(lines[i])){
-        sum = sum +100;
+    try {
+      String data = await rootBundle.loadString('assets/mission$i.txt');
+      LineSplitter.split(data).forEach((line) => lines.add(line));
+      for(int i=1;i<lines.length; i++){
+        if (dodane.contains(lines[i])){
+          sum = sum +100;
+        }
       }
+      print(sum);
+      await writePoints(sum);
+      return sum;
+    } catch (e) {
+
+      return 0;
     }
-    print(sum);
-    await writePoints(sum);
-    return sum;
   }
 
+  Future<int> sprMisjiTime(List<String> dodane, int i) async {
+
+    List<String> lines = List<String>();
+    int sum =0;
+
+    try {
+      String data = await rootBundle.loadString('assets/mission$i.txt');
+      LineSplitter.split(data).forEach((line) => lines.add(line));
+      for(int i=1;i<lines.length; i++){
+        if (dodane.contains(lines[i])){
+          sum = sum +200;
+        }
+      }
+      print(sum);
+      await writePoints(sum);
+      return sum;
+    } catch (e) {
+
+      return 0;
+    }
+
+
+  }
 
 
 }

@@ -78,7 +78,7 @@ class _FlutterSimpleStickerViewState extends State<FlutterSimpleStickerView> {
 
   void pointAlert() async {
 
-    int count = await DB_Reader().sprMisji(widget.dodane, i);
+    int count = await DB_Reader().sprMisjiTime(widget.dodane, i);
 
     return showDialog(
         context: this.context,
@@ -91,7 +91,7 @@ class _FlutterSimpleStickerViewState extends State<FlutterSimpleStickerView> {
   }
 
   Timer _timer;
-  int _start = 0;
+  int _start = 30;
 
   void startTimer() {
     const oneSec = const Duration(seconds: 1);
@@ -99,6 +99,9 @@ class _FlutterSimpleStickerViewState extends State<FlutterSimpleStickerView> {
       oneSec,
           (Timer timer) {
         if (_start == 0) {
+          DB_Reader().sprMisjiTime(widget.dodane, i);
+          pointAlert();
+          liczba =0;
           setState(() {
             timer.cancel();
           });
@@ -111,7 +114,11 @@ class _FlutterSimpleStickerViewState extends State<FlutterSimpleStickerView> {
     );
   }
 
-
+  @override
+  void dispose() {
+    _timer.cancel();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -192,12 +199,17 @@ class _FlutterSimpleStickerViewState extends State<FlutterSimpleStickerView> {
                             DB_Reader().sprMisjiTime(widget.dodane, i);
                             pointAlert();
                             liczba =0;
+                          //  _timer.cancel();
+
                           },
                           child: Text("END MISSION"),),
 
-                      Text("      "),
+                      //Text("   $_start   "),
 
-
+                      Text(
+                        "  $_start  ",
+                        style: TextStyle(fontSize: 30, color: Colors.pink),
+                      ),
                       RaisedButton(
                         onPressed: () {
                           startTimer();

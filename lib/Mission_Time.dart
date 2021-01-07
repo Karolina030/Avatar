@@ -5,7 +5,7 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 
 //import 'package:Avatar/flutter_simple_sticker_view.dart';
-import  './misje/flutter_simple_sticker_view.dart';
+import  './misje/flutter_simple_sticker_view_time.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
 
 import './sklep/providers/products.dart';
@@ -26,7 +26,7 @@ import 'Missions_Screen.dart';
 var globalContext;
 int i;  //numer misji
 
-class Mission extends StatelessWidget {
+class Mission_Time extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
