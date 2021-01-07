@@ -12,7 +12,7 @@ class Store_Screen extends StatelessWidget {
       body: Center(
           child: RaisedButton(onPressed: (){
             Navigator.pop(context);
-          }, child: Icon(Icons.arrow_back) //arrow_back arrow_back_ios
+          }, child: Icon(Icons.arrow_back_ios_rounded ) //arrow_back arrow_back_ios
           )
       ),
     );

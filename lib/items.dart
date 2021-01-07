@@ -59,6 +59,8 @@ class Items with ChangeNotifier {
     Item('nose', 0, "assets/nose-1.png"),
     Item('nose', 0, "assets/nose-2.png"),
     Item('nose', 0, "assets/nose-3.png"),
+    Item('nose', 0, "assets/witch-nose.png"),
+
 
   ];
 

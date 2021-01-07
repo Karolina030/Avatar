@@ -81,7 +81,7 @@ class _HomeViewState extends State<HomeView> {
             leading: Builder(
               builder: (BuildContext context) {
                 return IconButton(
-                    icon: Icon(Icons.arrow_back),
+                    icon: Icon(Icons.arrow_back_ios_rounded ),
                     onPressed: (){
                       Navigator.pop(globalContext);
                       //  Navigator.of(context).maybePop();

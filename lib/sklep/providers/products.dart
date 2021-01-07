@@ -98,6 +98,12 @@ class Products with ChangeNotifier {
       price: 40,
       path: "assets/afro.png",
     ),
+    Product(
+      id: 'p16',
+      title: 'santa-beard',
+      price: 40,
+      path: "assets/santa-beard.png",
+    ),
 
   ];
 

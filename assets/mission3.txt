@@ -1,0 +1,7 @@
+Mission: Cowboy
+mustache-2
+mustache-1
+hat-1
+eyebrows
+cartoon-eyes-2.png
+cartoon-hair-4

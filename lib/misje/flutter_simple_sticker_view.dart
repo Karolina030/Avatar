@@ -6,6 +6,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
 import 'flutter_simple_sticker_image.dart';
+import 'package:Avatar/DB_Reader.dart';
+import 'package:Avatar/Mission.dart';
+
+int liczba =0;
 
 class FlutterSimpleStickerView extends StatefulWidget {
   FlutterSimpleStickerView(
@@ -41,15 +45,6 @@ class FlutterSimpleStickerView extends StatefulWidget {
   final _FlutterSimpleStickerViewState _flutterSimpleStickerViewState =
   _FlutterSimpleStickerViewState();
 
-  Future<Uint8List> exportImage() async {
-    await _flutterSimpleStickerViewState._prepareExport();
-
-    Future<Uint8List> exportImage =
-    _flutterSimpleStickerViewState.exportImage();
-    print("export image success!");
-    return exportImage;
-  }
-
   @override
   _FlutterSimpleStickerViewState createState() =>
       _flutterSimpleStickerViewState;
@@ -81,8 +76,21 @@ class _FlutterSimpleStickerViewState extends State<FlutterSimpleStickerView> {
     });
   }
 
+  void pointAlert() async {
+
+    int count = await DB_Reader().sprMisji(widget.dodane, i);
+
+    return showDialog(
+        context: this.context,
+        builder: (context) {
+          return SimpleDialog(
+            title: Text("You get: $count points\n"),
+          );
+        });
+  }
+
   Timer _timer;
-  int _start = 10;
+  int _start = 60;
 
   void startTimer() {
     const oneSec = const Duration(seconds: 1);
@@ -142,7 +150,7 @@ class _FlutterSimpleStickerViewState extends State<FlutterSimpleStickerView> {
                   child: GridView.builder(
                     padding: EdgeInsets.zero,
                     scrollDirection: Axis.vertical,
-                    itemCount: widget.stickerList.length,
+                    itemCount: liczba,
                     itemBuilder: (BuildContext context, int i) {
                       return Padding(
                           padding: const EdgeInsets.all(8.0),
@@ -182,7 +190,14 @@ class _FlutterSimpleStickerViewState extends State<FlutterSimpleStickerView> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     textDirection: TextDirection.rtl,
                     children: <Widget>[
-                      RaisedButton(onPressed: () {dispose();}, child: Text("END MISSION")),
+                      RaisedButton(
+                          onPressed: () {
+                           // dispose();
+                            DB_Reader().sprMisji(widget.dodane, i);
+                            pointAlert();
+                            liczba =0;
+                            },
+                          child: Text("END MISSION"),),
 
                       //Text("   $_start   "),
 
@@ -193,6 +208,7 @@ class _FlutterSimpleStickerViewState extends State<FlutterSimpleStickerView> {
                       RaisedButton(
                         onPressed: () {
                           startTimer();
+                          liczba = widget.stickerList.length;
                         },
                         child: Text("START MISSION"),
                       ),
@@ -226,10 +242,4 @@ class _FlutterSimpleStickerViewState extends State<FlutterSimpleStickerView> {
     });
   }
 
-  Future<void> _prepareExport() async {
-    attachedList.forEach((s) {
-      s.prepareExport();
-    });
-    await Future.delayed(const Duration(milliseconds: 500));
-  }
 }

@@ -10,23 +10,30 @@ import 'package:image_gallery_saver/image_gallery_saver.dart';
 
 import './sklep/providers/products.dart';
 import 'package:Avatar/main.dart';
+
 import 'package:Avatar/item.dart';
 
+import 'DB_Reader.dart';
+import 'dart:math';
 
 
 import 'dart:io';
 
 import 'package:image_picker/image_picker.dart';
 
+import 'Missions_Screen.dart';
+
 var globalContext;
-
-
+int i;  //numer misji
 
 class Mission extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
     globalContext = context;
+
+    Random random = new Random();
+    i = random.nextInt(4)+1; // losowa liczba o 1 do 4
 
     return MaterialApp(
       title: "Mission",
@@ -46,21 +53,22 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> {
 
+
+  void _open_alert() async {
+    String misja = await DB_Reader().tytulMisji(i);
+
+    return showDialog(
+        context: this.context,
+        builder: (context) {
+          return SimpleDialog(
+            title: Text('$misja\nStart Mission!!!\n', style: TextStyle(fontFamily: 'Arial', fontSize: 20)),
+
+          );
+        });
+  }
+
   FlutterSimpleStickerView _stickerView = FlutterSimpleStickerView(
     Container(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          textDirection: TextDirection.rtl,
-          children: <Widget>[
-
-            SizedBox(
-              height: 20,
-              child: Text('Mission: Donald Trump', style: TextStyle(fontFamily: 'Arial', fontSize: 20)),
-            ),
-
-          ],
-        ),
       decoration: BoxDecoration(
           color: Colors.white,
           image: DecorationImage(
@@ -95,9 +103,9 @@ class _HomeViewState extends State<HomeView> {
     return Scaffold(
         appBar: AppBar(
             leading: Builder(
-              builder: (BuildContext context) {
+              builder: (BuildContext context) { //creating buttons
                 return IconButton(
-                    icon: Icon(Icons.arrow_back),
+                    icon: Icon(Icons.arrow_back_ios_rounded ),
                     onPressed: (){
                       Navigator.pop(globalContext);
                       //  Navigator.of(context).maybePop();
@@ -105,15 +113,23 @@ class _HomeViewState extends State<HomeView> {
                 );
               },
             ),
-          title: Text("Mission"),
+            title: Text("Mission"),
             centerTitle: true,
 
+            actions: <Widget>[
+
+
+              new IconButton(
+                icon: Icon(Icons.announcement),
+                onPressed: () async {
+                  _open_alert();
+                },
+              ),
+
+
+            ]
         ),
-
-        body:
-        _stickerView
-
-    );
+        body: _stickerView);
   }
 }
 

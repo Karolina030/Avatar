@@ -1,5 +1,8 @@
+import 'dart:convert';
 import 'dart:io';
+import 'package:flutter/services.dart';
 import 'package:path_provider/path_provider.dart';
+import 'dart:math';
 
 
 class DB_Reader {
@@ -94,6 +97,40 @@ class DB_Reader {
     }
     return file;
   }
+
+
+//MISSION
+
+
+  Future<String> tytulMisji(int i) async {
+
+
+    List<String> lines = List<String>();
+    String data = await rootBundle.loadString('assets/mission$i.txt');
+    LineSplitter.split(data).forEach((line) => lines.add(line));
+    String tytul= lines[0];
+
+    return tytul;
+
+  }
+
+  Future<int> sprMisji(List<String> dodane, int i) async {
+
+    List<String> lines = List<String>();
+    int sum =0;
+    String data = await rootBundle.loadString('assets/mission$i.txt');
+    LineSplitter.split(data).forEach((line) => lines.add(line));
+    int dlugosc = lines.length;
+    for(int i=1;i<lines.length; i++){
+      if (dodane.contains(lines[i])){
+        sum = sum +100;
+      }
+    }
+    print(sum);
+    await writePoints(sum);
+    return sum;
+  }
+
 
 
 }
