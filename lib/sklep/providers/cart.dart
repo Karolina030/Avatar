@@ -99,7 +99,7 @@ class Cart with ChangeNotifier {
     _items.forEach((key, cartItem) {
      // Item item = new Item(cartItem.title, cartItem.price, cartItem.path);
       //klient.products.add(item);
-      DB_Reader().writeSticker(cartItem.path);
+      DBReader().writeSticker(cartItem.path);
     });
     _items = {};
     notifyListeners();

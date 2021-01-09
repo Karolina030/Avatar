@@ -17,9 +17,9 @@ class CartScreen extends StatelessWidget {
         cart.items.values.toList(),
         cart.totalAmount,
       );
-      var points = await DB_Reader().readPoints();
+      var points = await DBReader().readPoints();
       if (points>=cart.totalAmount.toInt()) {
-        await DB_Reader().writePoints(-cart.totalAmount.toInt());
+        await DBReader().writePoints(-cart.totalAmount.toInt());
         cart.clear();
       }
       else {

@@ -5,7 +5,7 @@ import 'cart_screen.dart';
 import 'package:Avatar/store.dart';
 
 import 'package:Avatar/DB_Reader.dart';
-import 'package:Avatar/main.dart';
+// import 'package:Avatar/main.dart';
 
 import 'dart:math';
 
@@ -27,23 +27,23 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
 
   void initState() { // getting number of points
     super.initState();
-    DB_Reader().readPoints().then((int value) {
+    DBReader().readPoints().then((int value) {
       setState(() {
         _points = value;
       });
     });
   }
 
-  void _open_SB_alert() async { //alert before opening
-    var count_SB = await DB_Reader().readCounter();
+  void _openSBalert() async { //alert before opening
+    var countSB = await DBReader().readCounter();
     return showDialog(
         context: this.context,
         builder: (context) {
           return SimpleDialog(
-            title: Text("Are you sure? You have $count_SB boxes!"),
+            title: Text("Are you sure? You have $countSB boxes!"),
             children: <Widget>[
               SimpleDialogOption(
-                onPressed: () => Navigator.of(context, rootNavigator: true).pop(_displayDialog_points()), // opening
+                onPressed: () => Navigator.of(context, rootNavigator: true).pop(_displayDialogPoints()), // opening
                 child: const Text('OPEN!!!'),
               ),
 
@@ -56,10 +56,10 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
         });
   }
 
-  void _displayDialog_points() async {
+  void _displayDialogPoints() async {
     int randomPoints = random.nextInt(41) + 80; // Dialog window with random points
-    await DB_Reader().writePoints(randomPoints);
-    await DB_Reader().writeCounter(-1);
+    await DBReader().writePoints(randomPoints);
+    await DBReader().writeCounter(-1);
     return showDialog(
         context: this.context,
         builder: (context) {
@@ -72,8 +72,8 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
         });
   }
 
-  void _displayDialog_no_points() async { // Dialog window with information that there's no SB
-    var points = await DB_Reader().readPoints();
+  void _displayDialogNoPoints() async { // Dialog window with information that there's no SB
+    var points = await DBReader().readPoints();
     return showDialog(
         context: this.context,
         builder: (context) {
@@ -81,7 +81,7 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
               title: Text("You have no SB and $points points!"),
               children: <Widget>[
                 SimpleDialogOption(
-                  onPressed: () => Navigator.of(context, rootNavigator: true).pop(_buying_SB()), // option to buy
+                  onPressed: () => Navigator.of(context, rootNavigator: true).pop(_buyingSB()), // option to buy
                   child: const Text('Buy?'),
                 ),
 
@@ -94,7 +94,7 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
         });
   }
 
-  void _no_money() async { // Dialog window with information that there's no money
+  void _noMoney() async { // Dialog window with information that there's no money
     return showDialog(
         context: this.context,
         builder: (context) {
@@ -107,27 +107,27 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
         });
   }
 
-  void _buying_SB() async {   //buying SurpriseBox
-    var points = await DB_Reader().readPoints();
+  void _buyingSB() async {   //buying SurpriseBox
+    var points = await DBReader().readPoints();
     if (points > 100) {
-      await DB_Reader().writePoints(-100); // - 100 points
-      await DB_Reader().writeCounter(1); //   +1 SurpriseBox
-      _open_SB_alert();
+      await DBReader().writePoints(-100); // - 100 points
+      await DBReader().writeCounter(1); //   +1 SurpriseBox
+      _openSBalert();
     }
     else {
-      _no_money();
+      _noMoney();
     }
   }
 
 
 
-  void _check_SB() async { // checking SB
-    var count_SB = await DB_Reader().readCounter();
-    if (count_SB > 0) {
-      _open_SB_alert();
+  void _checkSB() async { // checking SB
+    var countSB = await DBReader().readCounter();
+    if (countSB > 0) {
+      _openSBalert();
     }
     else {
-      _displayDialog_no_points();
+      _displayDialogNoPoints();
     }
   }
 
@@ -135,9 +135,9 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
   //TODO: ATTENTION
   //This fragment just helps to test app because now there is no option to get points
   //This fragment must be delete
-  void _easy_money() async {
-    await DB_Reader().writePoints(100);
-    var points = await DB_Reader().readPoints();
+  void _easyMoney() async {
+    await DBReader().writePoints(100);
+    var points = await DBReader().readPoints();
     print('Points: $points');
   }
 
@@ -163,11 +163,11 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
         actions: <Widget>[
           new IconButton( // button to get money
             icon: Icon(Icons.money_off,),
-            onPressed: _easy_money,
+            onPressed: _easyMoney,
           ), // must be delete
           new IconButton(
             icon: Icon(Icons.card_giftcard_sharp,),
-            onPressed: _check_SB,
+            onPressed: _checkSB,
           ),
           new IconButton(
             icon: Icon(Icons.shopping_cart),

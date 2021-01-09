@@ -2,10 +2,10 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/services.dart';
 import 'package:path_provider/path_provider.dart';
-import 'dart:math';
+// import 'dart:math';
 
 
-class DB_Reader {
+class DBReader {
 
 
   Future<String> get _localPath async {
@@ -16,18 +16,18 @@ class DB_Reader {
   }
 
 // SURPRISE BOX
-  Future<File> get _localFile_SB async {
+  Future<File> get _localFileSB async {
     // path to counter SB file
     final path = await _localPath;
     return File('$path/counterSB.txt');
   }
 
   Future<File> writeCounter(int counter) async {
-    final file = await _localFile_SB;
+    final file = await _localFileSB;
 
-    var current_SB = await readCounter();
+    var currentSB = await readCounter();
 
-    counter = counter + current_SB;
+    counter = counter + currentSB;
 
     // Write the file.
     return file.writeAsString('$counter');
@@ -35,7 +35,7 @@ class DB_Reader {
 
   Future<int> readCounter() async {
     try {
-      final file = await _localFile_SB;
+      final file = await _localFileSB;
 
       // Read the file.
       String contents = await file.readAsString();
@@ -49,19 +49,17 @@ class DB_Reader {
 
 
 // POINTS
-  Future<File> get _localFile_Points async {
+  Future<File> get __localFilePoints async {
     final path = await _localPath;
     return File('$path/points.txt');
   }
 
   Future<File> writePoints(int counter) async {
-    final file = await _localFile_Points;
+    final file = await __localFilePoints;
 
-    var current_points = await readPoints();
-    // print('current_points: current_points');
+    var currentPoints = await readPoints();
 
-    counter = counter + current_points;
-    // print('counter: $counter');
+    counter = counter + currentPoints;
 
     // Write the file.
     return file.writeAsString('$counter');
@@ -69,7 +67,7 @@ class DB_Reader {
 
   Future<int> readPoints() async {
     try {
-      final file = await _localFile_Points;
+      final file = await __localFilePoints;
 
       // Read the file.
       String contents = await file.readAsString();
@@ -82,13 +80,13 @@ class DB_Reader {
   }
 
 //STICKERS
-  Future<File> get localFile_ST async {
+  Future<File> get localFileST async {
     final path = await _localPath;
     return File('$path/stickers.txt');
   }
 
   Future<File> writeSticker(String sticker)  async {
-    final file = await localFile_ST;
+    final file = await localFileST;
     try {
       file.writeAsStringSync(sticker + '\n',
           mode: FileMode.append, flush: false);

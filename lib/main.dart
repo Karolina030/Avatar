@@ -2,8 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:Avatar/Missions_Screen.dart';
-import 'package:Avatar/Ed_Pf__Screen.dart';
-import 'package:Avatar/Store_Screen.dart';
+import 'package:Avatar/edit_photo_screen.dart';
 import 'package:Avatar/store.dart';
 
 import 'package:Avatar/Creation.dart';
@@ -48,11 +47,6 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
 
-  Creation creation = Creation();
-  Missions_Screen screen_missions = Missions_Screen();
-  Ed_Pf__Screen screen_ed_ph = Ed_Pf__Screen();
-  Store_Screen screen_store = Store_Screen();
-  Store store = Store();
 
   @override
   Widget build(BuildContext context) {
@@ -74,7 +68,7 @@ class _MyHomePageState extends State<MyHomePage> {
               print('Went to create'); // printing in console
               klient.readSticker();
 
-              Navigator.push(context, MaterialPageRoute(builder: (context) => creation)); // going to anather screen
+              Navigator.push(context, MaterialPageRoute(builder: (context) => Creation())); // going to another screens
             },
               highlightColor: Colors.redAccent,
               padding: EdgeInsets.all(10),
@@ -85,7 +79,7 @@ class _MyHomePageState extends State<MyHomePage> {
             new Text('\n'),
             new FlatButton(onPressed: () async {
               print('Went to missions');
-              Navigator.push(context, MaterialPageRoute(builder: (context) => screen_missions));
+              Navigator.push(context, MaterialPageRoute(builder: (context) => Missions_Screen()));
             },
               highlightColor: Colors.redAccent,
               padding: EdgeInsets.all(10),
@@ -96,7 +90,7 @@ class _MyHomePageState extends State<MyHomePage> {
             new FlatButton(onPressed: () async {
               print('Went to edit photo');
               klient.readSticker();
-              Navigator.push(context, MaterialPageRoute(builder: (context) => screen_ed_ph));
+              Navigator.push(context, MaterialPageRoute(builder: (context) => Ed_Pf__Screen()));
             },
               highlightColor: Colors.redAccent,
               padding: EdgeInsets.all(10),
@@ -106,7 +100,7 @@ class _MyHomePageState extends State<MyHomePage> {
             new Text('\n'),
             new FlatButton(onPressed: () async {
               print('Went to store');
-              Navigator.push(context, MaterialPageRoute(builder: (context) => store));
+              Navigator.push(context, MaterialPageRoute(builder: (context) => Store()));
             },
               highlightColor: Colors.redAccent,
               padding: EdgeInsets.all(10),

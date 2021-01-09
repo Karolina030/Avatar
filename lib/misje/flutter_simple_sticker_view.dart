@@ -78,7 +78,7 @@ class _FlutterSimpleStickerViewState extends State<FlutterSimpleStickerView> {
 
   void pointAlert() async {
 
-    int count = await DB_Reader().sprMisji(widget.dodane, i);
+    int count = await DBReader().sprMisji(widget.dodane, i);
 
     return showDialog(
         context: this.context,
@@ -189,7 +189,7 @@ class _FlutterSimpleStickerViewState extends State<FlutterSimpleStickerView> {
                     children: <Widget>[
                       RaisedButton(
                           onPressed: () {
-                            DB_Reader().sprMisjiTime(widget.dodane, i);
+                            DBReader().sprMisjiTime(widget.dodane, i);
                             pointAlert();
                             liczba =0;
                           },

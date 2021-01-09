@@ -56,7 +56,7 @@ class _HomeViewState extends State<HomeView> {
 
 
   void _open_alert() async {
-    String misja = await DB_Reader().tytulMisji(i);
+    String misja = await DBReader().tytulMisji(i);
 
     return showDialog(
         context: this.context,

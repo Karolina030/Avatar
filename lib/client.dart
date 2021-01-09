@@ -23,30 +23,8 @@ class Client with ChangeNotifier{
     readSticker();
   }
 
-  // Future<String> get _localPath async {
-  //   final directory = await getApplicationDocumentsDirectory();
-  //   return directory.path;
-  // }
-  //
-  // Future<File> get _localFile_ST async {
-  //   final path = await _localPath;
-  //   return File('$path/stickers.txt');
-  // }
-  //
-  //
-  // Future<File> writeSticker(String sticker)  async {
-  //   final file = await _localFile_ST;
-  //   try {
-  //     await file.writeAsStringSync(sticker + '\n',
-  //         mode: FileMode.append, flush: false);
-  //   } catch (e) {
-  //     print("Error: $e");
-  //   }
-  //   return await file;
-  // }
-
   readSticker() async {
-    final file = await DB_Reader().localFile_ST;
+    final file = await DBReader().localFileST;
       // Read the file.
     //kupione  = List<String>();
     kupione.clear();
