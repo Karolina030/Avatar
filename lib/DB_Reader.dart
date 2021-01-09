@@ -99,9 +99,47 @@ class DBReader {
 
 //MISSION
 
+  Future<File> get localFile_CM async {
+    final path = await _localPath;
+    return File('$path/completedMissions.txt');
+  }
+
+  Future<File> writeMission(String mission)  async {
+    final file = await localFile_CM;
+    try {
+      // this is only temporary
+      file.writeAsString(mission + '\n', mode: FileMode.write);
+
+    } catch (e) {
+      print("Error: $e");
+    }
+    return file;
+  }
+
+  Future<int> readMissions() async {
+
+    final file = await localFile_CM;
+
+    List<String> missionsAvailable = List<String>();
+    List<String> missionsComplited = List<String>();
+
+    String missions = await rootBundle.loadString('assets/missions.txt');
+    LineSplitter.split(missions).forEach((line) => missionsAvailable.add(line));
+
+    missionsComplited = file.readAsLinesSync();
+  //  missionsComplited.forEach((l) => print(l));
+
+    for(int i=0;i<missionsAvailable.length; i++){
+      if (!missionsComplited.contains(missionsAvailable[i])){
+
+        return i+1;
+      }
+    }
+  }
+
+
 
   Future<String> tytulMisji(int i) async {
-
 
     List<String> lines = List<String>();
     String data = await rootBundle.loadString('assets/mission$i.txt');

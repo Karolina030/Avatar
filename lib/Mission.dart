@@ -24,18 +24,15 @@ import 'package:image_picker/image_picker.dart';
 import 'Missions_Screen.dart';
 
 var globalContext;
-int i;  //numer misji
 
 class Mission extends StatelessWidget {
+
 
   @override
   Widget build(BuildContext context) {
     globalContext = context;
 
-    Random random = new Random();
-    i = random.nextInt(4)+1; // losowa liczba o 1 do 4, numer misji
-
-
+    
     return MaterialApp(
       title: "Mission",
       home: HomeView(),

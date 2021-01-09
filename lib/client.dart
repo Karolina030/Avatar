@@ -14,6 +14,7 @@ class Client with ChangeNotifier{
   // int points = 100;
   List<Item> products;
   List<String> kupione= List<String>();
+  List<int> wykonaneMisje= List<int>();
 
 
 
