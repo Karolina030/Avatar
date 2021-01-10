@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:Avatar/Creation.dart';
+import 'package:Avatar/creation.dart';
 import 'package:Avatar/Mission.dart';
 import 'package:Avatar/Mission_Time.dart';
 import 'package:Avatar/Try_Again.dart';
@@ -9,7 +9,7 @@ import 'package:Avatar/DB_Reader.dart';
 
 int i;
 
-class Missions_Screen extends StatelessWidget {
+class MissionsScreen extends StatelessWidget {
 
 
   void missionIndex(BuildContext context) async {

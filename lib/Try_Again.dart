@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:Avatar/Creation.dart';
+import 'package:Avatar/creation.dart';
 import 'package:Avatar/Mission.dart';
 import 'package:Avatar/Mission_Time.dart';
 import 'package:Avatar/main.dart';

@@ -5,7 +5,7 @@ import 'package:Avatar/Missions_Screen.dart';
 import 'package:Avatar/edit_photo_screen.dart';
 import 'package:Avatar/store.dart';
 
-import 'package:Avatar/Creation.dart';
+import 'package:Avatar/creation.dart';
 import 'package:Avatar/client.dart';
 
 Client klient;
@@ -79,7 +79,7 @@ class _MyHomePageState extends State<MyHomePage> {
             new Text('\n'),
             new FlatButton(onPressed: () async {
               print('Went to missions');
-              Navigator.push(context, MaterialPageRoute(builder: (context) => Missions_Screen()));
+              Navigator.push(context, MaterialPageRoute(builder: (context) => MissionsScreen()));
             },
               highlightColor: Colors.redAccent,
               padding: EdgeInsets.all(10),

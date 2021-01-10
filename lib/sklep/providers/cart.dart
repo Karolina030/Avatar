@@ -1,7 +1,7 @@
 import 'package:Avatar/client.dart';
 import 'package:flutter/foundation.dart';
 //import 'package:Avatar/Mission.dart';
-//import 'package:Avatar/Creation.dart';
+//import 'package:Avatar/creation.dart';
 
 import 'package:Avatar/main.dart';
 import 'package:Avatar/item.dart';
