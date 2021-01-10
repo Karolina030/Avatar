@@ -15,7 +15,7 @@ import 'package:image_picker/image_picker.dart';
 var globalContext;
 String _path;
 
-class Ed_Pf__Screen extends StatelessWidget {
+class EditPhotoScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     globalContext = context;

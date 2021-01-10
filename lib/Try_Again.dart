@@ -5,7 +5,7 @@ import 'package:Avatar/Mission_Time.dart';
 import 'package:Avatar/main.dart';
 
 
-class Try_Again extends StatelessWidget {
+class TryAgain extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

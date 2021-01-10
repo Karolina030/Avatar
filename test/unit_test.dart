@@ -7,11 +7,10 @@ import 'package:Avatar/DB_Reader.dart';
 void main() {
 
   TestWidgetsFlutterBinding.ensureInitialized();
-  final reader = DBReader();
 
   const MethodChannel channel = MethodChannel('plugins.flutter.io/path_provider');
   channel.setMockMethodCallHandler((MethodCall methodCall) async {
-    return ".";
+    return "";
   });
 
   // test('SB counter value should be read', () async {
@@ -22,7 +21,7 @@ void main() {
   test('Pobieranie tytułu misji, otwieranie plików missions', () async {
 
     for (var i = 1; i < 4; i++) {
-    expect(await reader.tytulMisji(i), isNotEmpty);
+    expect(await DBReader().tytulMisji(i), isNotEmpty);
     }
   });
 

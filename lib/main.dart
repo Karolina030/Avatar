@@ -90,7 +90,7 @@ class _MyHomePageState extends State<MyHomePage> {
             new FlatButton(onPressed: () async {
               print('Went to edit photo');
               klient.readSticker();
-              Navigator.push(context, MaterialPageRoute(builder: (context) => Ed_Pf__Screen()));
+              Navigator.push(context, MaterialPageRoute(builder: (context) => EditPhotoScreen()));
             },
               highlightColor: Colors.redAccent,
               padding: EdgeInsets.all(10),

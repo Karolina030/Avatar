@@ -66,7 +66,7 @@ class Missions_Screen extends StatelessWidget {
                 child: Text('Time', style: TextStyle(fontFamily: 'Copperplate Gothic Light', fontStyle: FontStyle.italic, fontWeight: FontWeight.bold,  fontSize: 40),), color: Color(0xFFFA990E), textColor: Colors.white,),
               new Text('\n'),
               new RaisedButton(onPressed: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context) => Try_Again()));
+                Navigator.push(context, MaterialPageRoute(builder: (context) => TryAgain()));
               },
                 highlightColor: Colors.redAccent,
                 padding: EdgeInsets.all(10),
