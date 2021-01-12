@@ -87,6 +87,7 @@ class DBReader {
     return File('$path/stickers.txt');
   }
 
+
   Future<File> writeSticker(String sticker)  async {
     final file = await localFileST;
     try {
@@ -129,6 +130,11 @@ class DBReader {
 
   }
 
+  void createMission()  async {
+    final file = await localFile_CM;
+    file.writeAsStringSync('',  mode: FileMode.append);
+  }
+
   Future<int> readMissions() async {
 
     final file = await localFile_CM;
@@ -143,8 +149,8 @@ class DBReader {
   //  missionsComplited.forEach((l) => print(l));
 
     for(int i=0;i<missionsAvailable.length; i++){
-      if (missionsComplited.contains(missionsAvailable)) {
-        return 1;
+      if (missionsComplited.contains(missionsAvailable) || missionsComplited.length ==3) {
+        file.writeAsStringSync('');
       }
       if (!missionsComplited.contains(missionsAvailable[i])){
         return i+1;

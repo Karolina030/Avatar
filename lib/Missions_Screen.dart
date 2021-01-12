@@ -13,6 +13,7 @@ class MissionsScreen extends StatelessWidget {
 
 
   void missionIndex(BuildContext context) async {
+
     i = await DBReader().readMissions();
     Navigator.push(context, MaterialPageRoute(builder: (context) => Mission()));
 
@@ -46,6 +47,7 @@ class MissionsScreen extends StatelessWidget {
               //   Navigator.pop(context);
               // }, child: Icon(Icons.arrow_back)),
               new RaisedButton(onPressed: (){
+                DBReader().createMission();
                 missionIndex(context);
             //    Navigator.push(context, MaterialPageRoute(builder: (context) => Mission()));
               },
