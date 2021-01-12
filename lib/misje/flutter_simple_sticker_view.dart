@@ -197,7 +197,6 @@ class _FlutterSimpleStickerViewState extends State<FlutterSimpleStickerView> {
                             pointAlert();
                             if (!klient.wykonaneMisje.contains(i)){
                               klient.wykonaneMisje.add(i);
-
                             }
                             DBReader().writeMission('mission$i');
                             liczba =0;

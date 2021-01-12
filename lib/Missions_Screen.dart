@@ -18,6 +18,11 @@ class MissionsScreen extends StatelessWidget {
 
   }
 
+  void missionIndex2(BuildContext context, int number){
+    i = number;
+    Navigator.push(context, MaterialPageRoute(builder: (context) => Mission()));
+
+  }
 
   @override
   Widget build(BuildContext context) {

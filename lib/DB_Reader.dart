@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/services.dart';
 import 'package:path_provider/path_provider.dart';
+
+import 'main.dart';
 // import 'dart:math';
 
 
@@ -108,12 +110,23 @@ class DBReader {
     final file = await localFile_CM;
     try {
       // this is only temporary
-      file.writeAsString(mission + '\n', mode: FileMode.write);
+      //file.writeAsStringSync('');
+
+      file.writeAsString(mission + '\n', mode: FileMode.append);
 
     } catch (e) {
       print("Error: $e");
     }
     return file;
+  }
+
+  //clear file with completed missions
+
+  void resetMission()  async {
+    final file = await localFile_CM;
+    file.writeAsStringSync('');
+    klient.wykonaneMisje.clear();
+
   }
 
   Future<int> readMissions() async {
@@ -130,13 +143,26 @@ class DBReader {
   //  missionsComplited.forEach((l) => print(l));
 
     for(int i=0;i<missionsAvailable.length; i++){
+      if (missionsComplited.contains(missionsAvailable)) {
+        return 1;
+      }
       if (!missionsComplited.contains(missionsAvailable[i])){
-
         return i+1;
       }
+
     }
   }
 
+ // Future<List<String>> readCompletedMissions() async {
+
+ //   final file = await localFile_CM;
+
+ //   List<String> missionsComplited = List<String>();
+
+ //   missionsComplited = file.readAsLinesSync();
+//    return missionsComplited;
+
+ // }
 
 
   Future<String> tytulMisji(int i) async {

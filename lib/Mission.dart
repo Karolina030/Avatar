@@ -23,6 +23,7 @@ import 'package:image_picker/image_picker.dart';
 
 import 'Missions_Screen.dart';
 
+
 var globalContext;
 
 class Mission extends StatelessWidget {
@@ -116,6 +117,13 @@ class _HomeViewState extends State<HomeView> {
 
             actions: <Widget>[
 
+//clear file with completed missions
+              new IconButton(
+                icon: Icon(Icons.refresh),
+                onPressed: () async {
+                  DBReader().resetMission();
+                },
+              ),
 
               new IconButton(
                 icon: Icon(Icons.announcement),

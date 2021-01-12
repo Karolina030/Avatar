@@ -2,10 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:Avatar/creation.dart';
 import 'package:Avatar/Mission.dart';
 import 'package:Avatar/Mission_Time.dart';
+import 'package:Avatar/Missions_Screen.dart';
+
 import 'package:Avatar/main.dart';
+
+int i;
+List<int> wykonaneMisje= List<int>();
 
 
 class TryAgain extends StatelessWidget {
+
+ // void missionIndex(BuildContext context, int number) async {
+ //   i = number;
+ //   Navigator.push(context, MaterialPageRoute(builder: (context) => Mission()));
+//
+ // }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,9 +35,10 @@ class TryAgain extends StatelessWidget {
               //   Navigator.pop(context);
               // }, child: Icon(Icons.arrow_back)),
 
-              for (int numer  in  klient.wykonaneMisje)
+              for (int numer in klient.wykonaneMisje)
               new RaisedButton(onPressed: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context) => Mission()));
+                MissionsScreen().missionIndex2(context, numer);
+           //     Navigator.push(context, MaterialPageRoute(builder: (context) => Mission()));
               },
                 highlightColor: Colors.redAccent,
                 padding: EdgeInsets.all(10),

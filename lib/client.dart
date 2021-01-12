@@ -31,7 +31,12 @@ class Client with ChangeNotifier{
     kupione.clear();
 
     file.openRead().transform(utf8.decoder).transform(new LineSplitter())
-        .forEach((l) => kupione.add(l));
+        .forEach((l) {
+            if (!kupione.contains(l)){
+              kupione.add(l);
+            }
+        });
+
     print(kupione);
     print("Read sticker");
   }
