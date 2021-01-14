@@ -40,22 +40,17 @@ class _HomeViewState extends State<HomeView> {
   Future _imgFromGallery() async {
     File img = await ImagePicker.pickImage(source: ImageSource.gallery); // getting image from gallery
 
-  Navigator.pushReplacement( // helps change image dynamical
-      context,
-      MaterialPageRoute(
-          builder: (BuildContext context) => super.widget));
+  Navigator.pushReplacement(context,MaterialPageRoute(builder: (BuildContext context) => super.widget)); // helps change image dynamical
 
     setState(() {
       _path = img.path; // getting image path
     });
   }
+
   Future _imgFromCamera() async {
     File img = await ImagePicker.pickImage(source: ImageSource.camera); // getting image from camera
 
-  Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(
-          builder: (BuildContext context) => super.widget));
+  Navigator.pushReplacement(context,MaterialPageRoute(builder: (BuildContext context) => super.widget));
 
     setState(() {
       // _image = img;

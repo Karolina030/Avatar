@@ -120,7 +120,7 @@ class _FlutterSimpleStickerViewState extends State<FlutterSimpleStickerView> {
 
   @override
   void dispose() {
-    _timer.cancel(); //TODO: The method 'cancel' was called on null.
+    _timer.cancel(); //TODO: The method 'cancel' was called on null. Test 'Przycisk Time i przejście w polu Missions istniją' failed.
     super.dispose();
   }
 
