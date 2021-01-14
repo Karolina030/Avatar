@@ -5,7 +5,7 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 
 //import 'package:Avatar/flutter_simple_sticker_view.dart';
-import  './misje/flutter_simple_sticker_view_time.dart';
+import  './misje/flutter_simple_sticker_view.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
 
 import './sklep/providers/products.dart';
@@ -16,23 +16,24 @@ import 'package:Avatar/item.dart';
 import 'DB_Reader.dart';
 import 'dart:math';
 
-
+import 'client.dart';
 import 'dart:io';
 
 import 'package:image_picker/image_picker.dart';
 
-import 'Missions_Screen.dart';
+import 'missions_screen.dart';
+
 
 var globalContext;
 
-class Mission_Time extends StatelessWidget {
+class Mission extends StatelessWidget {
+
 
   @override
   Widget build(BuildContext context) {
     globalContext = context;
 
-
-
+    
     return MaterialApp(
       title: "Mission",
       home: HomeView(),
@@ -52,7 +53,7 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> {
 
 
-  void _open_alert() async {
+  void _openAlert() async {
     String misja = await DBReader().tytulMisji(i);
 
     return showDialog(
@@ -80,7 +81,7 @@ class _HomeViewState extends State<HomeView> {
     ),
 
     [
-      for (Item item in klient.products ) Image.asset(item.path),
+      for (Item item in Client().products ) Image.asset(item.path),
       for (Product item in Products().items ) Image.asset(item.path),
 
     ],
@@ -116,11 +117,18 @@ class _HomeViewState extends State<HomeView> {
 
             actions: <Widget>[
 
+//clear file with completed missions
+              new IconButton(
+                icon: Icon(Icons.refresh),
+                onPressed: () async {
+                  DBReader().resetMission();
+                },
+              ),
 
               new IconButton(
                 icon: Icon(Icons.announcement),
                 onPressed: () async {
-                  _open_alert();
+                  _openAlert();
                 },
               ),
 

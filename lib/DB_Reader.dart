@@ -5,7 +5,7 @@ import 'package:path_provider/path_provider.dart';
 
 import 'main.dart';
 // import 'dart:math';
-
+import 'client.dart';
 
 class DBReader {
 
@@ -51,13 +51,13 @@ class DBReader {
 
 
 // POINTS
-  Future<File> get __localFilePoints async {
+  Future<File> get _localFilePoints async {
     final path = await _localPath;
     return File('$path/points.txt');
   }
 
   Future<File> writePoints(int counter) async {
-    final file = await __localFilePoints;
+    final file = await _localFilePoints;
 
     var currentPoints = await readPoints();
 
@@ -69,7 +69,7 @@ class DBReader {
 
   Future<int> readPoints() async {
     try {
-      final file = await __localFilePoints;
+      final file = await _localFilePoints;
 
       // Read the file.
       String contents = await file.readAsString();
@@ -102,13 +102,13 @@ class DBReader {
 
 //MISSION
 
-  Future<File> get localFile_CM async {
+  Future<File> get localFileCM async {
     final path = await _localPath;
     return File('$path/completedMissions.txt');
   }
 
   Future<File> writeMission(String mission)  async {
-    final file = await localFile_CM;
+    final file = await localFileCM;
     try {
       // this is only temporary
       //file.writeAsStringSync('');
@@ -124,20 +124,20 @@ class DBReader {
   //clear file with completed missions
 
   void resetMission()  async {
-    final file = await localFile_CM;
+    final file = await localFileCM;
     file.writeAsStringSync('');
-    klient.wykonaneMisje.clear();
+    Client().wykonaneMisje.clear();
 
   }
 
   void createMission()  async {
-    final file = await localFile_CM;
+    final file = await localFileCM;
     file.writeAsStringSync('',  mode: FileMode.append);
   }
 
   Future<int> readMissions() async {
 
-    final file = await localFile_CM;
+    final file = await localFileCM;
 
     List<String> missionsAvailable = List<String>();
     List<String> missionsComplited = List<String>();

@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:Avatar/creation.dart';
-import 'package:Avatar/Mission.dart';
-import 'package:Avatar/Mission_Time.dart';
-import 'package:Avatar/Missions_Screen.dart';
+import 'package:Avatar/mission.dart';
+import 'package:Avatar/mission_time.dart';
+import 'package:Avatar/missions_screen.dart';
 
 import 'package:Avatar/main.dart';
 
+import 'client.dart';
+
 int i;
 List<int> wykonaneMisje= List<int>();
-
 
 class TryAgain extends StatelessWidget {
 
@@ -35,7 +36,7 @@ class TryAgain extends StatelessWidget {
               //   Navigator.pop(context);
               // }, child: Icon(Icons.arrow_back)),
 
-              for (int numer in klient.wykonaneMisje)
+              for (int numer in Client().wykonaneMisje)
               new RaisedButton(onPressed: (){
                 MissionsScreen().missionIndex2(context, numer);
            //     Navigator.push(context, MaterialPageRoute(builder: (context) => Mission()));

@@ -1,19 +1,19 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:Avatar/Missions_Screen.dart';
+import 'package:Avatar/missions_screen.dart';
 import 'package:Avatar/edit_photo_screen.dart';
 import 'package:Avatar/store.dart';
 
 import 'package:Avatar/creation.dart';
 import 'package:Avatar/client.dart';
 
-Client klient;
+// Client klient;
 
 void main() {
   //Client klient;
   WidgetsFlutterBinding.ensureInitialized();
-  klient = new Client();
+  // klient = new Client();
  // klient.readSticker();
   runApp(Avatar() //start application
   );
@@ -26,7 +26,7 @@ class Avatar extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
+      debugShowCheckedModeBanner: false, // TODO: delete or not?
       title: 'Avatar',
       theme: ThemeData(
         primarySwatch: Colors.orange,
@@ -66,7 +66,7 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             new FlatButton(onPressed: () async {
               print('Went to create'); // printing in console
-              klient.readSticker();
+              Client().readSticker();
 
               Navigator.push(context, MaterialPageRoute(builder: (context) => Creation())); // going to another screens
             },
@@ -89,7 +89,7 @@ class _MyHomePageState extends State<MyHomePage> {
             new Text('\n'),
             new FlatButton(onPressed: () async {
               print('Went to edit photo');
-              klient.readSticker();
+              Client().readSticker();
               Navigator.push(context, MaterialPageRoute(builder: (context) => EditPhotoScreen()));
             },
               highlightColor: Colors.redAccent,

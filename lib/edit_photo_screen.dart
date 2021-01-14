@@ -9,7 +9,7 @@ import 'package:Avatar/items.dart';
 import 'package:Avatar/item.dart';
 import 'dart:io';
 import 'package:Avatar/main.dart';
-
+import 'client.dart';
 
 import 'package:image_picker/image_picker.dart';
 var globalContext;
@@ -110,8 +110,8 @@ class _HomeViewState extends State<HomeView> {
       ),
     ),
     [ // loading assets
-      for (Item item in klient.products ) Image.asset(item.path),
-      for (String naklejka in klient.kupione ) Image.asset(naklejka),
+      for (Item item in Client().products ) Image.asset(item.path),
+      for (String naklejka in Client().kupione ) Image.asset(naklejka),
 
     ],
     // panelHeight: 150,

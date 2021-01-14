@@ -2,9 +2,9 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:Avatar/creation.dart';
-import 'package:Avatar/Mission.dart';
-import 'package:Avatar/Mission_Time.dart';
-import 'package:Avatar/Try_Again.dart';
+import 'package:Avatar/mission.dart';
+import 'package:Avatar/mission_time.dart';
+import 'package:Avatar/try_again.dart';
 import 'package:Avatar/DB_Reader.dart';
 
 int i;
@@ -65,7 +65,7 @@ class MissionsScreen extends StatelessWidget {
                 child: Text('Daily', style: TextStyle(fontFamily: 'Copperplate Gothic Light', fontStyle: FontStyle.italic, fontWeight: FontWeight.bold,  fontSize: 40),), color: Color(0xFFFA990E), textColor: Colors.white,),
               new Text('\n'),
               new RaisedButton(onPressed: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context) => Mission_Time()));
+                Navigator.push(context, MaterialPageRoute(builder: (context) => MissionTime()));
               },
                 highlightColor: Colors.redAccent,
                 padding: EdgeInsets.all(10),

@@ -7,7 +7,7 @@ import 'package:flutter/rendering.dart';
 
 import 'flutter_simple_sticker_image.dart';
 import 'package:Avatar/DB_Reader.dart';
-import 'package:Avatar/Missions_Screen.dart';
+import 'package:Avatar/missions_screen.dart';
 
 import 'package:Avatar/client.dart';
 import 'package:Avatar/main.dart';
@@ -195,8 +195,8 @@ class _FlutterSimpleStickerViewState extends State<FlutterSimpleStickerView> {
                           onPressed: () {
                             DBReader().sprMisjiTime(widget.dodane, i);
                             pointAlert();
-                            if (!klient.wykonaneMisje.contains(i)){
-                              klient.wykonaneMisje.add(i);
+                            if (!Client().wykonaneMisje.contains(i)){
+                              Client().wykonaneMisje.add(i);
                             }
                             DBReader().writeMission('mission$i');
                             liczba =0;

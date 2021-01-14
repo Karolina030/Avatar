@@ -18,7 +18,7 @@ var globalContext;
 
 //Items productsData = new Items();
 //List<Item> products = productsData.items;
-//Client klient = new Client();
+//Client Client() = new Client();
 
 class Creation extends StatelessWidget {
   @override
@@ -58,10 +58,10 @@ class _HomeViewState extends State<HomeView> {
 
 
       [
-        for (Item item in klient.products ) Image.asset(item.path),
-        for (String naklejka in klient.kupione ) Image.asset(naklejka),
+        for (Item item in Client().products ) Image.asset(item.path),
+        for (String naklejka in Client().kupione ) Image.asset(naklejka),
 
-        //klient.readSticker(),
+        //Client().readSticker(),
 
     ],
     // panelHeight: 150,

@@ -7,11 +7,11 @@ import 'package:flutter/rendering.dart';
 
 import 'flutter_simple_sticker_image.dart';
 import 'package:Avatar/DB_Reader.dart';
-import 'package:Avatar/Mission.dart';
-import 'package:Avatar/Missions_Screen.dart';
+import 'package:Avatar/mission.dart';
+import 'package:Avatar/missions_screen.dart';
 
 import 'package:Avatar/main.dart';
-
+import 'package:Avatar/client.dart';
 
 int liczba =0;
 
@@ -120,7 +120,7 @@ class _FlutterSimpleStickerViewState extends State<FlutterSimpleStickerView> {
 
   @override
   void dispose() {
-    _timer.cancel();
+    _timer.cancel(); //TODO: The method 'cancel' was called on null.
     super.dispose();
   }
 
@@ -202,8 +202,8 @@ class _FlutterSimpleStickerViewState extends State<FlutterSimpleStickerView> {
                           onPressed: () {
                             DBReader().sprMisjiTime(widget.dodane, i);
                             pointAlert();
-                            if (!klient.wykonaneMisje.contains(i)){
-                              klient.wykonaneMisje.add(i);
+                            if (!Client().wykonaneMisje.contains(i)){
+                              Client().wykonaneMisje.add(i);
 
                             }
                             liczba =0;

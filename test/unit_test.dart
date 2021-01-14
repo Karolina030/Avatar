@@ -10,13 +10,13 @@ void main() {
 
   const MethodChannel channel = MethodChannel('plugins.flutter.io/path_provider');
   channel.setMockMethodCallHandler((MethodCall methodCall) async {
-    return "";
+    return "test/tests_files";
   });
 
-  // test('SB counter value should be read', () async {
+  test('path_provider działa poprawnie', () async {
 
-  //   expect(await reader.readCounter(), isNot(0));
-  // });
+    expect(await DBReader().readCounter(), 1);
+  });
 
   test('Pobieranie tytułu misji, otwieranie plików missions', () async {
 
