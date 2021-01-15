@@ -7,6 +7,9 @@ import 'package:Avatar/main.dart';
 import 'package:Avatar/item.dart';
 
 import '../../DB_Reader.dart';
+import '../../creation.dart';
+import '../../edit_photo_screen.dart';
+
 
 //element dodany do koszyka
 
@@ -103,6 +106,8 @@ class Cart with ChangeNotifier {
     });
     _items = {};
     notifyListeners();
-    Client().readSticker();
+    //DBReader().readSticker();
+    Creation().newStickers();
+    EditPhotoScreen().newStickers();
   }
 }

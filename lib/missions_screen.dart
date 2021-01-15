@@ -2,9 +2,10 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:Avatar/creation.dart';
-import 'package:Avatar/mission.dart';
-import 'package:Avatar/mission_time.dart';
-import 'package:Avatar/try_again.dart';
+import 'package:Avatar/Mission.dart';
+import 'package:Avatar/Mission_Time.dart';
+import 'package:Avatar/mission_daily.dart';
+import 'package:Avatar/Try_Again.dart';
 import 'package:Avatar/DB_Reader.dart';
 
 int i;
@@ -19,11 +20,24 @@ class MissionsScreen extends StatelessWidget {
 
   }
 
+  void missionIndexTime(BuildContext context) async {
+
+    i = await DBReader().readMissions();
+    Navigator.push(context, MaterialPageRoute(builder: (context) => MissionTime()));
+
+  }
+
   void missionIndex2(BuildContext context, int number){
     i = number;
     Navigator.push(context, MaterialPageRoute(builder: (context) => Mission()));
 
   }
+
+  void dailyMission(BuildContext context) {
+    i =5;
+    Navigator.push(context, MaterialPageRoute(builder: (context) => Mission_Daily()));
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +71,8 @@ class MissionsScreen extends StatelessWidget {
                 child: Text('General', style: TextStyle(fontFamily: 'Copperplate Gothic Light', fontStyle: FontStyle.italic, fontWeight: FontWeight.bold,  fontSize: 40),), color: Color(0xFFFA990E), textColor: Colors.white,),
               new Text('\n'),
               new RaisedButton(onPressed: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context) => Mission()));
+                dailyMission(context);
+                //Navigator.push(context, MaterialPageRoute(builder: (context) => Mission()));
               },
                 highlightColor: Colors.redAccent,
                 padding: EdgeInsets.all(10),
@@ -65,7 +80,7 @@ class MissionsScreen extends StatelessWidget {
                 child: Text('Daily', style: TextStyle(fontFamily: 'Copperplate Gothic Light', fontStyle: FontStyle.italic, fontWeight: FontWeight.bold,  fontSize: 40),), color: Color(0xFFFA990E), textColor: Colors.white,),
               new Text('\n'),
               new RaisedButton(onPressed: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context) => MissionTime()));
+                missionIndexTime(context);
               },
                 highlightColor: Colors.redAccent,
                 padding: EdgeInsets.all(10),

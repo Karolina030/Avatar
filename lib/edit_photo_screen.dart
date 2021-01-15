@@ -1,5 +1,6 @@
 import 'dart:typed_data';
 
+import 'package:Avatar/DB_Reader.dart';
 import 'package:flutter/material.dart';
 
 import 'package:Avatar/flutter_simple_sticker_view.dart';
@@ -9,13 +10,22 @@ import 'package:Avatar/items.dart';
 import 'package:Avatar/item.dart';
 import 'dart:io';
 import 'package:Avatar/main.dart';
+import 'package:Avatar/DB_Reader.dart';
 import 'client.dart';
 
 import 'package:image_picker/image_picker.dart';
 var globalContext;
 String _path;
+List<String> _kupione = List<String>();
 
 class EditPhotoScreen extends StatelessWidget {
+
+
+  void newStickers() async {
+    _kupione = await DBReader().readSticker();
+  }
+
+
   @override
   Widget build(BuildContext context) {
     globalContext = context;
@@ -106,7 +116,7 @@ class _HomeViewState extends State<HomeView> {
     ),
     [ // loading assets
       for (Item item in Client().products ) Image.asset(item.path),
-      for (String naklejka in Client().kupione ) Image.asset(naklejka),
+      for (String naklejka in _kupione ) Image.asset(naklejka),
 
     ],
     // panelHeight: 150,

@@ -1,45 +1,27 @@
-import 'dart:typed_data';
+import 'package:Avatar/sklep/providers/product.dart';
 
-import 'package:Avatar/DB_Reader.dart';
 import 'package:flutter/material.dart';
-
-import 'package:Avatar/flutter_simple_sticker_view.dart';
-
-import 'package:image_gallery_saver/image_gallery_saver.dart';
-import 'package:Avatar/items.dart';
+import  './misje/flutter_simple_sticker_view.dart';
+import './sklep/providers/products.dart';
 import 'package:Avatar/item.dart';
-import 'package:Avatar/client.dart';
-import 'package:Avatar/main.dart';
 
-import 'dart:io';
+import 'DB_Reader.dart';
+import 'client.dart';
+import 'missions_screen.dart';
 
-import 'package:image_picker/image_picker.dart';
-
-import 'package:Avatar/DB_Reader.dart';
 
 var globalContext;
 
-//Items productsData = new Items();
-//List<Item> products = productsData.items;
-//Client Client() = new Client();
-List<String> _kupione = List<String>();
-
-class Creation extends StatelessWidget {
-
-
-  //List<String> _kupione = List<String>();
-
-
-  void newStickers() async {
-    _kupione = await DBReader().readSticker();
-  }
+class Mission_Daily extends StatelessWidget {
 
 
   @override
   Widget build(BuildContext context) {
     globalContext = context;
+
+    
     return MaterialApp(
-      title: "Create",
+      title: "Daily Mission",
       home: HomeView(),
       debugShowCheckedModeBanner: false,
         theme: ThemeData(
@@ -57,6 +39,19 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> {
 
 
+  void _open_alert() async {
+    String misja = await DBReader().tytulMisji(i);
+
+    return showDialog(
+        context: this.context,
+        builder: (context) {
+          return SimpleDialog(
+            title: Center(child: Text('$misja\nStart Mission!!!\n', style: TextStyle(fontFamily: 'Arial', fontSize: 20))),
+
+          );
+        });
+  }
+
   FlutterSimpleStickerView _stickerView = FlutterSimpleStickerView(
     Container(
       decoration: BoxDecoration(
@@ -66,16 +61,14 @@ class _HomeViewState extends State<HomeView> {
             //  child _image: new FileImage(_image),
             //   image:  Image.file(_image),
               image: new ExactAssetImage('assets/postac.png')
+
           )
       ),
     ),
 
-
-      [
-        for (Item item in Client().products ) Image.asset(item.path),
-        for (String naklejka in _kupione ) Image.asset(naklejka),
-
-        //Client().readSticker(),
+    [
+      for (Item item in Client().products ) Image.asset(item.path),
+      for (Product item in Products().items ) Image.asset(item.path),
 
     ],
     // panelHeight: 150,
@@ -85,6 +78,8 @@ class _HomeViewState extends State<HomeView> {
     // panelStickerAspectRatio: 1.0,
   );
 
+ // static get products => products;
+
   @override
   Widget build(BuildContext context) {
 
@@ -93,7 +88,7 @@ class _HomeViewState extends State<HomeView> {
     return Scaffold(
         appBar: AppBar(
             leading: Builder(
-              builder: (BuildContext context) {
+              builder: (BuildContext context) { //creating buttons
                 return IconButton(
                     icon: Icon(Icons.arrow_back_ios_rounded ),
                     onPressed: (){
@@ -103,21 +98,31 @@ class _HomeViewState extends State<HomeView> {
                 );
               },
             ),
-          title: Text("Create"),
+            title: Text("Daily Mission"),
             centerTitle: true,
 
             actions: <Widget>[
 
-            new IconButton(
-              icon: Icon(Icons.save_alt),
-              onPressed: () async {
-                Uint8List image = await _stickerView.exportImage();
+//clear file with completed missions
+              new IconButton(
+                icon: Icon(Icons.refresh),
+                onPressed: () async {
+                  DBReader().resetMission();
+                },
+              ),
 
-                await ImageGallerySaver.saveImage(image);
-              },
-            ),
-        ]
+              new IconButton(
+                icon: Icon(Icons.announcement),
+                onPressed: () async {
+                  _open_alert();
+                },
+              ),
+
+
+            ]
         ),
         body: _stickerView);
   }
 }
+
+//_stickerView);

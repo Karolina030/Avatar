@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:Avatar/DB_Reader.dart';
 import 'package:flutter/material.dart';
 import 'package:Avatar/missions_screen.dart';
 import 'package:Avatar/edit_photo_screen.dart';
@@ -15,6 +16,9 @@ void main() {
   WidgetsFlutterBinding.ensureInitialized();
   // klient = new Client();
  // klient.readSticker();
+  DBReader().readSticker();
+  Creation().newStickers();
+  EditPhotoScreen().newStickers();
   runApp(Avatar() //start application
   );
 
@@ -66,7 +70,7 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             new FlatButton(onPressed: () async {
               print('Went to create'); // printing in console
-              Client().readSticker();
+              Creation().newStickers();
 
               Navigator.push(context, MaterialPageRoute(builder: (context) => Creation())); // going to another screens
             },
@@ -89,7 +93,7 @@ class _MyHomePageState extends State<MyHomePage> {
             new Text('\n'),
             new FlatButton(onPressed: () async {
               print('Went to edit photo');
-              Client().readSticker();
+              EditPhotoScreen().newStickers();
               Navigator.push(context, MaterialPageRoute(builder: (context) => EditPhotoScreen()));
             },
               highlightColor: Colors.redAccent,

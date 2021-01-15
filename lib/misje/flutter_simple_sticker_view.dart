@@ -5,6 +5,9 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
+import '../DB_Reader.dart';
+import '../DB_Reader.dart';
+import '../DB_Reader.dart';
 import 'flutter_simple_sticker_image.dart';
 import 'package:Avatar/DB_Reader.dart';
 import 'package:Avatar/missions_screen.dart';
@@ -87,11 +90,18 @@ class _FlutterSimpleStickerViewState extends State<FlutterSimpleStickerView> {
     return showDialog(
         context: this.context,
         builder: (context) {
-          return SimpleDialog(
-            title: Center(child: Text("You get: $count points\n")),
-
-          );
-        });
+          if (count>0) {
+            return SimpleDialog(
+                title: Center(child: Text("You get: $count points\n")),
+            );
+            }
+          else {
+            return SimpleDialog(
+              title: Center(child: Text("Who is this?!??!\nUnfortunately you get: 0 points\n")),
+            );
+          }
+          }
+        );
   }
 
   Timer _timer;
@@ -193,10 +203,10 @@ class _FlutterSimpleStickerViewState extends State<FlutterSimpleStickerView> {
                     children: <Widget>[
                       RaisedButton(
                           onPressed: () {
-                            DBReader().sprMisjiTime(widget.dodane, i);
+                            DBReader().sprMisji(widget.dodane, i);
                             pointAlert();
-                            if (!Client().wykonaneMisje.contains(i)){
-                              Client().wykonaneMisje.add(i);
+                            if (!DBReader().wykonaneMisje.contains(i)){
+                              DBReader().wykonaneMisje.add(i);
                             }
                             DBReader().writeMission('mission$i');
                             liczba =0;
