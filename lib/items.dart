@@ -7,6 +7,9 @@ class Items with ChangeNotifier {
   List<Item> _items = [
     Item('hat', 0, "assets/icons8-hat-100.png"),
     Item('hat', 0, "assets/hat-1.png"),
+    Item('hat', 0, "assets/top-hat-1.png"),
+    Item('hat', 0, "assets/top-hat-2.png"),
+
 
     Item('american-hat', 0, "assets/icons8-american-hat-100.png"),
     Item('german-hat', 0, "assets/icons8-german-hat-100.png"),

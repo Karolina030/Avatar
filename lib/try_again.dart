@@ -1,3 +1,4 @@
+import 'package:Avatar/DB_Reader.dart';
 import 'package:flutter/material.dart';
 import 'package:Avatar/creation.dart';
 import 'package:Avatar/mission.dart';
@@ -6,6 +7,7 @@ import 'package:Avatar/missions_screen.dart';
 
 import 'package:Avatar/main.dart';
 
+import 'package:Avatar/DB_Reader.dart';
 import 'client.dart';
 
 int i;
@@ -36,7 +38,7 @@ class TryAgain extends StatelessWidget {
               //   Navigator.pop(context);
               // }, child: Icon(Icons.arrow_back)),
 
-              for (int numer in Client().wykonaneMisje)
+              for (int numer in DBReader().wykonaneMisje)
               new RaisedButton(onPressed: (){
                 MissionsScreen().missionIndex2(context, numer);
            //     Navigator.push(context, MaterialPageRoute(builder: (context) => Mission()));

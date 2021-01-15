@@ -9,6 +9,8 @@ import 'client.dart';
 
 class DBReader {
 
+  //List<String> kupione= List<String>();
+  List<int> wykonaneMisje= List<int>();
 
   Future<String> get _localPath async {
     // getting path
@@ -90,13 +92,49 @@ class DBReader {
 
   Future<File> writeSticker(String sticker)  async {
     final file = await localFileST;
+    List<String> kupione= List<String>();
+
     try {
-      file.writeAsStringSync(sticker + '\n',
-          mode: FileMode.append, flush: false);
+      file.openRead().transform(utf8.decoder).transform(new LineSplitter())
+          .forEach((l) {
+        if (!kupione.contains(l)){
+          kupione.add(l);  // pobranie pliku z kupionymi naklejkami do tablicy
+        }
+      });
+
     } catch (e) {
       print("Error: $e");
     }
-    return file;
+
+
+    if (!kupione.contains(sticker)){  // jeśli plik nie zawiera kupowanej naklejki to jest ona dodawana
+      try {
+        file.writeAsStringSync(sticker + '\n',
+            mode: FileMode.append, flush: false);
+
+      } catch (e) {
+        print("Error: $e");
+      }
+      return file;
+
+    }
+  }
+
+  Future<List<String>> readSticker() async {
+    final file = await DBReader().localFileST;
+
+    List<String> kupione= List<String>(); //pomocnicza tablica do pobierania pliku
+
+
+    file.openRead().transform(utf8.decoder).transform(new LineSplitter())
+        .forEach((l) {
+          if (!kupione.contains(l)){
+            kupione.add(l);  // pobranie pliku z kupionymi naklejkami do tablicy
+
+          }
+    });
+
+    return kupione;
   }
 
 
@@ -110,8 +148,6 @@ class DBReader {
   Future<File> writeMission(String mission)  async {
     final file = await localFileCM;
     try {
-      // this is only temporary
-      //file.writeAsStringSync('');
 
       file.writeAsString(mission + '\n', mode: FileMode.append);
 
@@ -126,7 +162,7 @@ class DBReader {
   void resetMission()  async {
     final file = await localFileCM;
     file.writeAsStringSync('');
-    Client().wykonaneMisje.clear();
+    DBReader().wykonaneMisje.clear();
 
   }
 

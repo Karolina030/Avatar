@@ -5,14 +5,13 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
-import '../DB_Reader.dart';
 import 'flutter_simple_sticker_image.dart';
 import 'package:Avatar/DB_Reader.dart';
-import 'package:Avatar/mission.dart';
-import 'package:Avatar/missions_screen.dart';
+import 'package:Avatar/Missions_Screen.dart';
 
-import 'package:Avatar/main.dart';
 import 'package:Avatar/client.dart';
+import 'package:Avatar/main.dart';
+
 
 int liczba =0;
 
@@ -83,20 +82,27 @@ class _FlutterSimpleStickerViewState extends State<FlutterSimpleStickerView> {
 
   void pointAlert() async {
 
-    int count = await DBReader().sprMisjiTime(widget.dodane, i);
+    int count = await DBReader().sprMisji(widget.dodane, i);
 
     return showDialog(
         context: this.context,
         builder: (context) {
-          return SimpleDialog(
-            title: Center(child: Text("You get: $count points\n")),
-
-          );
-        });
+          if (count>0) {
+            return SimpleDialog(
+              title: Center(child: Text("You get: $count points\n")),
+            );
+          }
+          else {
+            return SimpleDialog(
+              title: Center(child: Text("Who is this?!??!\nUnfortunately you get: 0 points\n")),
+            );
+          }
+        }
+    );
   }
 
   Timer _timer;
-  int _start = 30;
+  int _start = 0;
 
   void startTimer() {
     const oneSec = const Duration(seconds: 1);
@@ -104,9 +110,6 @@ class _FlutterSimpleStickerViewState extends State<FlutterSimpleStickerView> {
       oneSec,
           (Timer timer) {
         if (_start == 0) {
-          DBReader().sprMisjiTime(widget.dodane, i);
-          pointAlert();
-          liczba =0;
           setState(() {
             timer.cancel();
           });
@@ -119,11 +122,7 @@ class _FlutterSimpleStickerViewState extends State<FlutterSimpleStickerView> {
     );
   }
 
-  @override
-  void dispose() {
-    _timer.cancel(); //TODO: The method 'cancel' was called on null. Test 'Przycisk Time i przejście w polu Missions istniją' failed.
-    super.dispose();
-  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -201,24 +200,15 @@ class _FlutterSimpleStickerViewState extends State<FlutterSimpleStickerView> {
                     children: <Widget>[
                       RaisedButton(
                           onPressed: () {
-                            DBReader().sprMisjiTime(widget.dodane, i);
+                            DBReader().sprMisji(widget.dodane, i);
                             pointAlert();
-                            if (!DBReader().wykonaneMisje.contains(i)){
-                              DBReader().wykonaneMisje.add(i);
-
-                            }
                             liczba =0;
-                          //  _timer.cancel();
-
                           },
                           child: Text("END MISSION"),),
 
-                      //Text("   $_start   "),
+                      Text("      "),
 
-                      Text(
-                        "  $_start  ",
-                        style: TextStyle(fontSize: 30, color: Colors.pink),
-                      ),
+
                       RaisedButton(
                         onPressed: () {
                           startTimer();
