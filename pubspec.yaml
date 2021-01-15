@@ -39,6 +39,8 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   test:
+  flutter_driver:
+    sdk: flutter
 #  flutter_launcher_icons:
 
 #  flutter_simple_sticker_view:

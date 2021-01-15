@@ -31,6 +31,11 @@ class EditPhotoScreen extends StatelessWidget {
 }
 
 class HomeView extends StatefulWidget {
+
+  HomeView({Key key, this.title}) : super(key: key);
+
+  final String title;
+
   @override
   _HomeViewState createState() => _HomeViewState();
 }
@@ -43,6 +48,7 @@ class _HomeViewState extends State<HomeView> {
   Navigator.pushReplacement(context,MaterialPageRoute(builder: (BuildContext context) => super.widget)); // helps change image dynamical
 
     setState(() {
+     Key('Path in EdPh');
       _path = img.path; // getting image path
     });
   }
@@ -70,6 +76,7 @@ class _HomeViewState extends State<HomeView> {
                   new ListTile(
                       leading: new Icon(Icons.photo_library), // from gallery
                       title: new Text('Photo Library'),
+                      key: Key('Photo from PhLib'),
                       onTap: () {
                         _imgFromGallery();
                         Navigator.of(context).pop();
@@ -141,7 +148,9 @@ class _HomeViewState extends State<HomeView> {
 
               new IconButton(
                 icon: Icon(Icons.save_alt),
+                key: Key('Safe Photo'),
                 onPressed: () async {
+                  Key('Image in EdPh');
                   Uint8List image = await _stickerView.exportImage();
 
                   await ImageGallerySaver.saveImage(image);
@@ -149,6 +158,7 @@ class _HomeViewState extends State<HomeView> {
               ),
               new IconButton(
                 icon: Icon(Icons.camera),
+                key: Key('Show Picker'),
                 onPressed: () async {
                   _showPicker(context);
                 },

@@ -41,7 +41,9 @@ class Avatar extends StatelessWidget {
 
 
 class MyHomePage extends StatefulWidget {
+  MyHomePage({Key key, this.title}) : super(key: key);
 
+  final String title;
   _MyHomePageState createState() => _MyHomePageState();
 }
 
@@ -87,7 +89,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
               child: Text('MISSIONS', style: TextStyle(fontFamily: 'Copperplate Gothic Light',  fontStyle: FontStyle.italic, fontWeight: FontWeight.bold, fontSize: 40),), color:  Color(0xFFFA990E), textColor: Colors.white,),
             new Text('\n'),
-            new FlatButton(onPressed: () async {
+            new FlatButton(
+              key: Key('Go to EdPh'),
+              onPressed: () async {
               print('Went to edit photo');
               Client().readSticker();
               Navigator.push(context, MaterialPageRoute(builder: (context) => EditPhotoScreen()));
