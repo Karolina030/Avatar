@@ -203,10 +203,6 @@ class _FlutterSimpleStickerViewState extends State<FlutterSimpleStickerView> {
                           onPressed: () {
                             DBReader().sprMisjiTime(widget.dodane, i);
                             pointAlert();
-                            if (!DBReader().wykonaneMisje.contains(i)){
-                              DBReader().wykonaneMisje.add(i);
-
-                            }
                             liczba =0;
                           //  _timer.cancel();
 

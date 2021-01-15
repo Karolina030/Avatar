@@ -27,17 +27,9 @@ class CartScreen extends StatelessWidget {
         showDialog(
             context: context,
             builder: (BuildContext context) {
-              return AlertDialog(
-                title: Text(" "),
-                content: Center(child: Text("Unfortunately you don't have enough points")),
-                actions: [
-                  new FlatButton(
-                    child: Text("OK"),
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                  ),
-                ],
+
+              return SimpleDialog(
+                title: Center(child: Text("Unfortunately you don't have enough points\n")),
               );
             });
 

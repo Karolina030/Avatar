@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:Avatar/DB_Reader.dart';
+import 'package:Avatar/try_again.dart';
 import 'package:flutter/material.dart';
 import 'package:Avatar/missions_screen.dart';
 import 'package:Avatar/edit_photo_screen.dart';
@@ -9,16 +10,19 @@ import 'package:Avatar/store.dart';
 import 'package:Avatar/creation.dart';
 import 'package:Avatar/client.dart';
 
+import 'package:Avatar/DB_Reader.dart';
+
 // Client klient;
 
 void main() {
-  //Client klient;
   WidgetsFlutterBinding.ensureInitialized();
-  // klient = new Client();
- // klient.readSticker();
+  DBReader().createStickers();
   DBReader().readSticker();
   Creation().newStickers();
   EditPhotoScreen().newStickers();
+  DBReader().createTryAgainMissions();
+  TryAgain().completedMissions();
+  DBReader().readCompletedMissions();
   runApp(Avatar() //start application
   );
 

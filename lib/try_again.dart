@@ -10,16 +10,15 @@ import 'package:Avatar/main.dart';
 import 'package:Avatar/DB_Reader.dart';
 import 'client.dart';
 
-int i;
-List<int> wykonaneMisje= List<int>();
+List<int> wykonaneMisje = List<int>();
 
 class TryAgain extends StatelessWidget {
 
- // void missionIndex(BuildContext context, int number) async {
- //   i = number;
- //   Navigator.push(context, MaterialPageRoute(builder: (context) => Mission()));
-//
- // }
+
+  void completedMissions() async {
+    wykonaneMisje = await DBReader().readCompletedMissions();
+
+  }
 
 
   @override
@@ -38,7 +37,7 @@ class TryAgain extends StatelessWidget {
               //   Navigator.pop(context);
               // }, child: Icon(Icons.arrow_back)),
 
-              for (int numer in DBReader().wykonaneMisje)
+              for (int numer in wykonaneMisje)
               new RaisedButton(onPressed: (){
                 MissionsScreen().missionIndex2(context, numer);
            //     Navigator.push(context, MaterialPageRoute(builder: (context) => Mission()));

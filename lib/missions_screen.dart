@@ -16,6 +16,8 @@ class MissionsScreen extends StatelessWidget {
   void missionIndex(BuildContext context) async {
 
     i = await DBReader().readMissions();
+    DBReader().readCompletedMissions();
+
     Navigator.push(context, MaterialPageRoute(builder: (context) => Mission()));
 
   }
@@ -88,6 +90,7 @@ class MissionsScreen extends StatelessWidget {
                 child: Text('Time', style: TextStyle(fontFamily: 'Copperplate Gothic Light', fontStyle: FontStyle.italic, fontWeight: FontWeight.bold,  fontSize: 40),), color: Color(0xFFFA990E), textColor: Colors.white,),
               new Text('\n'),
               new RaisedButton(onPressed: (){
+                TryAgain().completedMissions();
                 Navigator.push(context, MaterialPageRoute(builder: (context) => TryAgain()));
               },
                 highlightColor: Colors.redAccent,

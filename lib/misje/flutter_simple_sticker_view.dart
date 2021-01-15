@@ -8,6 +8,7 @@ import 'package:flutter/rendering.dart';
 import '../DB_Reader.dart';
 import '../DB_Reader.dart';
 import '../DB_Reader.dart';
+import '../try_again.dart';
 import 'flutter_simple_sticker_image.dart';
 import 'package:Avatar/DB_Reader.dart';
 import 'package:Avatar/missions_screen.dart';
@@ -205,10 +206,10 @@ class _FlutterSimpleStickerViewState extends State<FlutterSimpleStickerView> {
                           onPressed: () {
                             DBReader().sprMisji(widget.dodane, i);
                             pointAlert();
-                            if (!DBReader().wykonaneMisje.contains(i)){
-                              DBReader().wykonaneMisje.add(i);
-                            }
+                            DBReader().writeCompletedMissions(i);
                             DBReader().writeMission('mission$i');
+                            TryAgain().completedMissions();
+
                             liczba =0;
                           },
                           child: Text("END MISSION"),),

@@ -10,7 +10,6 @@ import 'client.dart';
 class DBReader {
 
   //List<String> kupione= List<String>();
-  List<int> wykonaneMisje= List<int>();
 
   Future<String> get _localPath async {
     // getting path
@@ -89,6 +88,11 @@ class DBReader {
     return File('$path/stickers.txt');
   }
 
+  void createStickers()  async {
+    final file = await localFileST;
+    file.writeAsStringSync('',  mode: FileMode.append);
+  }
+
 
   Future<File> writeSticker(String sticker)  async {
     final file = await localFileST;
@@ -105,7 +109,6 @@ class DBReader {
     } catch (e) {
       print("Error: $e");
     }
-
 
     if (!kupione.contains(sticker)){  // jeśli plik nie zawiera kupowanej naklejki to jest ona dodawana
       try {
@@ -162,7 +165,10 @@ class DBReader {
   void resetMission()  async {
     final file = await localFileCM;
     file.writeAsStringSync('');
-    DBReader().wykonaneMisje.clear();
+    final file2 = await localFileTryAgain;
+    file2.writeAsStringSync('');
+
+//    DBReader().wykonaneMisje.clear();
 
   }
 
@@ -195,16 +201,60 @@ class DBReader {
     }
   }
 
- // Future<List<String>> readCompletedMissions() async {
+  Future<File> get localFileTryAgain async {
+    final path = await _localPath;
+    return File('$path/tryAgainMissions.txt');
+  }
 
- //   final file = await localFile_CM;
+  void createTryAgainMissions()  async {
+    final file = await localFileTryAgain;
+    file.writeAsStringSync('',  mode: FileMode.append);
+  }
 
- //   List<String> missionsComplited = List<String>();
+  Future<File> writeCompletedMissions(int number)  async {
+    final file = await localFileTryAgain;
+    List<int> wykonane= List<int>();
 
- //   missionsComplited = file.readAsLinesSync();
-//    return missionsComplited;
+    try {
+      file.openRead().transform(utf8.decoder).transform(new LineSplitter())
+          .forEach((l) {
+        if (!wykonane.contains(int.parse(l))){
+          wykonane.add(int.parse(l));
 
- // }
+        }
+      });
+
+    } catch (e) {
+      print("Error: $e");
+    }
+
+    if (!wykonane.contains(number)){
+      try {
+        file.writeAsStringSync(number.toString() + '\n',
+            mode: FileMode.append, flush: false);
+
+      } catch (e) {
+        print("Error: $e");
+      }
+
+      return file;
+
+    }
+  }
+
+  Future<List<int>> readCompletedMissions() async {
+    final file = await DBReader().localFileTryAgain;
+
+    List<int> wykonane= List<int>();
+
+    file.openRead().transform(utf8.decoder).transform(new LineSplitter())
+        .forEach((l) {
+      wykonane.add(int.parse(l));
+
+    });
+
+    return wykonane;
+  }
 
 
   Future<String> tytulMisji(int i) async {
