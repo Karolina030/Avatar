@@ -37,7 +37,7 @@ class FlutterSimpleStickerImage extends StatefulWidget {
   }
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.debug}) {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.debug}) { //TODO: useless or not?
     return "FlutterSimpleStickerImage-$key-${_flutterSimpleStickerImageState._offset}";
   }
 

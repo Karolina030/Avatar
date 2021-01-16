@@ -41,14 +41,15 @@ dev_dependencies:
   test:
   flutter_driver:
     sdk: flutter
-#  flutter_launcher_icons:
+  flutter_launcher_icons:
 
 #  flutter_simple_sticker_view:
 #    path: ../
 
-#flutter_icons:
-#  ios: true
-#  android: true
+flutter_icons:
+  ios: true
+  android: true
+  image_path: "assets/viking-hat.png"
 #  image_path_ios: "assets/postac.png"
 #  image_path_android: "assets/postac.png"
 

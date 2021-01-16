@@ -2,10 +2,10 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:Avatar/creation.dart';
-import 'package:Avatar/Mission.dart';
-import 'package:Avatar/Mission_Time.dart';
+import 'package:Avatar/mission.dart';
+import 'package:Avatar/mission_time.dart';
 import 'package:Avatar/mission_daily.dart';
-import 'package:Avatar/Try_Again.dart';
+import 'package:Avatar/try_again.dart';
 import 'package:Avatar/DB_Reader.dart';
 
 int i;
@@ -36,8 +36,8 @@ class MissionsScreen extends StatelessWidget {
   }
 
   void dailyMission(BuildContext context) {
-    i =5;
-    Navigator.push(context, MaterialPageRoute(builder: (context) => Mission_Daily()));
+    i = 5;
+    Navigator.push(context, MaterialPageRoute(builder: (context) => MissionDaily()));
   }
 
 

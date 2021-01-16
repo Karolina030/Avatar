@@ -12,7 +12,7 @@ import 'missions_screen.dart';
 
 var globalContext;
 
-class Mission_Daily extends StatelessWidget {
+class MissionDaily extends StatelessWidget {
 
 
   @override

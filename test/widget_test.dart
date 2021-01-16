@@ -1,6 +1,7 @@
 import 'package:Avatar/creation.dart';
 import 'package:Avatar/edit_photo_screen.dart';
 import 'package:Avatar/mission.dart';
+import 'package:Avatar/mission_daily.dart';
 import 'package:Avatar/mission_time.dart';
 import 'package:Avatar/missions_screen.dart';
 import 'package:Avatar/sklep/providers/cart.dart';
@@ -143,27 +144,27 @@ void main() {
           await tester.pumpAndSettle();
 
           verify(mockObserver.didPush(any, any));
-          expect(find.byType(Mission), findsOneWidget);
+          expect(find.byType(MissionDaily), findsOneWidget);
         });
 
-    // testWidgets('Przycisk Time i przejście w polu Missions istniją', //TODO: uncomment this after fix
-    //         (WidgetTester tester) async {
-    //       final mockObserver = MockNavigatorObserver();
-    //       await tester.pumpWidget(
-    //         MaterialApp(
-    //           home: MissionsScreen(),
-    //           navigatorObservers: [mockObserver],
-    //         ),
-    //       );
-    //
-    //       expect(find.text('Time'), findsOneWidget);
-    //       await tester.tap(find.text('Time'));
-    //       await tester.pumpAndSettle();
-    //
-    //       verify(mockObserver.didPush(any, any));
-    //       expect(find.byType(MissionTime), findsOneWidget);
-    //
-    //     });
+    testWidgets('Przycisk Time i przejście w polu Missions istniją',
+            (WidgetTester tester) async {
+          final mockObserver = MockNavigatorObserver();
+          await tester.pumpWidget(
+            MaterialApp(
+              home: MissionsScreen(),
+              navigatorObservers: [mockObserver],
+            ),
+          );
+
+          expect(find.text('Time'), findsOneWidget);
+          await tester.tap(find.text('Time'));
+          await tester.pumpAndSettle();
+
+          verify(mockObserver.didPush(any, any));
+          expect(find.byType(MissionTime), findsOneWidget);
+
+        });
 
     testWidgets('Przycisk Try Again i przejście w polu Missions istniją',
             (WidgetTester tester) async {
