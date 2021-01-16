@@ -1,26 +1,10 @@
 import 'package:Avatar/sklep/providers/product.dart';
-import 'package:provider/provider.dart';
-import 'dart:typed_data';
-
 import 'package:flutter/material.dart';
-
-//import 'package:Avatar/flutter_simple_sticker_view.dart';
 import  './misje/flutter_simple_sticker_view.dart';
-import 'package:image_gallery_saver/image_gallery_saver.dart';
-
 import './sklep/providers/products.dart';
-import 'package:Avatar/main.dart';
-
 import 'package:Avatar/item.dart';
-
 import 'DB_Reader.dart';
-import 'dart:math';
-
 import 'client.dart';
-import 'dart:io';
-
-import 'package:image_picker/image_picker.dart';
-
 import 'missions_screen.dart';
 
 

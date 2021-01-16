@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import '../../DB_Reader.dart';
-import '../../store.dart';
 import '../providers/cart.dart' show Cart;
 import '../widgets/cart_item.dart';
 import '../providers/orders.dart';
-import 'package:Avatar/main.dart';
 
 //zakładka "koszyk"
 
@@ -74,6 +71,7 @@ class CartScreen extends StatelessWidget {
                     label: Text(
                       '${cart.totalAmount.toStringAsFixed(2)}',
                       style: TextStyle(
+                        // ignore: deprecated_member_use
                         color: Theme.of(context).primaryTextTheme.title.color,
                       ),
                     ),

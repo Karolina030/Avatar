@@ -1,15 +1,7 @@
-import 'package:Avatar/client.dart';
 import 'package:flutter/foundation.dart';
-//import 'package:Avatar/mission.dart';
-//import 'package:Avatar/creation.dart';
-
-import 'package:Avatar/main.dart';
-import 'package:Avatar/item.dart';
-
 import '../../DB_Reader.dart';
 import '../../creation.dart';
 import '../../edit_photo_screen.dart';
-
 
 //element dodany do koszyka
 
@@ -93,20 +85,11 @@ class Cart with ChangeNotifier {
 
   // wyczyszczenie koszyka po kupieniu naklejek
   void clear() {
-   // var total;
-   // _items.forEach((key, cartItem) {
-   //   total += cartItem.price * cartItem.quantity;
-   // });
-   // Client().points = Client().points-total;
-
     _items.forEach((key, cartItem) {
-     // Item item = new Item(cartItem.title, cartItem.price, cartItem.path);
-      //Client().products.add(item);
       DBReader().writeSticker(cartItem.path);
     });
     _items = {};
     notifyListeners();
-    //DBReader().readSticker();
     Creation().newStickers();
     EditPhotoScreen().newStickers();
   }

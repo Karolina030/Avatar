@@ -1,19 +1,13 @@
 import 'dart:typed_data';
-
 import 'package:Avatar/DB_Reader.dart';
 import 'package:flutter/material.dart';
-
 import 'package:Avatar/flutter_simple_sticker_view.dart';
-
 import 'package:image_gallery_saver/image_gallery_saver.dart';
-import 'package:Avatar/items.dart';
 import 'package:Avatar/item.dart';
 import 'dart:io';
-import 'package:Avatar/main.dart';
-import 'package:Avatar/DB_Reader.dart';
 import 'client.dart';
-
 import 'package:image_picker/image_picker.dart';
+
 var globalContext;
 String _path;
 List<String> _kupione = List<String>();
@@ -53,6 +47,7 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> {
 
   Future _imgFromGallery() async {
+    // ignore: deprecated_member_use
     File img = await ImagePicker.pickImage(source: ImageSource.gallery); // getting image from gallery
 
   Navigator.pushReplacement(context,MaterialPageRoute(builder: (BuildContext context) => super.widget)); // helps change image dynamical
@@ -64,6 +59,7 @@ class _HomeViewState extends State<HomeView> {
   }
 
   Future _imgFromCamera() async {
+    // ignore: deprecated_member_use
     File img = await ImagePicker.pickImage(source: ImageSource.camera); // getting image from camera
 
   Navigator.pushReplacement(context,MaterialPageRoute(builder: (BuildContext context) => super.widget));

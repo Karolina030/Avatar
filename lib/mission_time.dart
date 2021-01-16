@@ -1,18 +1,10 @@
 import 'package:Avatar/sklep/providers/product.dart';
-
 import 'package:flutter/material.dart';
-
 import  './misje/flutter_simple_sticker_view_time.dart';
-
 import './sklep/providers/products.dart';
-import 'package:Avatar/main.dart';
-
 import 'package:Avatar/item.dart';
-
 import 'DB_Reader.dart';
-
 import 'missions_screen.dart';
-
 import 'client.dart';
 
 var globalContext;

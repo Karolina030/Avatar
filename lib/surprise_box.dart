@@ -49,7 +49,7 @@ class SurpriseBox {
           return AlertDialog(
             content: new FlatButton(
               child: new Text("You get $randomPoints points"),
-              onPressed: () => Navigator.of(context, rootNavigator: true).pop(), // closing dialog Navigator.push(context, MaterialPageRoute(builder: (context) => Store()))
+              onPressed: () => Navigator.of(context, rootNavigator: true).pop(), // closing dialog
             ),
           );
         });
@@ -81,7 +81,7 @@ class SurpriseBox {
   void _buyingSB() async {   //buying SurpriseBox
     var points = await DBReader().readPoints();
     if (points >= 100) {
-      await DBReader().writePoints(-100); // - 100 points
+      await DBReader().writePoints(-100); // - 100 points as SB price
       await DBReader().writeCounter(1); //   +1 SurpriseBox
       _openSBalert();
     }

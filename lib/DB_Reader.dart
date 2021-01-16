@@ -3,10 +3,6 @@ import 'dart:io';
 import 'package:flutter/services.dart';
 import 'package:path_provider/path_provider.dart';
 
-import 'main.dart';
-// import 'dart:math';
-import 'client.dart';
-
 class DBReader {
 
   //List<String> kupione= List<String>();
@@ -94,6 +90,7 @@ class DBReader {
   }
 
 
+  // ignore: missing_return
   Future<File> writeSticker(String sticker)  async {
     final file = await localFileST;
     List<String> kupione= List<String>();
@@ -177,6 +174,7 @@ class DBReader {
     file.writeAsStringSync('',  mode: FileMode.append);
   }
 
+  // ignore: missing_return
   Future<int> readMissions() async {
 
     final file = await localFileCM;
@@ -211,6 +209,7 @@ class DBReader {
     file.writeAsStringSync('',  mode: FileMode.append);
   }
 
+  // ignore: missing_return
   Future<File> writeCompletedMissions(int number)  async {
     final file = await localFileTryAgain;
     List<int> wykonane= List<int>();

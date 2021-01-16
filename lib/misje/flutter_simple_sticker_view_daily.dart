@@ -1,19 +1,14 @@
 import 'dart:async';
 import 'dart:typed_data';
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-
 import 'flutter_simple_sticker_image.dart';
 import 'package:Avatar/DB_Reader.dart';
 import 'package:Avatar/Missions_Screen.dart';
 
-import 'package:Avatar/client.dart';
-import 'package:Avatar/main.dart';
 
-
-int liczba =0;
+int liczba = 0;
 
 class FlutterSimpleStickerView extends StatefulWidget {
   FlutterSimpleStickerView(

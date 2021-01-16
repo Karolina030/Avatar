@@ -1,33 +1,18 @@
 import 'dart:typed_data';
-
 import 'package:Avatar/DB_Reader.dart';
 import 'package:flutter/material.dart';
-
 import 'package:Avatar/flutter_simple_sticker_view.dart';
-
 import 'package:image_gallery_saver/image_gallery_saver.dart';
-import 'package:Avatar/items.dart';
 import 'package:Avatar/item.dart';
 import 'package:Avatar/client.dart';
-import 'package:Avatar/main.dart';
 
-import 'dart:io';
-
-import 'package:image_picker/image_picker.dart';
-
-import 'package:Avatar/DB_Reader.dart';
 
 var globalContext;
 
-//Items productsData = new Items();
-//List<Item> products = productsData.items;
-//Client Client() = new Client();
+
 List<String> _kupione = List<String>();
 
 class Creation extends StatelessWidget {
-
-
-  //List<String> _kupione = List<String>();
 
 
   void newStickers() async {

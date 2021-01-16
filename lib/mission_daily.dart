@@ -39,7 +39,7 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> {
 
 
-  void _open_alert() async {
+  void _openAlert() async {
     String misja = await DBReader().tytulMisji(i);
 
     return showDialog(
@@ -114,7 +114,7 @@ class _HomeViewState extends State<HomeView> {
               new IconButton(
                 icon: Icon(Icons.announcement),
                 onPressed: () async {
-                  _open_alert();
+                  _openAlert();
                 },
               ),
 

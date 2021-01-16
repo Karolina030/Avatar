@@ -1,18 +1,12 @@
 import 'dart:ui';
-
 import 'package:Avatar/DB_Reader.dart';
 import 'package:Avatar/try_again.dart';
 import 'package:flutter/material.dart';
 import 'package:Avatar/missions_screen.dart';
 import 'package:Avatar/edit_photo_screen.dart';
 import 'package:Avatar/store.dart';
-
 import 'package:Avatar/creation.dart';
-import 'package:Avatar/client.dart';
 
-import 'package:Avatar/DB_Reader.dart';
-
-// Client klient;
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -38,7 +32,6 @@ class Avatar extends StatelessWidget {
       title: 'Avatar',
       theme: ThemeData(
         primarySwatch: Colors.orange,
-        // primarySwatch: Color(0xFFFECC47),
       ),
       home: MyHomePage(
 
@@ -64,9 +57,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
           title: Text('Avatar', style: TextStyle(fontFamily: 'Copperplate Gothic Light', fontSize: 40, fontStyle: FontStyle.italic, color: Colors.white,))
-        // title: Text(widget.title),
       ),
-      // backgroundColor: Colors.yellowAccent,
       backgroundColor: Color(0xFF1E90FF), //0xFFA4DBE4
       body: Center(
 
@@ -85,8 +76,8 @@ class _MyHomePageState extends State<MyHomePage> {
               shape: OutlineInputBorder(),
 
               child: Text('CREATE', style: TextStyle(fontFamily: 'Copperplate Gothic Light', fontStyle: FontStyle.italic, fontWeight: FontWeight.bold, fontSize: 40),), color: Color(0xFFFA990E), textColor: Colors.white,), // button's name
-            // new Spacer(flex: 1),
             new Text('\n'),
+
             new FlatButton(onPressed: () async {
               print('Went to missions');
               Navigator.push(context, MaterialPageRoute(builder: (context) => MissionsScreen()));
@@ -97,6 +88,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
               child: Text('MISSIONS', style: TextStyle(fontFamily: 'Copperplate Gothic Light',  fontStyle: FontStyle.italic, fontWeight: FontWeight.bold, fontSize: 40),), color:  Color(0xFFFA990E), textColor: Colors.white,),
             new Text('\n'),
+
             new FlatButton(
               key: Key('Go to EdPh'),
               onPressed: () async {
@@ -110,6 +102,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
               child: Text('EDIT PHOTO', style: TextStyle(fontFamily: 'Copperplate Gothic Light',  fontStyle: FontStyle.italic, fontWeight: FontWeight.bold, fontSize: 40),), color:  Color(0xFFFA990E), textColor: Colors.white,),
             new Text('\n'),
+
             new FlatButton(onPressed: () async {
               print('Went to store');
               Navigator.push(context, MaterialPageRoute(builder: (context) => Store()));

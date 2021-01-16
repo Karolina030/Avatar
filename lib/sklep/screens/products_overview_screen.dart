@@ -6,7 +6,6 @@ import 'cart_screen.dart';
 import 'package:Avatar/store.dart';
 
 import 'package:Avatar/DB_Reader.dart';
-// import 'package:Avatar/main.dart';
 
 //zakładka sklep
 var posContext;

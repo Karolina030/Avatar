@@ -1,7 +1,4 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
-import 'package:Avatar/creation.dart';
 import 'package:Avatar/mission.dart';
 import 'package:Avatar/mission_time.dart';
 import 'package:Avatar/mission_daily.dart';
