@@ -1,3 +1,14 @@
+/*
+
+  * Copyright 2020 AGH (Andrei Zhyunou, Karolina Matuszczyk, Szczepan Marzecki)
+  *
+  * Use of this source code is governed by a BSD-style
+  * license that can be found in the LICENSE file or at
+  * https://developers.google.com/open-source/licenses/bsd
+
+*/
+
+
 import 'dart:ui';
 import 'package:Avatar/DB_Reader.dart';
 import 'package:Avatar/try_again.dart';
@@ -11,6 +22,7 @@ import 'package:Avatar/creation.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   DBReader().createStickers();
+  DBReader().createMission(); /// sprawdz czy nie ma błedu z completedmissions
   DBReader().readSticker();
   Creation().newStickers();
   EditPhotoScreen().newStickers();
