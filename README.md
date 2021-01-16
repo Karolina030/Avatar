@@ -2,22 +2,22 @@
 
 IO project Avatar.
 
-##Run
+## Run
 ```
 flutter run
 ```
 
-##Tests
+## Tests
 
-####Unit
+#### Unit
 ```
 flutter test test/unit_test.dart 
 ```
-####Widget
+#### Widget
 ```
 flutter test test/widget_test.dart 
 ```
-####Integration
+#### Integration
 ```
 flutter drive --target=test_driver/app.dart 
 ```
