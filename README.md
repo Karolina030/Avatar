@@ -6,7 +6,7 @@ IO project Avatar.
 ```
 flutter run
 ```
-In Release folder you can find .apk file.
+You can find .apk file in Releases.
 
 ## Tests
 
