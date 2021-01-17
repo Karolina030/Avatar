@@ -30,4 +30,4 @@ flutter analyze
 
 ### Sorce code
 
-Sorce code "avatar_source_code" is in Reliase.
+Sorce code "avatar_source_code.zip" is in Release.
