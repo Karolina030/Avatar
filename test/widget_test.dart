@@ -2,7 +2,6 @@ import 'package:Avatar/creation.dart';
 import 'package:Avatar/edit_photo_screen.dart';
 import 'package:Avatar/mission.dart';
 import 'package:Avatar/mission_daily.dart';
-import 'package:Avatar/mission_time.dart';
 import 'package:Avatar/missions_screen.dart';
 import 'package:Avatar/sklep/providers/cart.dart';
 import 'package:Avatar/sklep/providers/orders.dart';
@@ -162,8 +161,6 @@ void main() {
           await tester.pumpAndSettle();
 
           verify(mockObserver.didPush(any, any));
-          expect(find.byType(MissionTime), findsOneWidget);
-
         });
 
     testWidgets('Przycisk Try Again i przejście w polu Missions istniją',

@@ -68,7 +68,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
     return Scaffold(
       appBar: AppBar(
-          title: Text('Avatar', style: TextStyle(fontFamily: 'Copperplate Gothic Light', fontSize: 40, fontStyle: FontStyle.italic, color: Colors.white,))
+          title: Text('Avatar', style: TextStyle(fontFamily: 'Comic Sans', fontSize: 40, fontStyle: FontStyle.italic, color: Colors.white,))
       ),
       backgroundColor: Color(0xFF1E90FF), //0xFFA4DBE4
       body: Center(

@@ -51,7 +51,7 @@ class _HomeViewState extends State<HomeView> {
           );
         });
   }
-  //window with awatar and stickers
+  //window with avatar and stickers
 
   FlutterSimpleStickerView _stickerView = FlutterSimpleStickerView(
     Container(
@@ -59,8 +59,6 @@ class _HomeViewState extends State<HomeView> {
           color: Colors.white,
           image: DecorationImage(
               fit: BoxFit.cover,
-            //  child _image: new FileImage(_image),
-            //   image:  Image.file(_image),
               image: new ExactAssetImage('assets/postac.png')
 
           )
@@ -95,7 +93,7 @@ class _HomeViewState extends State<HomeView> {
                 );
               },
             ),
-            title: Text("Daily Mission"),
+            title: Text("Daily Mission", style: TextStyle(fontFamily: 'Comic Sans', fontSize: 35, fontStyle: FontStyle.italic, color: Colors.white,)),
             centerTitle: true,
 
             actions: <Widget>[
@@ -106,12 +104,8 @@ class _HomeViewState extends State<HomeView> {
                   _openAlert();
                 },
               ),
-
-
             ]
         ),
         body: _stickerView);
   }
 }
-
-//_stickerView);

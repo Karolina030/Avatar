@@ -176,9 +176,8 @@ class DBReader {
     file.writeAsStringSync('',  mode: FileMode.append);
   }
 
-  // ignore: missing_return
-
   //read finished missions from completedMissions file
+  // ignore: missing_return
   Future<int> readMissions() async {
 
     final file = await localFileCM;
@@ -215,9 +214,8 @@ class DBReader {
     file.writeAsStringSync('',  mode: FileMode.append);
   }
 
-  // ignore: missing_return
-
   //write completed mission number to tryAgain file
+  // ignore: missing_return
   Future<File> writeCompletedMissions(int number)  async {
     final file = await localFileTryAgain;
     List<int> wykonane= List<int>();

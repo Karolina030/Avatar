@@ -44,7 +44,7 @@ class MissionsScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-          title: Text('Missions')
+          title: Text('Missions', style: TextStyle(fontFamily: 'Comic Sans', fontSize: 35, fontStyle: FontStyle.italic, color: Colors.white,))
       ),
       backgroundColor: Color(0xFF1E90FF),
 

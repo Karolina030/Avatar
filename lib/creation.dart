@@ -79,7 +79,7 @@ class _HomeViewState extends State<HomeView> {
                 );
               },
             ),
-          title: Text("Create"),
+          title: Text("Create", style: TextStyle(fontFamily: 'Comic Sans', fontSize: 35, fontStyle: FontStyle.italic, color: Colors.white,)),
             centerTitle: true,
 
             actions: <Widget>[

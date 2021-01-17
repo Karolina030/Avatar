@@ -50,7 +50,7 @@ class _HomeViewState extends State<HomeView> {
         });
   }
 
-  //window with awatar and stickers
+  //window with avatar and stickers
   FlutterSimpleStickerView _stickerView = FlutterSimpleStickerView(
     Container(
       decoration: BoxDecoration(
@@ -58,7 +58,6 @@ class _HomeViewState extends State<HomeView> {
           image: DecorationImage(
               fit: BoxFit.cover,
               image: new ExactAssetImage('assets/postac.png')
-
           )
       ),
     ),
@@ -71,7 +70,6 @@ class _HomeViewState extends State<HomeView> {
     panelBackgroundColor: Colors.orange,
   );
 
- // static get products => products;
 
   @override
   Widget build(BuildContext context) {
@@ -91,7 +89,7 @@ class _HomeViewState extends State<HomeView> {
                 );
               },
             ),
-            title: Text("Mission"),
+            title: Text("General Mission", style: TextStyle(fontFamily: 'Comic Sans', fontSize: 30, fontStyle: FontStyle.italic, color: Colors.white,)),
             centerTitle: true,
 
             actions: <Widget>[

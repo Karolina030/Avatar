@@ -56,7 +56,7 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
             );
           },
         ),
-        title: Text('Store'),
+        title: Text('Store', style: TextStyle(fontFamily: 'Comic Sans', fontSize: 35, fontStyle: FontStyle.italic, color: Colors.white,)),
         centerTitle: true,
 
         actions: <Widget>[

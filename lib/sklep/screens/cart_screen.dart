@@ -38,7 +38,7 @@ class CartScreen extends StatelessWidget {
     final cart = Provider.of<Cart>(context);
     return Scaffold(
       appBar: AppBar( //
-        title: Text('Order'),
+        title: Text('Order', style: TextStyle(fontFamily: 'Comic Sans', fontSize: 30, fontStyle: FontStyle.italic, color: Colors.white,)),
       ), //
       // appBar: AppBar( //
       //   leading: Builder(

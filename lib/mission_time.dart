@@ -69,7 +69,6 @@ class _HomeViewState extends State<HomeView> {
     panelBackgroundColor: Colors.orange,
   );
 
- // static get products => products;
 
   @override
   Widget build(BuildContext context) {
@@ -88,7 +87,7 @@ class _HomeViewState extends State<HomeView> {
                 );
               },
             ),
-            title: Text("Mission"),
+            title: Text("Time Mission", style: TextStyle(fontFamily: 'Comic Sans', fontSize: 35, fontStyle: FontStyle.italic, color: Colors.white,)),
             centerTitle: true,
 
             actions: <Widget>[
