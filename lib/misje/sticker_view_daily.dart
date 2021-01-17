@@ -1,22 +1,24 @@
 import 'dart:async';
 import 'dart:typed_data';
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'sticker_image.dart';
+import 'package:Avatar/DB_Reader.dart';
+import 'package:Avatar/Missions_Screen.dart';
 
-import './flutter_simple_sticker_image.dart';
+
+int flag = 0;
 
 class FlutterSimpleStickerView extends StatefulWidget {
   FlutterSimpleStickerView(
       this.source,
       this.stickerList, {
-
         Key key,
         this.stickerSize = 100.0,
         this.stickerMaxScale = 2.0,
-        this.stickerMinScale = 0.5,
-        this.panelHeight = 400.0, // 280.0
+        this.stickerMinScale = 0.05,
+        this.panelHeight = 400.0,
         this.panelBackgroundColor = Colors.black,
         this.panelStickerBackgroundColor = Colors.white10,
         this.panelStickercrossAxisCount = 4,
@@ -25,7 +27,9 @@ class FlutterSimpleStickerView extends StatefulWidget {
       }) : super(key: key);
 
   final Widget source;
-  final List<Image> stickerList;
+  final List<Image> stickerList;  //  list of choosen stiskers
+  final List<String> dodane = List<String>();  //list of paths to choosen stickers
+  //sticker properties
   final double stickerSize;
   final double stickerMaxScale;
   final double stickerMinScale;
@@ -39,14 +43,6 @@ class FlutterSimpleStickerView extends StatefulWidget {
 
   final _FlutterSimpleStickerViewState _flutterSimpleStickerViewState =
   _FlutterSimpleStickerViewState();
-
-  Future<Uint8List> exportImage() async {
-    await _flutterSimpleStickerViewState._prepareExport();
-    Future<Uint8List> exportImage =
-    _flutterSimpleStickerViewState.exportImage();
-    print("export image success!");
-    return exportImage;
-  }
 
   @override
   _FlutterSimpleStickerViewState createState() =>
@@ -78,6 +74,49 @@ class _FlutterSimpleStickerViewState extends State<FlutterSimpleStickerView> {
       ));
     });
   }
+
+  void pointAlert() async {
+
+    int count = await DBReader().sprMisji(widget.dodane, i);
+
+    return showDialog(
+        context: this.context,
+        builder: (context) {
+          if (count>0) {
+            return SimpleDialog(
+              title: Center(child: Text("You get: $count points\n")),
+            );
+          }
+          else {
+            return SimpleDialog(
+              title: Center(child: Text("Who is this?\nUnfortunately you get: 0 points\n")),
+            );
+          }
+        }
+    );
+  }
+
+  Timer _timer;
+  int _start = 0;
+
+  void startTimer() {
+    const oneSec = const Duration(seconds: 1);
+    _timer = new Timer.periodic(
+      oneSec,
+          (Timer timer) {
+        if (_start == 0) {
+          setState(() {
+            timer.cancel();
+          });
+        } else {
+          setState(() {
+            _start--;
+          });
+        }
+      },
+    );
+  }
+
 
 
   @override
@@ -114,7 +153,7 @@ class _FlutterSimpleStickerViewState extends State<FlutterSimpleStickerView> {
                   child: GridView.builder(
                     padding: EdgeInsets.zero,
                     scrollDirection: Axis.vertical,
-                    itemCount: widget.stickerList.length,
+                    itemCount: flag,
                     itemBuilder: (BuildContext context, int i) {
                       return Padding(
                           padding: const EdgeInsets.all(8.0),
@@ -124,6 +163,14 @@ class _FlutterSimpleStickerViewState extends State<FlutterSimpleStickerView> {
                                 onPressed: () {
                                   attachSticker(widget.stickerList[i]);
 
+                                  var re = RegExp(r'(?<=assets/)(.*)(?=.png)');
+                                  String data = widget.stickerList[i].image.toString();
+                                  var match = re.firstMatch(data);
+                                  if (match != null) {
+                                    print(match.group(0));
+                                    widget.dodane.add((match.group(0)).toString());
+                                  }
+                                  print(widget.dodane);
                                 },
                                 child: widget.stickerList[i]),
                           ));
@@ -137,11 +184,44 @@ class _FlutterSimpleStickerViewState extends State<FlutterSimpleStickerView> {
             },
           ),
         ),
+        new Column(
+            children: <Widget>[
+              new Card(
+
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    textDirection: TextDirection.rtl,
+                    children: <Widget>[
+                      RaisedButton(
+                          onPressed: () {
+                            DBReader().sprMisji(widget.dodane, i);
+                            pointAlert();
+                            flag =0;
+                          },
+                          child: Text("END MISSION"),),
+
+                      Text("      "),
+
+
+                      RaisedButton(
+                        onPressed: () {
+                          startTimer();
+                          flag = widget.stickerList.length;
+                        },
+                        child: Text("START MISSION"),
+                      ),
+                    ],
+
+                  ),
+
+              ),
+
+            ]
+
+        )
       ],
     );
   }
-
-  //export photo of awatar in .png format
 
   Future<Uint8List> exportImage() async {
     RenderRepaintBoundary boundary = key.currentContext.findRenderObject();
@@ -149,20 +229,14 @@ class _FlutterSimpleStickerViewState extends State<FlutterSimpleStickerView> {
     await boundary.toImage(pixelRatio: this.widget.devicePixelRatio);
     var byteData = await image.toByteData(format: ImageByteFormat.png);
     var pngBytes = byteData.buffer.asUint8List();
+
     return pngBytes;
   }
 
-  //removing selsected sticker
   void onTapRemoveSticker(FlutterSimpleStickerImage sticker) {
     setState(() {
       this.attachedList.removeWhere((s) => s.key == sticker.key);
     });
   }
 
-  Future<void> _prepareExport() async {
-    attachedList.forEach((s) {
-      s.prepareExport();
-    });
-    await Future.delayed(const Duration(milliseconds: 500));
-  }
 }

@@ -1,6 +1,6 @@
 import 'package:Avatar/sklep/providers/product.dart';
 import 'package:flutter/material.dart';
-import  './misje/flutter_simple_sticker_view_time.dart';
+import  './misje/sticker_view_time.dart';
 import './sklep/providers/products.dart';
 import 'package:Avatar/item.dart';
 import 'DB_Reader.dart';
@@ -37,7 +37,7 @@ class _HomeViewState extends State<HomeView> {
 
 
   void _openAlert() async {
-    String misja = await DBReader().tytulMisji(i);
+    String misja = await DBReader().missionTitle(i);
 
     return showDialog(
         context: this.context,
@@ -55,8 +55,6 @@ class _HomeViewState extends State<HomeView> {
           color: Colors.white,
           image: DecorationImage(
               fit: BoxFit.cover,
-            //  child _image: new FileImage(_image),
-            //   image:  Image.file(_image),
               image: new ExactAssetImage('assets/postac.png')
 
           )
@@ -68,11 +66,7 @@ class _HomeViewState extends State<HomeView> {
       for (Product item in Products().items ) Image.asset(item.path),
 
     ],
-    // panelHeight: 150,
     panelBackgroundColor: Colors.orange,
-    // panelStickerBackgroundColor: Colors.pink,
-    // panelStickercrossAxisCount: 4,
-    // panelStickerAspectRatio: 1.0,
   );
 
  // static get products => products;
@@ -90,7 +84,6 @@ class _HomeViewState extends State<HomeView> {
                     icon: Icon(Icons.arrow_back_ios_rounded ),
                     onPressed: (){
                       Navigator.pop(globalContext);
-                      //  Navigator.of(context).maybePop();
                     }
                 );
               },

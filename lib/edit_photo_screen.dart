@@ -1,12 +1,13 @@
 import 'dart:typed_data';
 import 'package:Avatar/DB_Reader.dart';
 import 'package:flutter/material.dart';
-import 'package:Avatar/flutter_simple_sticker_view.dart';
+import 'package:Avatar/sticker_view.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:Avatar/item.dart';
 import 'dart:io';
-import 'client.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:Avatar/client.dart';
+
 
 var globalContext;
 String _path;

@@ -42,10 +42,6 @@ class MissionsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
 
 
-    //Random random = new Random();
-    //i = random.nextInt(4)+1; // losowa liczba o 1 do 4, numer misji
-    //print(i);
-
     return Scaffold(
       appBar: AppBar(
           title: Text('Missions')
@@ -56,13 +52,9 @@ class MissionsScreen extends StatelessWidget {
         child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              // new RaisedButton(onPressed: (){
-              //   Navigator.pop(context);
-              // }, child: Icon(Icons.arrow_back)),
               new RaisedButton(onPressed: (){
                 DBReader().createMission();
                 missionIndex(context);
-            //    Navigator.push(context, MaterialPageRoute(builder: (context) => Mission()));
               },
                 highlightColor: Colors.redAccent,
                 padding: EdgeInsets.all(10),
@@ -71,7 +63,6 @@ class MissionsScreen extends StatelessWidget {
               new Text('\n'),
               new RaisedButton(onPressed: (){
                 dailyMission(context);
-                //Navigator.push(context, MaterialPageRoute(builder: (context) => Mission()));
               },
                 highlightColor: Colors.redAccent,
                 padding: EdgeInsets.all(10),

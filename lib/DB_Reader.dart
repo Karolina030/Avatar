@@ -140,10 +140,13 @@ class DBReader {
 
 //MISSION
 
+  //return path to completedMissions file
   Future<File> get localFileCM async {
     final path = await _localPath;
     return File('$path/completedMissions.txt');
   }
+
+  // add finished mission to completedMissions file
 
   Future<File> writeMission(String mission)  async {
     final file = await localFileCM;
@@ -157,7 +160,7 @@ class DBReader {
     return file;
   }
 
-  //clear file with completed missions
+  //clear file with completed missions, reset General and TryAgain
 
   void resetMission()  async {
     final file = await localFileCM;
@@ -165,16 +168,17 @@ class DBReader {
     final file2 = await localFileTryAgain;
     file2.writeAsStringSync('');
 
-//    DBReader().wykonaneMisje.clear();
-
   }
 
+  //create file with completed missions
   void createMission()  async {
     final file = await localFileCM;
     file.writeAsStringSync('',  mode: FileMode.append);
   }
 
   // ignore: missing_return
+
+  //read finished missions from completedMissions file
   Future<int> readMissions() async {
 
     final file = await localFileCM;
@@ -186,7 +190,6 @@ class DBReader {
     LineSplitter.split(missions).forEach((line) => missionsAvailable.add(line));
 
     missionsComplited = file.readAsLinesSync();
-  //  missionsComplited.forEach((l) => print(l));
 
     for(int i=0;i<missionsAvailable.length; i++){
       if (missionsComplited.contains(missionsAvailable) || missionsComplited.length ==3) {
@@ -199,10 +202,13 @@ class DBReader {
     }
   }
 
+  // return path to tryAgainMissions file
   Future<File> get localFileTryAgain async {
     final path = await _localPath;
     return File('$path/tryAgainMissions.txt');
   }
+
+  //create file with try again missions
 
   void createTryAgainMissions()  async {
     final file = await localFileTryAgain;
@@ -210,22 +216,14 @@ class DBReader {
   }
 
   // ignore: missing_return
+
+  //write completed mission number to tryAgain file
   Future<File> writeCompletedMissions(int number)  async {
     final file = await localFileTryAgain;
     List<int> wykonane= List<int>();
 
-    try {
-      file.openRead().transform(utf8.decoder).transform(new LineSplitter())
-          .forEach((l) {
-        if (!wykonane.contains(int.parse(l))){
-          wykonane.add(int.parse(l));
+    wykonane  = await readCompletedMissions();
 
-        }
-      });
-
-    } catch (e) {
-      print("Error: $e");
-    }
 
     if (!wykonane.contains(number)){
       try {
@@ -241,36 +239,40 @@ class DBReader {
     }
   }
 
+  //read completed missions numbers from tryAgain file
+
   Future<List<int>> readCompletedMissions() async {
     final file = await DBReader().localFileTryAgain;
 
-    List<int> wykonane= List<int>();
+    List<int> completed= List<int>();
 
     file.openRead().transform(utf8.decoder).transform(new LineSplitter())
         .forEach((l) {
-      wykonane.add(int.parse(l));
-
+          if (!completed.contains(int.parse(l))) {
+            completed.add(int.parse(l));
+          }
     });
 
-    return wykonane;
+    return completed;
   }
 
+//return title of  mission i
+  Future<String> missionTitle(int i) async {
 
-  Future<String> tytulMisji(int i) async {
-
-    List<String> lines = List<String>();
+    List<String> lines = List<String>();  //lines of file
     String data = await rootBundle.loadString('assets/mission$i.txt');
     LineSplitter.split(data).forEach((line) => lines.add(line));
-    String tytul= lines[0];
+    String title= lines[0];  // first line of file
 
-    return tytul;
+    return title;
 
   }
 
+  // check mission result in general and daily missions
   Future<int> sprMisji(List<String> dodane, int i) async {
 
     List<String> lines = List<String>();
-    int sum =0;
+    int sum =0;  //points
     try {
       String data = await rootBundle.loadString('assets/mission$i.txt');
       LineSplitter.split(data).forEach((line) => lines.add(line));
@@ -288,10 +290,12 @@ class DBReader {
     }
   }
 
+  // check mission result in time missions
+
   Future<int> sprMisjiTime(List<String> dodane, int i) async {
 
     List<String> lines = List<String>();
-    int sum =0;
+    int sum =0;  //points
 
     try {
       String data = await rootBundle.loadString('assets/mission$i.txt');

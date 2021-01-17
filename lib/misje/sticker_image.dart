@@ -80,7 +80,6 @@ class _FlutterSimpleStickerImageState extends State<FlutterSimpleStickerImage> {
             Center(
               child: Transform(
                 transform: Matrix4.diagonal3(Vector3(_scale, _scale, _scale)),
-                // ..setRotationZ(_rotation),
                 alignment: FractionalOffset.center,
                 child: GestureDetector(
                   onScaleStart: (ScaleStartDetails details) {
@@ -88,9 +87,6 @@ class _FlutterSimpleStickerImageState extends State<FlutterSimpleStickerImage> {
                     _previousOffset = _offset;
                     _previousRotation = _rotation;
                     _previousScale = _scale;
-
-                    // print(
-                    //     "begin - focal : ${details.focalPoint}, local : ${details.localFocalPoint}");
                   },
                   onScaleUpdate: (ScaleUpdateDetails details) {
 

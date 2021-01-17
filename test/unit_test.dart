@@ -21,7 +21,7 @@ void main() {
   test('Pobieranie tytułu misji, otwieranie plików missions', () async {
 
     for (var i = 1; i < 4; i++) {
-    expect(await DBReader().tytulMisji(i), isNotEmpty);
+    expect(await DBReader().missionTitle(i), isNotEmpty);
     }
   });
 

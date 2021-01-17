@@ -1,7 +1,7 @@
 import 'package:Avatar/sklep/providers/product.dart';
 
 import 'package:flutter/material.dart';
-import  './misje/flutter_simple_sticker_view.dart';
+import './misje/sticker_view_general.dart';
 import './sklep/providers/products.dart';
 import 'package:Avatar/item.dart';
 
@@ -40,7 +40,7 @@ class _HomeViewState extends State<HomeView> {
 
 
   void _openAlert() async {
-    String misja = await DBReader().tytulMisji(i);
+    String misja = await DBReader().missionTitle(i);
 
     return showDialog(
         context: this.context,
@@ -51,6 +51,7 @@ class _HomeViewState extends State<HomeView> {
           );
         });
   }
+  //window with awatar and stickers
 
   FlutterSimpleStickerView _stickerView = FlutterSimpleStickerView(
     Container(
@@ -71,11 +72,7 @@ class _HomeViewState extends State<HomeView> {
       for (Product item in Products().items ) Image.asset(item.path),
 
     ],
-    // panelHeight: 150,
     panelBackgroundColor: Colors.orange,
-    // panelStickerBackgroundColor: Colors.pink,
-    // panelStickercrossAxisCount: 4,
-    // panelStickerAspectRatio: 1.0,
   );
 
  // static get products => products;
@@ -102,14 +99,6 @@ class _HomeViewState extends State<HomeView> {
             centerTitle: true,
 
             actions: <Widget>[
-
-//clear file with completed missions
-              new IconButton(
-                icon: Icon(Icons.refresh),
-                onPressed: () async {
-                  DBReader().resetMission();
-                },
-              ),
 
               new IconButton(
                 icon: Icon(Icons.announcement),

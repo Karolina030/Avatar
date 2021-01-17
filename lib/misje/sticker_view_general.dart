@@ -4,12 +4,12 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import '../DB_Reader.dart';
-import 'flutter_simple_sticker_image.dart';
+import '../try_again.dart';
+import 'sticker_image.dart';
 import 'package:Avatar/DB_Reader.dart';
 import 'package:Avatar/missions_screen.dart';
 
-
-int liczba =0;
+int flag =0; // to disable to start mission before pressing start
 
 class FlutterSimpleStickerView extends StatefulWidget {
   FlutterSimpleStickerView(
@@ -28,8 +28,8 @@ class FlutterSimpleStickerView extends StatefulWidget {
       }) : super(key: key);
 
   final Widget source;
-  final List<Image> stickerList;  // lista wybranych naklejek
-  final List<String> dodane = List<String>();  //lista nazw wybranych w czasie misji naklejek
+  final List<Image> stickerList;  // list of choosen stiskers
+  final List<String> dodane = List<String>();  //list of paths to choosen stickers
   //sticker properties
   final double stickerSize;
   final double stickerMaxScale;
@@ -78,20 +78,27 @@ class _FlutterSimpleStickerViewState extends State<FlutterSimpleStickerView> {
 
   void pointAlert() async {
 
-    int count = await DBReader().sprMisjiTime(widget.dodane, i);
+    int count = await DBReader().sprMisji(widget.dodane, i);
 
     return showDialog(
         context: this.context,
         builder: (context) {
-          return SimpleDialog(
-            title: Center(child: Text("You get: $count points\n")),
-
-          );
-        });
+          if (count>0) {
+            return SimpleDialog(
+                title: Center(child: Text("You get: $count points\n")),
+            );
+            }
+          else {
+            return SimpleDialog(
+              title: Center(child: Text("Who is this?\nUnfortunately you get: 0 points\n")),
+            );
+          }
+          }
+        );
   }
 
   Timer _timer;
-  int _start = 30;
+  int _start = 0;
 
   void startTimer() {
     const oneSec = const Duration(seconds: 1);
@@ -99,9 +106,6 @@ class _FlutterSimpleStickerViewState extends State<FlutterSimpleStickerView> {
       oneSec,
           (Timer timer) {
         if (_start == 0) {
-          DBReader().sprMisjiTime(widget.dodane, i);
-          pointAlert();
-          liczba =0;
           setState(() {
             timer.cancel();
           });
@@ -114,11 +118,7 @@ class _FlutterSimpleStickerViewState extends State<FlutterSimpleStickerView> {
     );
   }
 
-  @override
-  void dispose() {
-    _timer.cancel(); //TODO: The method 'cancel' was called on null. Test 'Przycisk Time i przejście w polu Missions istniją' failed.
-    super.dispose();
-  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -154,7 +154,7 @@ class _FlutterSimpleStickerViewState extends State<FlutterSimpleStickerView> {
                   child: GridView.builder(
                     padding: EdgeInsets.zero,
                     scrollDirection: Axis.vertical,
-                    itemCount: liczba,
+                    itemCount: flag,
                     itemBuilder: (BuildContext context, int i) {
                       return Padding(
                           padding: const EdgeInsets.all(8.0),
@@ -188,36 +188,32 @@ class _FlutterSimpleStickerViewState extends State<FlutterSimpleStickerView> {
         new Column(
             children: <Widget>[
               new Card(
-                //margin: EdgeInsets.all(15),
-                 // padding: EdgeInsets.all(8),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     textDirection: TextDirection.rtl,
                     children: <Widget>[
                       RaisedButton(
                           onPressed: () {
-                            DBReader().sprMisjiTime(widget.dodane, i);
+                            DBReader().sprMisji(widget.dodane, i);
                             pointAlert();
-                            liczba =0;
-                          //  _timer.cancel();
+                            DBReader().writeCompletedMissions(i);
+                            DBReader().writeMission('mission$i');
+                            TryAgain().completedMissions();
 
+                            flag =0;
                           },
                           child: Text("END MISSION"),),
 
-                      //Text("   $_start   "),
+                      Text("      "),
 
-                      Text(
-                        "  $_start  ",
-                        style: TextStyle(fontSize: 30, color: Colors.pink),
-                      ),
+
                       RaisedButton(
                         onPressed: () {
                           startTimer();
-                          liczba = widget.stickerList.length;
+                          flag = widget.stickerList.length;
                         },
                         child: Text("START MISSION"),
                       ),
-                      //RaisedButton(onPressed: () {}, child: Text("START MISSION")),
                     ],
 
                   ),

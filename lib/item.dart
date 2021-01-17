@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 
-//pojedyncza naklejka dostępna w zakładkach: CREATE i EDIT PHOTO
+// single sticker available in CREATE and EDIT PHOTO
 class Item with ChangeNotifier {
   String title;
   double price;

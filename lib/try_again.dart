@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:Avatar/missions_screen.dart';
 
 List<int> wykonaneMisje = List<int>();
+String misja ="";
 
 class TryAgain extends StatelessWidget {
 
@@ -25,12 +26,14 @@ class TryAgain extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               for (int numer in wykonaneMisje)
+
               new RaisedButton(onPressed: (){
                 MissionsScreen().missionIndex2(context, numer);
               },
                 highlightColor: Colors.redAccent,
                 padding: EdgeInsets.all(10),
                 shape: OutlineInputBorder(),
+
                 child: Text("Misja $numer", style: TextStyle(fontFamily: 'Copperplate Gothic Light', fontStyle: FontStyle.italic, fontWeight: FontWeight.bold,  fontSize: 40),), color: Color(0xFFFA990E), textColor: Colors.white,),
               new Text('\n'),
             ]
