@@ -22,7 +22,7 @@ import 'package:Avatar/creation.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   DBReader().createStickers();
-  DBReader().createMission(); /// sprawdz czy nie ma błedu z completedmissions
+  DBReader().createMission();
   DBReader().readSticker();
   Creation().newStickers();
   EditPhotoScreen().newStickers();

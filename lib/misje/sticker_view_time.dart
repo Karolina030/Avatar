@@ -124,7 +124,7 @@ class _FlutterSimpleStickerViewState extends State<FlutterSimpleStickerView> {
 
   @override
   void dispose() {
-    _timer.cancel(); //TODO: The method 'cancel' was called on null. Test 'Przycisk Time i przejście w polu Missions istniją' failed.
+    _timer.cancel();
     super.dispose();
   }
 
@@ -207,6 +207,9 @@ class _FlutterSimpleStickerViewState extends State<FlutterSimpleStickerView> {
                             pointAlert();
                             flag =0;
                             ImageExample().openExampleIncrement();
+                            _start = 0;
+                            //  _timer.cancel();
+
                           },
                           child: Text("END MISSION"),),
 

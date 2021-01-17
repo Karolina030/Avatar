@@ -114,13 +114,6 @@ class _HomeViewState extends State<HomeView> {
 
             actions: <Widget>[
 
-//clear file with completed missions
-              new IconButton(
-                icon: Icon(Icons.refresh),
-                onPressed: () async {
-                  DBReader().resetMission();
-                },
-              ),
 //information about mission goal
               new IconButton(
                 icon: Icon(Icons.announcement),
