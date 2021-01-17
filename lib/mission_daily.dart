@@ -1,7 +1,7 @@
 import 'package:Avatar/sklep/providers/product.dart';
 
 import 'package:flutter/material.dart';
-import './misje/sticker_view_general.dart';
+import './misje/sticker_view_daily.dart';
 import './sklep/providers/products.dart';
 import 'package:Avatar/item.dart';
 
