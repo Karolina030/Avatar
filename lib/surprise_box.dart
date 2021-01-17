@@ -24,7 +24,7 @@ class SurpriseBox {
         context: this.context,
         builder: (context) {
           return SimpleDialog(
-            title: Text("Are you sure? You have $countSB boxes!"),
+            title: Text("Are you sure you want to open? You have $countSB boxes!"),
             children: <Widget>[
               SimpleDialogOption(
                 onPressed: () => Navigator.of(context, rootNavigator: true).pop(_displayDialogPoints()), // opening
@@ -61,7 +61,7 @@ class SurpriseBox {
         context: this.context,
         builder: (context) {
           return SimpleDialog(
-            title: Text("You have no SB and $points points!"),
+            title: Text("You don't have any Surprise Box at this moment, would you like to buy one for 100 points? Now ypu have $points points."),
             children: <Widget>[
               SimpleDialogOption(
                 onPressed: () => Navigator.of(context, rootNavigator: true).pop(_buyingSB()), // option to buy
@@ -76,7 +76,6 @@ class SurpriseBox {
           );
         });
   }
-
 
   void _buyingSB() async {   //buying SurpriseBox
     var points = await DBReader().readPoints();

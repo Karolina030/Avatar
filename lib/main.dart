@@ -1,6 +1,6 @@
 /*
 
-  * Copyright 2020 AGH (Andrei Zhyunou, Karolina Matuszczyk, Szczepan Marzecki)
+  * Copyright (c) 2020 AGH (Andrei Zhyunou, Karolina Matuszczyk, Szczepan Marzecki)
   *
   * Use of this source code is governed by a BSD-style
   * license that can be found in the LICENSE file or at
@@ -40,7 +40,7 @@ class Avatar extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return MaterialApp(
-      debugShowCheckedModeBanner: false, // TODO: delete or not?
+      debugShowCheckedModeBanner: false,
       title: 'Avatar',
       theme: ThemeData(
         primarySwatch: Colors.orange,

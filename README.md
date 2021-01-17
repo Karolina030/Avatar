@@ -6,6 +6,7 @@ IO project Avatar.
 ```
 flutter run
 ```
+In Release folder you can find .apk file.
 
 ## Tests
 
@@ -20,4 +21,9 @@ flutter test test/widget_test.dart
 #### Integration
 ```
 flutter drive --target=test_driver/app.dart 
+```
+
+## Analysis
+```
+flutter analyze  
 ```

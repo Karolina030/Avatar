@@ -30,15 +30,6 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
   }
 
 
-  //TODO: ATTENTION
-  //This fragment just helps to test app because now there is no option to get points
-  //This fragment must be delete
-  void _easyMoney() async {
-    await DBReader().writePoints(100);
-    var points = await DBReader().readPoints();
-    print('Points: $points');
-  }
-
 
 
   @override
@@ -60,10 +51,6 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
         centerTitle: true,
 
         actions: <Widget>[
-          new IconButton( // button to get money
-            icon: Icon(Icons.money_off,),
-            onPressed: _easyMoney,
-          ), // must be delete
           new IconButton(
             icon: Icon(Icons.card_giftcard_sharp,),
             onPressed: SurpriseBox().checkSB,
@@ -90,7 +77,7 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
                   children: <Widget>[
                     Text(
                       'Number of points: $_points',
-//TODO fix displaying after change
+
                       style: TextStyle(fontSize: 20),
                     ),
                     Spacer(),
