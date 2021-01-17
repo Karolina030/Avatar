@@ -205,7 +205,8 @@ class _FlutterSimpleStickerViewState extends State<FlutterSimpleStickerView> {
                             DBReader().sprMisjiTime(widget.dodane, i);
                             pointAlert();
                             flag =0;
-                          //  _timer.cancel();
+                            _start = 0;
+                            //  _timer.cancel();
 
                           },
                           child: Text("END MISSION"),),

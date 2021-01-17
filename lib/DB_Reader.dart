@@ -5,7 +5,6 @@ import 'package:path_provider/path_provider.dart';
 
 class DBReader {
 
-  //List<String> kupione= List<String>();
 
   Future<String> get _localPath async {
     // getting path
@@ -160,15 +159,6 @@ class DBReader {
     return file;
   }
 
-  //clear file with completed missions, reset General and TryAgain
-
-  void resetMission()  async {
-    final file = await localFileCM;
-    file.writeAsStringSync('');
-    final file2 = await localFileTryAgain;
-    file2.writeAsStringSync('');
-
-  }
 
   //create file with completed missions
   void createMission()  async {
