@@ -266,7 +266,7 @@ class DBReader {
       LineSplitter.split(data).forEach((line) => lines.add(line));
       for(int i=1;i<lines.length; i++){
         if (dodane.contains(lines[i])){
-          sum = sum +100;
+          sum = sum + 10;
         }
       }
       print(sum);
@@ -290,7 +290,7 @@ class DBReader {
       LineSplitter.split(data).forEach((line) => lines.add(line));
       for(int i=1;i<lines.length; i++){
         if (dodane.contains(lines[i])){
-          sum = sum +200;
+          sum = sum +20;
         }
       }
       print(sum);
