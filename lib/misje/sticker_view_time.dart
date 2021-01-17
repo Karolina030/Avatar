@@ -4,6 +4,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import '../DB_Reader.dart';
+import '../image_example.dart';
 import 'sticker_image.dart';
 import 'package:Avatar/DB_Reader.dart';
 import 'package:Avatar/missions_screen.dart';
@@ -205,13 +206,10 @@ class _FlutterSimpleStickerViewState extends State<FlutterSimpleStickerView> {
                             DBReader().sprMisjiTime(widget.dodane, i);
                             pointAlert();
                             flag =0;
-                          //  _timer.cancel();
-
+                            ImageExample().openExampleIncrement();
                           },
                           child: Text("END MISSION"),),
 
-                      //Text("   $_start   "),
-                      //timer
                       Text(
                         "  $_start  ",
                         style: TextStyle(fontSize: 30, color: Colors.pink),

@@ -5,6 +5,7 @@ import './sklep/providers/products.dart';
 import 'package:Avatar/item.dart';
 import 'DB_Reader.dart';
 import 'client.dart';
+import 'image_example.dart';
 import 'missions_screen.dart';
 
 
@@ -43,12 +44,30 @@ class _HomeViewState extends State<HomeView> {
     return showDialog(
         context: this.context,
         builder: (context) {
-          return SimpleDialog(
-            title: Center(child: Text('$misja\nStart Mission!!!\n', style: TextStyle(fontFamily: 'Arial', fontSize: 20))),
+          return AlertDialog(
+            content: Text('$misja\nYou can open an example only once!', style: TextStyle(fontFamily: 'Arial', fontSize: 20)),
+            actions: <Widget>[
+              FlatButton(
+                child: Text("Example"),
+                onPressed: () {
+                  ImageExample().openAlertImage(misja, context);
+                },
+              ),
 
+              FlatButton(
+                child: Text("Close"),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
           );
-        });
+        },
+    );
   }
+
+
+
 
   //window with avatar and stickers
   FlutterSimpleStickerView _stickerView = FlutterSimpleStickerView(
@@ -83,6 +102,7 @@ class _HomeViewState extends State<HomeView> {
                 return IconButton(
                     icon: Icon(Icons.arrow_back_ios_rounded ),
                     onPressed: (){
+                      ImageExample().openExampleIncrement();
                       Navigator.pop(globalContext);
                       //  Navigator.of(context).maybePop();
                     }
@@ -108,7 +128,6 @@ class _HomeViewState extends State<HomeView> {
                   _openAlert();
                 },
               ),
-
 
             ]
         ),

@@ -4,6 +4,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import '../DB_Reader.dart';
+import '../image_example.dart';
 import '../try_again.dart';
 import 'sticker_image.dart';
 import 'package:Avatar/DB_Reader.dart';
@@ -199,8 +200,9 @@ class _FlutterSimpleStickerViewState extends State<FlutterSimpleStickerView> {
                             DBReader().writeCompletedMissions(i);
                             DBReader().writeMission('mission$i');
                             TryAgain().completedMissions();
+                            ImageExample().openExampleIncrement();
 
-                            flag =0;
+                            flag = 0;
                           },
                           child: Text("END MISSION"),),
 

@@ -3,6 +3,7 @@ import 'dart:typed_data';
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import '../image_example.dart';
 import 'sticker_image.dart';
 import 'package:Avatar/DB_Reader.dart';
 import 'package:Avatar/Missions_Screen.dart';
@@ -196,6 +197,7 @@ class _FlutterSimpleStickerViewState extends State<FlutterSimpleStickerView> {
                           onPressed: () {
                             DBReader().sprMisji(widget.dodane, i);
                             pointAlert();
+                            ImageExample().openExampleIncrement();
                             flag =0;
                           },
                           child: Text("END MISSION"),),

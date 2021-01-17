@@ -5,3 +5,4 @@ hat-1
 eyebrows
 cartoon-eyes-2.png
 cartoon-hair-4
+icons8-eye-50

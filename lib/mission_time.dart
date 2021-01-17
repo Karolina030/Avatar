@@ -4,6 +4,7 @@ import  './misje/sticker_view_time.dart';
 import './sklep/providers/products.dart';
 import 'package:Avatar/item.dart';
 import 'DB_Reader.dart';
+import 'image_example.dart';
 import 'missions_screen.dart';
 import 'client.dart';
 
@@ -42,9 +43,23 @@ class _HomeViewState extends State<HomeView> {
     return showDialog(
         context: this.context,
         builder: (context) {
-          return SimpleDialog(
-            title: Center(child: Text('$misja\nStart Mission!!!\n', style: TextStyle(fontFamily: 'Arial', fontSize: 20))),
+          return AlertDialog(
+            content: Text('$misja\nYou can open an example only once!', style: TextStyle(fontFamily: 'Arial', fontSize: 20)),
+            actions: <Widget>[
+              FlatButton(
+                child: Text("Example"),
+                onPressed: () {
+                  ImageExample().openAlertImage(misja, context);
+                },
+              ),
 
+              FlatButton(
+                child: Text("Close"),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
           );
         });
   }
@@ -82,6 +97,7 @@ class _HomeViewState extends State<HomeView> {
                 return IconButton(
                     icon: Icon(Icons.arrow_back_ios_rounded ),
                     onPressed: (){
+                      ImageExample().openExampleIncrement();
                       Navigator.pop(globalContext);
                     }
                 );

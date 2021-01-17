@@ -37,6 +37,7 @@ class FlutterSimpleStickerImage extends StatefulWidget {
   }
 
   @override
+  // ignore: invalid_override_different_default_values_named
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.debug}) { //TODO: useless or not?
     return "FlutterSimpleStickerImage-$key-${_flutterSimpleStickerImageState._offset}";
   }
@@ -107,7 +108,6 @@ class _FlutterSimpleStickerImageState extends State<FlutterSimpleStickerImage> {
                       _scale = _previousScale * details.scale;
                       _rotation = details.rotation;
                       _offset = __offset;
-                      //  print("move - $_offset, scale : $_scale");
                     });
                   },
                   onScaleEnd: (ScaleEndDetails details){

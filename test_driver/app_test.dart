@@ -35,7 +35,7 @@ void main() {
       await driver.tap(buttonPhFromPhLib);
 
       expect(pathInEdPh, isNotNull);
-    });// timeout: Timeout.factor(2));
+    });
 
     test('Safe photo', () async {
 
